@@ -1,0 +1,79 @@
+---
+title: "Reverse Coattails in the Virginia Governor's Race"
+output: html_notebook
+---
+
+## Introduction
+One of the more controversial hypotheses coming out of the 2017 statewide elections in Virginia is the idea of reverse coattails - a phenomenon where House of Delegates candidates boosted the vote share for the top of the ticket. Most writing on this topic has focused on whether or not Ralph Northam got a greater share of the vote in precincts with contested house races and has tended to argue agains the idea that reverse coattails exist. I tend to agree on that point! But elections are about vote share _and_ turnout which is where I differ from my fellow political twitter peers. 
+
+Data collected from [the State Board of Elections](sbe.virginia.gov) allows for precinct-level analysis of of voter turnout and support. In this case, we compare turnout and support in the Governor's race to turnout and support in house races based on whether or not they were contested. Then we simulate the results of the Governor's race if support remained static, but turnout had not been influenced by competition down ballot. 
+
+```{r}
+library(readr)
+results <- read_csv('results.csv')
+```
+
+## Competition Drove Turnout
+There is clear evidence that turnout for the Governor's race was higher in precincts with a contested house race. This makes intutitive sense because campaign efforts at the statewide level are supplemented by efforts from  more organizers and candidates communicating with and turning out voters. It's one thing to have a dedicated campaign volunteer to canvass for you once per week in a precinct, but it's even better to have a candidate in an area devoting all of their time, energy, and resources to turning out votes. 
+
+Figure 1a illustrates the difference in top-of-ticket turnout when races are contested as opposed to when races are not contested. Turnout was demonstrably higher at the top of the ticket in contested precincts, but that's not just because more people ran for office in places that were more excited about turning out to vote. Figure 1b displays the same distribution for House of Delegates races. Down-ballot rolloff (where voters show up for the top of the ticket but abstain from voting in local races) was much more severe in places without a contested house race, which suggests house races were turning out voters that wouldn't necessarily turn out in other districts.
+```{r}
+gov_turn_dfs <- list()
+hod_turn_dfs <- list()
+for(i in seq(1,500)){
+  df <- results%>%sample_frac(.8, replace = TRUE)
+  gov_turn_dfs[[i]] <- df%>%filter(office == 'Governor')%>%group_by(cont = as.character(hod_contested))%>%summarise(me = mean(turnout))
+  hod_turn_dfs[[i]] <- df%>%filter(office != 'Governor')%>%group_by(cont = as.character(hod_contested))%>%summarise(me = mean(turnout))
+}
+library(ggplot2)
+library(yaztheme)
+library(dplyr)
+library(gridExtra)
+library(ggridges)
+
+ggplot(bind_rows(gov_turn_dfs), aes(x = me, y = cont))+
+  geom_density_ridges(fill = yaz_cols[3], alpha =.7)+
+  annotate('text', x = 49.5, y = 1.5, label = 'The curves represent all possible values for average precinct-level\nturnout accounting for uncertainty in measurements. The taller the curve,\nthe more confidence we have in that point as the true turnout estimate', size = 3)+
+  labs(x = 'Top of Ticket Turnout (%)',
+       y = element_blank(),
+       title = 'Figure 1a: Top of Ticket Turnout by Down-Ballot Competition')+
+  theme_yaz()+
+  scale_y_discrete(breaks = c('0','1'), labels = c('Non-Contested','Contested'))
+ggsave('figure1a.pdf', height = 4, width = 8)
+
+ggplot(bind_rows(hod_turn_dfs), aes(x = me, y = cont))+
+  geom_density_ridges(fill = yaz_cols[3], alpha =.7)+
+  labs(x = 'Down-Ballot Turnout (%)',
+       y = element_blank(),
+       title = 'Figure 1b: Down-Ballot Turnout by Down-Ballot Competition')+
+  theme_yaz()+
+  scale_y_discrete(breaks = c('0','1'), labels = c('Non-Contested','Contested'))
+  
+ggsave('figure1b.pdf', height = 4, width = 8)
+```
+
+## What If Competition Held Constant?
+Using competition as an input in a linear regression model for turnout tells us the marginal impact of competing in a particular precinct. The bootstrapped median value for the marginal benefit of competing in a sitrict is 3.55% which is a huge boost in turnout! So what would the governor's race look like without all the competitive races we saw? Let's assume candidate support remains stable, but turnout is reduced by 3.5% across all competitive precincts (an assumption that is very generous to Northam since drops in turnout are rarely favorable to Democrats in the commonwealth). Gillespie would have picked up about 1,400 votes relative to Northam statewide.  
+```{r}
+coefs <- c()
+for(i in seq(1,500)){
+  dat <- results%>%filter(office == 'Governor')%>%sample_frac(.8, replace = TRUE)
+  reg <- lm(turnout~as.character(hod_contested), data = dat)
+  df <- summary(reg)$coefficients%>%data.frame()
+  coefs[i] <- df[2,1]
+}
+median(coefs)
+
+library(reshape2)
+library(knitr)
+gov_only%>%
+  mutate(`Adj. Democratic Votes` = ifelse(hod_contested == 1, (democrat*.965), democrat),
+         `Adj. Republican Votes` = ifelse(hod_contested == 1, (republican*.965), republican))%>%
+  dplyr::select(Democratic = democrat, Republican = republican, `Adj. Democratic Votes`, `Adj. Republican Votes`)%>%
+  melt()%>%
+  group_by(Party = variable)%>%
+  summarise(Votes = round(sum(value)))%>%
+  kable()
+```
+
+Keeping in mind that the data is unofficial (again, I plan to update this post when the certified results are posted by the state board) there appears to be a small amount of evidence in favor of a reverse coattails effect, though not nearly enough to move the needle in a meaningful way in terms of the overall outcome.

@@ -1,0 +1,267 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Instructions for scraping unofficial election results from sbe.virginia.gov
+
+Step 1: Scrape the results by county page to get a list of all county names, then use that to create a list urls for precinct level results.
+
+```{r}
+library(rvest)
+library(dplyr)
+
+base_page <- 'http://results.elections.virginia.gov/vaelections/2017%20November%20General/Site/Governor.html'
+
+html_base <- read_html(base_page)
+
+counties <- html_base%>%html_nodes('h2 span')%>%html_text()
+counties <- counties[3:length(counties)]
+head(counties)
+```
+
+Next we need to loop through each county to collect results for Governor
+```{r}
+library(rjson)
+library(RCurl)
+
+gov_getter <- function(year){
+  county_data <- list()
+  for(i in seq(1, length(counties))){
+    pre <- paste0('http://results.elections.virginia.gov/vaelections/',year,'%20November%20General/Json/Locality/')
+    gpost <-'/Governor.json'
+    govjson <- fromJSON(httpGET(paste0(pre,gsub(' ','%20',counties[i]),gpost))) 
+    
+    mid_df <- list()
+    for(p in seq(1,length(govjson$Precincts))){
+      candidate_name <- c()
+      party <- c()
+      ballot_order <- c()
+      votes <- c()
+      county <- c()
+      precinct <- c()   
+      for(c in seq(1,length(govjson$Precincts[[p]]$Candidates))){
+        candidate_name[c] <- govjson$Precincts[[p]]$Candidates[[c]]$BallotName%>%as.character()
+        party[c] <- govjson$Precincts[[p]]$Candidates[[c]]$PoliticalParty%>%as.character()
+        ballot_order[c] <- govjson$Precincts[[p]]$Candidates[[c]]$BallotOrder%>%as.character()
+        votes[c] <- govjson$Precincts[[p]]$Candidates[[c]]$Votes%>%as.character()
+        county[c] <- govjson$Locality$LocalityName%>%as.character()
+        precinct[c] <- govjson$Precincts[[p]]$PrecinctName%>%as.character()
+      }
+      mid_df[[p]] <- data.frame(candidate_name, party, ballot_order, votes, county, precinct)
+    }
+    county_data[[i]] <- bind_rows(mid_df)
+  }
+  return(bind_rows(county_data))
+}
+
+gov17 <- gov_getter(2017)
+```
+
+Now we want to do the same for House of Delegates races which use a slightly different url structure
+```{r}
+hod_getter <- function(year){
+  dist_dfs<- list()
+  for(i in seq(1, 100)[-c(11, 32, 35, 36, 27, 38, 39, 41, 42, 43, 44, 46, 47, 51, 52, 72,73,78,82,84,85, 89, 92, 94)]){
+    if(i < 10){
+      char_i <- paste0('00',i)
+    } else if(i < 100){
+      char_i <- paste0('0',i)
+    } else {
+      char_i <- as.character(i)
+    }
+    first <- paste0('http://results.elections.virginia.gov/vaelections/',
+                    year,
+                    '%20November%20General/Site/Member%20House%20of%20Delegates%20(',
+                    char_i,').html')
+    # print(first)
+    hod_counties <- read_html(first)%>%html_nodes('h2 span')%>%html_text()
+    hod_counties <- hod_counties[3:length(hod_counties)]
+    # print(hod_counties)
+    county_data <- list()
+    for(h in seq(1,length(hod_counties))){
+      pre <- paste0('http://results.elections.virginia.gov/vaelections/',year,'%20November%20General/Json/Locality/')
+      post <- paste0('/Member%20House%20of%20Delegates%20(',char_i,').json')
+      print(paste0(pre,gsub(' ','%20',hod_counties[h]),post))
+      govjson <- fromJSON(httpGET(paste0(pre,gsub(' ','%20',hod_counties[h]),post)))
+      mid_df <- list()
+      for(p in seq(1,length(govjson$Precincts))){
+        candidate_name <- c()
+        party <- c()
+        ballot_order <- c()
+        votes <- c()
+        county <- c()
+        precinct <- c()   
+        for(c in seq(1,length(govjson$Precincts[[p]]$Candidates))){
+          candidate_name[c] <- govjson$Precincts[[p]]$Candidates[[c]]$BallotName%>%as.character()
+          party[c] <- govjson$Precincts[[p]]$Candidates[[c]]$PoliticalParty%>%as.character()
+          ballot_order[c] <- govjson$Precincts[[p]]$Candidates[[c]]$BallotOrder%>%as.character()
+          votes[c] <- govjson$Precincts[[p]]$Candidates[[c]]$Votes%>%as.character()
+          county[c] <- govjson$Locality$LocalityName%>%as.character()
+          precinct[c] <- govjson$Precincts[[p]]$PrecinctName%>%as.character()
+          }
+        mid_df[[p]] <- data.frame(candidate_name, party, ballot_order, votes, county, precinct)
+      }
+      county_data[[h]] <- bind_rows(mid_df)
+    }
+    dist_dfs[[i]] <- bind_rows(county_data)
+  }
+  return(bind_rows(dist_dfs))
+}
+
+# hod13 <- hod_getter(2013)
+hod17 <- hod_getter(2017)
+# http://results.elections.virginia.gov/vaelections/2017%20November%20General/Json/Locality/LEE%20COUNTY/Member%20House%20of%20Delegates%20(001).json
+```
+
+The rest of the house races all come from one locality so we can skip a step above and still have a super janky loop!
+```{r}
+dels <- read_html('http://results.elections.virginia.gov/vaelections/2017%20November%20General/Site/GeneralAssembly.html')
+links <- dels%>%html_nodes('h2 a')%>%html_attr('href')
+links <- gsub('.html','.json', gsub(' ','%20',links[grepl('Locality', links)]))
+
+dist_dfs<- list()
+for(i in seq(1, length(links))){
+  url <- gsub('Json.','Json', paste0('http://results.elections.virginia.gov/vaelections/2017%20November%20General/Json',links[i]))
+  # print(first)
+  # print(hod_counties)
+  race <- fromJSON(getURL(url))
+  county_data <- list()
+  for(p in seq(1,length(race$Precincts))){
+    candidate_name <- c()
+    party <- c()
+    ballot_order <- c()
+    votes <- c()
+    county <- c()
+    precinct <- c()   
+    for(c in seq(1,length(race$Precincts[[p]]$Candidates))){
+      candidate_name[c] <- race$Precincts[[p]]$Candidates[[c]]$BallotName%>%as.character()
+      party[c] <- race$Precincts[[p]]$Candidates[[c]]$PoliticalParty%>%as.character()
+      ballot_order[c] <- race$Precincts[[p]]$Candidates[[c]]$BallotOrder%>%as.character()
+      votes[c] <- race$Precincts[[p]]$Candidates[[c]]$Votes%>%as.character()
+      county[c] <- race$Locality$LocalityName%>%as.character()
+      precinct[c] <- race$Precincts[[p]]$PrecinctName%>%as.character()
+    }
+    county_data[[p]] <- data.frame(candidate_name, party, ballot_order, votes, county, precinct)
+  }
+  dist_dfs[[i]] <- bind_rows(county_data)
+}
+fullhod17 <- bind_rows(hod17, bind_rows(dist_dfs))
+
+```
+
+Scraping the registration stats for each precinct in 2017
+```{r}
+reg_pages <- read_html('http://results.elections.virginia.gov/vaelections/2017%20November%20General/Site/Statistics/Registration.html')%>%
+  html_nodes('td a')%>%
+  html_attr('href')
+
+counties <- list()
+for(i in seq(1, length(reg_pages))){
+  link <- gsub(' ', '%20', paste0('http://results.elections.virginia.gov/vaelections/2017%20November%20General/Site/Statistics/',reg_pages[i]))
+  counties[[i]] <- read_html(link)%>%html_table()
+}
+rvs17 <- bind_rows(counties)
+
+counties[[1]]%>%as.data.frame()
+clean_counties <- list()
+for(i in seq(1,length(counties))){
+  clean_counties[[i]] <- as.data.frame(counties[[i]])%>%
+    dplyr::select(precinct = Precinct, active = Active.Voter.Count, inactive = Inactive.Voter.Count, total = Total.Voter.Count)%>%
+    mutate(precinct = as.character(precinct), active = as.numeric(gsub(',','',active)), 
+           inactive = as.numeric(gsub(',','',inactive)), total = as.numeric(gsub(',','',total)))
+}
+rvs <- bind_rows(clean_counties)
+```
+
+Now to make sense of all this non-sense and connect the datasets together! 
+
+```{r}
+flat_gov <- gov17%>%
+  mutate(democrat = ifelse(as.character(party) == 'Democratic', as.numeric(gsub(',','',votes)), NA),
+         republican = ifelse(as.character(party) == 'Republican', as.numeric(gsub(',','',votes)), NA),
+         other = ifelse(!as.character(party) %in% c('Democratic','Republican'), as.numeric(gsub(',','',votes)), NA),
+         precinct = substring(precinct, 1, nchar(precinct)-5))%>%
+  group_by(precinct, county)%>%
+  summarise(democrat = sum(democrat, na.rm = T),
+            republican = sum(republican, na.rm = T),
+            other = sum(other, na.rm = T))%>%
+  mutate(office = 'Governor')
+
+flat_hod <- fullhod17%>%
+  mutate(democrat = ifelse(as.character(party) == 'Democratic', as.numeric(gsub(',','',votes)), NA),
+         republican = ifelse(as.character(party) == 'Republican', as.numeric(gsub(',','',votes)), NA),
+         other = ifelse(!as.character(party) %in% c('Democratic','Republican'), as.numeric(gsub(',','',votes)), NA),
+         precinct = substring(precinct, 1, nchar(precinct)-6))%>%
+  group_by(precinct, county)%>%
+  summarise(democrat = sum(democrat, na.rm = T),
+            republican = sum(republican, na.rm = T),
+            other = sum(other, na.rm = T))%>%
+  mutate(office = 'House of Delegates')#, test = substring(precinct, nchar(precinct)-5, nchar(precinct)))
+
+contested_precincts <- flat_hod%>%
+  mutate(dem.two.way = democrat*100/(democrat+republican),
+         contested = ifelse(between(dem.two.way, 10, 90), 'contested','uncontested'))%>%
+  filter(contested == 'contested')%>%
+  .$precinct
+results.a <- bind_rows(flat_gov, flat_hod)%>%
+  left_join(rvs)%>%
+  filter(!is.na(active))%>%
+  mutate(dem.two.way = democrat*100/(democrat+republican),
+         turnout = (democrat + republican + other)*100/active)
+
+contested_precincts <- results.a%>%
+  filter(office == 'House of Delegates',
+         between(dem.two.way, 10, 90))%>%
+  .$precinct
+
+results <- results.a%>%
+  mutate(hod_contested = ifelse(precinct %in% contested_precincts, 1,0))
+
+write.csv(results, 'results.csv')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

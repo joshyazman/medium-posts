@@ -1,0 +1,1 @@
+This repo contains data and code to pull headlines from vpap.org/vanews, conduct exploratory text analysis of all available headlines, and conduct a latent dirichlet allocation using that headlines data

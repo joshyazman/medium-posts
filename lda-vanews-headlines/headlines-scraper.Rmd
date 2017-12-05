@@ -1,0 +1,271 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Scraping VA News 
+
+This was an unsuccessful one where I attempted to get the section headers
+```{r}
+library(dplyr)
+library(rvest)
+
+get_news <- function(dt){
+  day.link <- paste0('https://www.vpap.org/vanews/past/?edition__date=',dt)
+  day.html <- read_html(day.link)
+  headlines <- day.html%>%
+    html_nodes('div h4')%>%
+    html_text(trim = T)
+  headlines <- headlines[headlines != "Today's Sponsor:"][-1]
+  day.divp <- day.html%>%
+    html_nodes('div p')%>%
+    html_text(trim = T)
+  headers <- c(
+    day.html%>%
+      html_nodes('[class = "header first"]')%>%
+      html_text(trim = T),
+    day.html%>%
+      html_nodes('[class = "header "]')%>%
+      html_text(trim = T)
+  )
+  ad_detector <- which(day.divp == '')
+  day.divp <- day.divp[-c(ad_detector, ad_detector+1)]
+  stops <- c(which(day.divp %in% headers), length(day.divp))
+  head.reps <- c()
+  for(i in seq(1,length(stops)-1)){
+    n <- if(headers[i] == 'Op-Ed'){
+      floor((stops[i+1] - stops[i])/3)
+    } else {
+      floor((stops[i+1] - stops[i])/2)
+    }
+    head.reps <- c(head.reps, rep(headers[i],n))
+  }
+  authors <-day.html%>%
+    html_nodes('[class = "small"]')%>%
+    html_text(trim = T)
+  authors <- authors[!authors %in% c("A compilation of newspaper articles about state government and politics", "")]
+  for(i in seq(1,length(authors))){
+    if(grepl('By ',authors[i])){
+      authors[i] <- authors[i]
+    } else if (grepl('Editorial',authors[i])) {
+      authors[i] <- authors[i]
+    } else if(!is.na(authors[i]) & authors[i] == 'The Virginia Public Access Project') {
+      authors[i] <- authors[i]
+    }else{
+      authors[i] <- NA
+      }
+    authors <- authors[!is.na(authors)]
+  }
+  return(data.frame(authors, headlines, 
+                    section = head.reps, 
+                    date = rep(dt, length(authors)))
+  )
+}
+
+news_dates <- seq.Date(from = as.Date('2011-07-01'), to = Sys.Date(), by = 1)
+days <- list()
+
+for(i in seq(1,length(news_dates))){
+  days[[i]] <- try(get_news(news_dates[i]))
+}
+
+dim(bind_rows(days))
+```
+
+Here's another one that only captures author, headlines, and date
+```{r}
+library(dplyr)
+library(rvest)
+
+get_news <- function(dt){
+  day.link <- paste0('https://www.vpap.org/vanews/past/?edition__date=',dt)
+  day.html <- read_html(day.link)
+  headlines <- day.html%>%
+    html_nodes('div h4')%>%
+    html_text(trim = T)
+  headlines <- headlines[headlines != "Today's Sponsor:"][-1]
+  return(data.frame(headlines, date = rep(dt, length(headlines)))
+  )
+}
+
+news_dates <- seq.Date(from = as.Date('2011-11-01'), to = Sys.Date(), by = 1)
+days <- list()
+
+for(i in seq(1,length(news_dates))){
+  dayheads <- get_news(news_dates[i])
+  
+  if(nrow(dayheads) > 0){
+    days[[i]] <- dayheads
+  } else {
+    next
+  }
+}
+
+library(lubridate)
+all_headlines <- bind_rows(days)
+weekly_heads <- all_headlines%>%
+  group_by(week = floor_date(date, 'weeks'))%>%
+  summarise(story_count = n(),
+            headline_text = paste(headlines, collapse = ' '))%>%
+  mutate(year = substring(as.character(week), 1, 4),
+         month = substring(as.character(week), 6, 7))
+
+```
+
+Annual tfidf top words 
+```{r}
+library(tidytext)
+library(textstem)
+head_words <- weekly_heads%>%
+  unnest_tokens(word, headline_text)%>%
+  filter(!word %in% c(stop_words$word, c("1.15m", "1.1b", "1.1m", "1.2m", "1.35m", "1.3b", "1.3m", 
+                      "1.4b", "1.4m", "1.55b", "1.55m", "1.5b", "1.5m", "1.65m", "1.6m", "1.71b",
+                      "1.75m", "1.7m", "1.87m", "1.8m", "1.95m", "1.9b", "1.9m")),
+         stringr::str_detect(word, '[a-zA-Z]'))%>%
+  mutate(word = lemmatize_words(word))%>%
+  group_by(word, year)%>%
+  summarise(n = n())%>%
+  bind_tf_idf(term_col = word, document_col = year, n = n)
+
+# write.csv(x = head_words, 'unnested_heads.csv')
+```
+
+Latent Derichlet Allocation
+```{r, fig.height=10}
+library(ldatuning)
+result_dfs <- list()
+result_dfs[[1:50]]
+for(i in seq(1,100)){
+  head_words_samp <- weekly_heads%>%
+    sample_frac(.5, replace = TRUE)%>%
+    unnest_tokens(word, headline_text)%>%
+    filter(!word %in% c(stop_words$word, c("1.15m", "1.1b", "1.1m", "1.2m", "1.35m", "1.3b", "1.3m", 
+                        "1.4b", "1.4m", "1.55b", "1.55m", "1.5b", "1.5m", "1.65m", "1.6m", "1.71b",
+                        "1.75m", "1.7m", "1.87m", "1.8m", "1.95m", "1.9b", "1.9m")),
+           stringr::str_detect(word, '[a-zA-Z]'))%>%
+    mutate(word = lemmatize_words(word))%>%
+    group_by(word, year)%>%
+    summarise(n = n())%>%
+    bind_tf_idf(term_col = word, document_col = year, n = n)
+  
+  
+  head_corp <- cast_dtm(data = head_words_samp, term = word, 
+                        document = year, value = n)
+  
+  result_dfs[[i]] <- FindTopicsNumber(
+    head_corp,
+    topics = seq(from = 2, to = 15, by = 1),
+    metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+    method = "Gibbs",
+    control = list(seed = 77),
+    verbose = TRUE
+  )
+}
+  # ldatuning::FindTopicsNumber_plot(result_dfs[[i]])
+```
+
+TF IDF by Year
+The `tf_idf` metric indicates how distinctive a term is to a given class it's in. In this first case, words are separated by year to attempt to identify terms that are distinctive to each political cycle in Virginia. One interesting point that pops out of this visual is how dominant Terry McAuliffe has been in Virginia political news for the past five years. Additionally, in 2017, Tom Perriello outshined McAulliffe and all other candidates in terms of headline grabbing. 
+
+Another takeaway from this graph is just how consistent the language is from campaign to campaign. The most distinctive headline words for almost all years are candidate names! Opioids began to creep into the lense in 2016
+```{r, fig.width=9, fig.height=6}
+year.tfidfs <- head_words%>%
+  filter(year != 2011)%>%
+  group_by(year)%>%
+  top_n(15, tf_idf)%>%
+  ungroup()
+
+ggplot(year.tfidfs, aes(reorder(word, tf_idf), tf_idf, fill = year))+
+  geom_col(show.legend = FALSE)+
+  facet_wrap(~year, scales = 'free')+
+  coord_flip()+
+  theme_yaz()+
+  labs(title = 'Most Distinctive Words by Year',
+       subtitle = 'Based on headlines distributed by the Virginia Public Access Project\'s daily VANews service',
+       x = element_blank(), y = 'Term Frequency x Inverse Document Frequency')+
+  scale_fill_manual(values = yaz_cols)
+```
+
+```{r, fig.width=12, fig.height=6}
+big_names <- all_headlines%>%
+  mutate(year = substring(date, 1,4),
+         mcauliffe = ifelse(grepl('mcauliffe',tolower(headlines)), 1, 0),
+         obama = ifelse(grepl('obama',tolower(headlines)), 1, 0),
+         clinton = ifelse(grepl('clinton',tolower(headlines)), 1, 0),
+         trump = ifelse(grepl('trump',tolower(headlines)), 1, 0),
+         northam = ifelse(grepl('northam',tolower(headlines)), 1, 0),
+         gillespie = ifelse(grepl('gillespie',tolower(headlines)), 1, 0),
+         mcdonnell = ifelse(grepl('mcdonnell',tolower(headlines)), 1, 0),
+         democrat = ifelse(mcauliffe == 1 | obama == 1 | clinton == 1 | northam == 1, 1, 0),
+         republican = ifelse(trump == 1 | gillespie == 1 | mcdonnell == 1, 1, 0))
+
+gridExtra::grid.arrange(
+  ggplot(big_names%>%
+           filter(date > '2013-01-01')%>%
+           select(-year, -trump, -gillespie, -mcdonnell)%>%
+           group_by(week = floor_date(date, 'week'))%>%
+           summarise(obama = mean(obama, na.rm = T),
+                     mcauliffe = mean(mcauliffe, na.rm = T),
+                     clinton = mean(clinton, na.rm = T),
+                     northam = mean(northam, na.rm = T))%>%
+           reshape2::melt(id.vars = 'week'),
+         aes(x = week, y = value, color = variable))+
+    geom_line()+
+    theme_yaz()+
+    labs(title = 'Democratic News Share', x = element_blank(),
+         y = 'Percentage of Headlines Mentioning Officials')+
+    ylim(0,.25),
+  ggplot(big_names%>%
+           filter(date > '2013-01-01')%>%
+           select(-year, -obama, -clinton, -mcauliffe, -northam)%>%
+           group_by(week = floor_date(date, 'week'))%>%
+           summarise(trump = mean(trump, na.rm = T),
+                     mcdonnell = mean(mcdonnell, na.rm = T),
+                     gillespie = mean(gillespie, na.rm = T))%>%
+           reshape2::melt(id.vars = 'week'),
+         aes(x = week, y = value, color = variable))+
+    geom_line()+
+    theme_yaz()+
+    labs(title = 'Republican News Share', x = element_blank(),
+         y = element_blank())+
+    ylim(0,.25),
+  nrow = 1
+)
+  
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

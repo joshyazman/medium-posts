@@ -1,0 +1,285 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+First step is to read in the data from sports-reference. There is a 5 second sleep timer set on this loop out of respect for the site and to meet their requirement that pages be read no faster than is possible for a human. 
+```{r}
+library(dplyr)
+library(readr)
+all_teams <- read_csv('https://raw.githubusercontent.com/joshyazman/medium-posts/master/cluster-analysis-of-cbb-players/player_stats.csv')
+```
+
+Next we need to scale and standardize the data and select the right number of clusters. We also need to reduce the dimensions of the data set so we aren't double counting metrics that are reflected multiple times. For example, it doesn't make sense to use free throws, free throw attempts, _and_ free throw percentage when free throw shooting quality is already reflected in the percentage. Additionally, all stats that are not already percentages are calculated on a per-40-minute basis.
+```{r}
+library(stringr)
+cleaned_player_stats <- all_teams%>%
+  mutate(school = str_replace_all(str_replace_all(part_url, "[^[:alnum:]]", " "),'cbb schools ',''),
+         start_percentage = g_started/g_eligible)%>%
+  dplyr::select(-part_url, -fg, -two_pts, -three, 
+                -free_throws, -rank, -g_eligible, -g_started, -rebounds)
+
+scaled_players <- cleaned_player_stats%>%
+  select_if(is.numeric)%>%
+  dplyr::select(-year)%>%
+  scale(center = T, scale = T)%>%
+  data.frame()
+```
+
+The fuzzy c means clustering algorithm doesn't like null values, so we need to investigate where null data is and figure out what to do about it. The nulls come from the four shooting percentage fields. Where players have zero shot attempts, their percentages are null. To remedy this problem, nulls are imputed with zero values. 
+
+```{r}
+cap <- 'Data Source | sports-reference.com\nChart | Josh Yazman (@jyazman2012)'
+nulls <- data.frame(col = as.character(colnames(scaled_players)),
+                    pct_null = colSums(is.na(scaled_players))*100/(colSums(is.na(scaled_players))+colSums(!is.na(scaled_players))))
+
+library(ggplot2)
+library(yaztheme)
+ggplot(nulls, aes(x = col, y = pct_null))+
+  geom_col(fill = yaz_cols[1])+
+  coord_flip()+
+  labs(title = 'Distribution of Missing Data',
+       x = element_blank(), y = 'Percent of Data Missing',
+       caption = cap)+
+  theme_yaz()+
+  ylim(0,100)
+ggsave('Missing Values.pdf', width = 6, height = 4)
+```
+
+Now we need to select the right number of clusters. To do this, I'll run the `cmeans` function through a set of possible scenarios and measure the within-group sum of squares. The goal is to minimize this value without overfitting the data, so we have a dual mandate to minimize the number of groups while also minimizing the sum of squared error. We could calculate teh actual inflection point of this curve, but I'm just going to eyeball it for now and say the proper number of clusters is around 6. 
+```{r}
+scaled_players_filled <- scaled_players%>%
+  mutate_all(funs(replace(., is.na(.), F)))%>%
+  mutate_all(funs(replace(., is.infinite(.), F)))
+
+library(e1071)
+
+m.ss <- c()
+m.num_clusts <- c()
+
+for (i in seq(2,20)){
+  cm <- cmeans(x = scaled_players_filled, centers = i)
+  m.ss[i] <- cm$withinerror
+  m.num_clusts[i] <- i
+  print(paste('done with',i))
+}
+df.m <- data.frame(m.ss, m.num_clusts)%>%
+  filter(!is.na(m.ss))
+
+ggplot(df.m, aes(x = m.num_clusts, y = m.ss))+
+  geom_point(color = yaz_cols[1])+
+  geom_line(linetype = 'dashed', color = yaz_cols[1])+
+  labs(title = 'Identifying the Optimal Number of Clusters',
+       x = 'Number of Clusters', y = 'Clustering Error',
+       caption = cap)+
+  theme_yaz()
+ggsave('Optimal Number of Clusters.pdf', width = 6, height = 4)
+```
+ 
+ After fitting a 5 cluster model, I want to answer some exploratory questions:
+ * How many players got sorted into each cluster?
+ * How tight are said clusters?
+ * What are the typical stats in each cluster?
+How many players got sorted into each cluster?
+```{r}
+cmeans.fit <- cmeans(scaled_players_filled, centers = 7)
+
+clustered_players <- bind_cols(
+  scaled_players_full,
+  data.frame(cluster = cmeans.fit$cluster,
+             cmeans.fit$membership)
+)
+
+ggplot(clustered_players%>%
+         group_by(cluster)%>%
+         summarise(n = n())%>%
+         mutate(n = n*100/sum(n)),
+       aes(x = cluster, y = n))+
+  geom_col(fill = yaz_cols[1])+
+  scale_x_continuous(breaks = seq(1,10,1))+
+  labs(title = 'Player Allocation by Cluster',
+       x = 'Cluster', y = 'Percentage in Cluster',
+       caption = cap)+
+  theme_yaz()
+```
+
+How tight are said clusters?
+```{r}
+library(reshape2)
+cluster_fits <- clustered_players%>%
+  dplyr::select(contains("X"), cluster)%>%
+  melt(id.vars = 'cluster')%>%
+  mutate(coherced = ifelse(as.character(cluster) == substring(as.character(variable),2),value,NA))
+
+library(ggridges)
+ggplot(cluster_fits, aes(x = coherced, y = variable))+
+  geom_density_ridges(fill = yaz_cols[1], alpha = .7)+
+  theme_yaz()+
+  labs(title = 'Cluster Fit Score by Cluster',
+       x = 'Distribution of Cluster Fit Scores',
+       y = 'Cluster',
+       caption = cap)
+```
+
+What are the typical stats in each cluster?
+Cluster descriptions are included in the article
+
+```{r}
+clustered_original_stats <- bind_cols(scaled_players_filled,
+                                      data.frame(cluster = cmeans.fit$membership,
+                                                 overall = cmeans.fit$cluster))%>%
+  mutate(weight = ifelse(overall == 1, cluster.1,
+                         ifelse(overall == 2, cluster.2, 
+                                ifelse(overall == 3, cluster.3,
+                                       ifelse(overall == 4, cluster.4, 
+                                              ifelse(overall == 5, cluster.5,
+                                                     ifelse(overall == 6, cluster.6, cluster.7)))))),
+         fg_pct = fg_pct * weight,
+         fg_attempts = fg_attempts * weight,
+         two_point_pct = two_point_pct * weight,
+         two_attempts = two_attempts * weight,
+         three_pct = three_pct * weight,
+         three_attempts = three_attempts* weight,
+         free_throw_pct = free_throw_pct*weight,
+         free_throws_attempts = free_throws_attempts*weight,
+         start_percentage = start_percentage*weight,
+         minutes = minutes*weight,
+         orb = orb*weight,
+         drb = drb*weight,
+         assists = assists*weight,
+         steals = steals*weight,
+         blocks = blocks*weight,
+         turnovers = turnovers*weight,
+         fouls = fouls*weight,
+         points = points*weight)%>%
+  dplyr::select(-contains('cluster'), -weight)%>%
+  melt(id.vars = 'overall')%>%
+  group_by(overall, variable)%>%
+  summarise(mean_val = mean(value, na.rm = T))
+
+
+ggplot(clustered_original_stats, aes(x = overall, y = mean_val))+
+  geom_col(fill = yaz_cols[1])+
+  labs(title = 'Average of Metrics by Cluster',
+       x = 'Metric', y = 'Weighted Performance Index',
+       caption = cap)+
+  facet_wrap(~variable, scales = 'free', nrow = 2)+
+  scale_x_continuous(breaks = seq(1,10))+
+  coord_flip()+
+  theme_yaz()
+
+ggsave('Distributions within Clusters.pdf', width = 14, height = 6)
+```
+
+What's the typical mix of players on a team?
+Because this is a fuzzy clustering algorithm, players can float straddle clusters based on their own unique style of play and output. Players are included in a cluster if their cluster membership score is above the median for the cluster.
+
+```{r}
+players_clustered <- bind_cols(cleaned_player_stats%>%dplyr::select(year, school, player_name),
+                             data.frame(cmeans.fit$membership))%>%
+  mutate(
+    cluster1 = ifelse(X1 > quantile(cmeans.fit$membership[,'1'], .5), 1, 0),
+    cluster2 = ifelse(X2 > quantile(cmeans.fit$membership[,'2'], .5), 1, 0),
+    cluster3 = ifelse(X3 > quantile(cmeans.fit$membership[,'3'], .5), 1, 0),
+    cluster4 = ifelse(X4 > quantile(cmeans.fit$membership[,'4'], .5), 1, 0),
+    cluster5 = ifelse(X5 > quantile(cmeans.fit$membership[,'5'], .5), 1, 0),
+    cluster6 = ifelse(X6 > quantile(cmeans.fit$membership[,'6'], .5), 1, 0),
+    cluster7 = ifelse(X7 > quantile(cmeans.fit$membership[,'7'], .5), 1, 0))
+team_by_cluster <- players_clustered%>%
+  dplyr::select(-player_name)%>%
+  group_by(year, school)%>%
+  summarise_all(funs(mean), na.rm = T)
+  
+mean(players_clustered$cluster1, na.rm = T)
+ggplot(team_by_cluster%>%
+         dplyr::select(-contains('X'))%>%
+         melt(id.vars = c('year','school')), 
+       aes(x = value, y = variable))+
+  geom_density_ridges(fill = yaz_cols[1], alpha = .7)+
+  labs(title = 'Distribution of Average Cluster Membership Scores by Team',
+       x = 'Average Cluster Membership Score by Team',
+       y = element_blank(),
+       caption = cap)+
+  theme_yaz()+
+  scale_y_discrete(labels = c('Benchwarmer','Miscellaneous Other','Backup Guards','Small Forward', 'Backup Big', 'Guard','Big'))
+ggsave('Distribution of Average Cluster Membership Scores by Team.pdf', width = 8, height = 4.5)
+```
+
+How does this mix impact team performance?
+```{r}
+team_games <- read_csv('https://raw.githubusercontent.com/joshyazman/sports-data-analysis/master/ncaa-basketball/training_set.csv')
+write.csv(team_games%>%sample_n(1000), 'team_stats.csv')
+records <- team_games%>%
+  group_by(team, year)%>%
+  summarise(record = mean(win, na.rm = T),
+            n_games = n())%>%
+  filter(year > 2013)
+library(stringr)
+cluster_records <- left_join(
+  team_by_cluster%>%
+    mutate(id = paste(str_trim(school), year))%>%
+    dplyr::select(-year, -school)%>%
+    dplyr::select(`Benchwarmer` = cluster1,
+                  `Miscellaneous Other` = cluster2,
+                  `Backup Guards` = cluster3,
+                  `Small Forward` = cluster4,
+                  `Backup Big` = cluster5, 
+                  `Guard` = cluster6,
+                  `Big` = cluster7,
+                  id)%>%
+    melt(id.vars = 'id')%>%
+    filter(variable != 'year'),
+  records%>%mutate(id = paste(str_trim(team), year))%>%dplyr::select(-year), 
+  by = c('id'))%>%
+  dplyr::select(-team)%>%
+  dplyr::select(id, cluster = variable, membership = value, record, n_games)
+
+lm(record~.,cluster_records[,-1])%>%summary()
+
+ggplot(cluster_records, aes(x = membership, y = record))+
+  stat_smooth(colour = yaz_cols[1])+
+  facet_wrap(~cluster, nrow = 1)+
+  labs(title = 'Impact of Team Composition on Win Percentage',
+       y = 'Win Percentage',
+       x = 'Percent of Team Belonging in Cluster',
+       caption = cap)+
+  geom_vline(xintercept = .4, linetype = 'dashed', colour = yaz_cols[4])+
+  theme_yaz()
+
+ggsave('Team Composition on Win Percentage.pdf', width = 12, height = 3)
+```
+
+Pre-cap team mix vs. performance
+The only position with a negative return is support players. Bigs, small forwards, and guards contribute most (have the steepest slopes upward) while the contributions of various backup positions and benchwarmers have flatter slopes. You almost never want your team to be made of more than 30ish percent of any one position. 
+```{r}
+ggplot(cluster_records%>%filter(membership <= .40), 
+       aes(x = membership, y = record, color = cluster))+
+  stat_smooth(se = FALSE)+
+  labs(title = 'Impact of Team Composition on Win Percentage',
+       subtitle = 'Team composition limited to instances where position makes up less than 40% of the team.',
+       y = 'Win Percentage',
+       x = 'Percent of Team Belonging in Cluster',
+       caption = cap)+
+  geom_vline(xintercept = .4, linetype = 'dashed', colour = yaz_cols[4])+
+  theme_yaz()+
+  scale_color_manual(name = 'Cluster', values = yaz_cols)
+
+ggsave('Team Composition Below 40.pdf', width = 6, height = 4)
+```
+
+# Example Plot
+This is the clustering example in the intro (Figure 1)
+```{r}
+rebounds <- c(10, 9, 8, 10, 13, 2, 3, 5, 1,0)
+shots <- c(3, 1, 5, 2, 4, 10, 6, 14, 9, 7)
+fill.var = c(rep('Rebounder',5), rep('Shooter',5))
+data.frame(rebounds, shots, fill.var)%>%
+  ggplot(aes(x = rebounds, y = shots, color = fill.var))+
+  geom_point(size = 5)+
+  labs(title = 'Example Cluster Analysis',
+       x = 'Rebounds Per Game',
+       y = 'Shots Per Game')+
+  scale_color_manual(name = 'Player Type', values = yaz_cols[3:4])+
+  theme_yaz()
+ggsave('Example Cluster Analysis.pdf', width = 5, height = 5)
+```

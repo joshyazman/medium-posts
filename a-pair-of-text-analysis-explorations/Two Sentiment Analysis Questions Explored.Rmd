@@ -1,0 +1,213 @@
+---
+title: "Following Up On \"Does Sentiment Analysis Work? A tidy Analysis of Yelp Reviews\""
+author: "Josh Yazman"
+date: "9/12/2017"
+output: html_notebook
+---
+
+In 2016, David Robinson wrote a [blog post](http://varianceexplained.org/r/yelp-sentiment/) assessing the `AFINN` sentiment lexicon by looking at the distributions of sentiment scores in posts with different overall ratings. In theory, Yelp reviews with 1 star should be more negative than reviews with 3 stars. The analysis illustrated the effectiveness of the `AFINN` lexicon, but there are three other lexicons included in the `tidytext` package (`nrc`,`bing`, and `loughran`). This post will first replicate Robinson's box plot then apply the same analysis to the other three sentiment lexicons included in tidytext. 
+
+## Getting Started
+The first step is to read a sample of the `yelp_dataset_challenge_academic_dataset`. As Robinson says, you can use the whole set, but for speedier processing it helps to use a subset of reviews (in this case I used 200,000 per Robinson's example). 
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(dplyr)
+
+infile <- "~/Desktop/yelp_dataset_challenge_academic_dataset/review.json"
+review_lines <- read_lines(infile, n_max = 200000, progress = FALSE)
+
+library(stringr)
+library(jsonlite)
+
+# Each line is a JSON object- the fastest way to process is to combine into a
+# single JSON string and use fromJSON and flatten
+reviews_combined <- str_c("[", str_c(review_lines, collapse = ", "), "]")
+
+reviews <- fromJSON(reviews_combined) %>%
+  flatten() %>%
+  tbl_df()
+```
+
+Now, to produce sentiment scores, I'll unnest the text field to create a dataframe with one row per word, then join that dataframe with each of the four sentiment lexticons. In cases where scores are `positive` or `negative` those values are converted to `1` and `-1` respectively. In cases (like the `nrc` lexicon) where there are more options available, only `positive` and `negative` tags are retained. 
+
+```{r}
+library(tidytext)
+
+# create df with one line per word. There should be ~8.1 million lines 
+review_words <- reviews %>%
+  select(review_id, business_id, stars, text) %>%
+  unnest_tokens(word, text) %>%
+  filter(!word %in% stop_words$word,
+         str_detect(word, "^[a-z']+$"))
+
+# set up each lexicon as it's own df
+nrc <- sentiments%>%
+  filter(sentiment %in% c('positive','negative')
+         & lexicon == 'nrc')%>%
+  mutate(nrc = ifelse(sentiment == 'positive',1,-1))%>%
+  select(word, nrc) 
+
+bing <- sentiments%>%
+  filter(lexicon == 'bing')%>%
+  mutate(bing = ifelse(sentiment == 'positive',1,-1))%>%
+  select(word, bing)
+
+loughran <- sentiments%>%
+  filter(sentiment %in% c('positive','negative') 
+         & lexicon == 'loughran')%>%
+  mutate(loughran = ifelse(sentiment == 'positive',1,-1))%>%
+  select(word, loughran)
+
+afinn <- sentiments%>%
+  filter(lexicon == 'AFINN')%>%
+  select(word, afinn = score)
+get_sentiments('loughran')%>%
+  group_by(sentiment)%>%
+  summarise(n())
+
+sentiword <- lexicon::hash_sentiment_sentiword%>%
+  select(word = x, sentiword = y)
+# Join each lexicon to the review_words dataframe
+reviews_scored <- review_words%>%
+  left_join(nrc, by = 'word')%>%
+  left_join(bing, by = 'word')%>%
+  left_join(loughran, by = 'word')%>%
+  left_join(afinn, by = 'word')%>%
+  left_join(sentiword, by = 'word')
+```
+
+Now that we have a dataset with each word mapped to all four potential sentiment scores, we can calculate the average sentiment of each review with a simple aggregation function (`group_by` and `summarise`).
+
+```{r, fig.align='center'}
+review_scores_summary <- reviews_scored%>%
+  group_by(review_id, stars)%>%
+  summarise(nrc_score = mean(nrc, na.rm = T),
+            bing_score = mean(bing, na.rm = T),
+            loughran_score = mean(loughran, na.rm = T),
+            afinn_score = mean(afinn, na.rm = T),
+            sentiword_score = mean(sentiword, na.rm = T))
+
+head(review_scores_summary)
+```
+
+## Visualizing Score Distributions
+First I want to replicate Robinson's box plot for `AFINN` scores. 
+
+```{r, fig.align='center'}
+library(ggplot2)
+library(yaztheme)
+
+afinn.box <- ggplot(review_scores_summary, aes(x = as.character(stars), y = afinn_score))+
+  geom_boxplot()+
+  labs(x = 'Yelp Stars',
+       y = 'AFINN Score')+
+  theme_yaz()
+```
+
+This looks generally positive! As Robinson points out, there are a large number of outliers (strong reviews coded as negative and vice versa), but generally this is a good start. But now let's see how the other three lexicons do in comparison. 
+
+```{r, message=FALSE, warning=FALSE}
+nrc.box <- ggplot(review_scores_summary, aes(x = as.character(stars), y = nrc_score))+
+  geom_boxplot()+
+  labs(x = 'Yelp Stars',
+       y = 'NRC Score')+
+  theme_yaz()
+bing.box <- ggplot(review_scores_summary, aes(x = as.character(stars), y = bing_score))+
+  geom_boxplot()+
+  labs(x = 'Yelp Stars',
+       y = 'Bing Score',
+       caption = ' ')+
+  theme_yaz()
+loughran.box <- ggplot(review_scores_summary, aes(x = as.character(stars), y = loughran_score))+
+  geom_boxplot()+
+  labs(x = 'Yelp Stars',
+       y = 'Loughran Score')+
+  theme_yaz()
+sentiword.box <- ggplot(review_scores_summary, aes(x = as.character(stars), y = sentiword_score))+
+  geom_boxplot()+
+  labs(x = 'Yelp Stars',
+       y = 'Sentiword Score')+
+  theme_yaz()
+empty.box <- ggplot(review_scores_summary, 
+                    aes(x = as.character(stars), y = sentiword_score))+
+  labs(caption = 'Charts | Josh Yazman (@jyazman2012)',
+       x = element_blank(),
+       y = element_blank())+
+  theme_yaz()+
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+library(gridExtra)
+
+all_sents <- arrangeGrob(afinn.box, nrc.box, bing.box, 
+                         loughran.box, sentiword.box, empty.box,
+                         nrow = 2)
+ggsave(plot = all_sents,
+       file = '~/Desktop/yelp_dataset_challenge_academic_dataset/Sentiment Lexicon Comparison.pdf',
+       width = 9, height = 6)
+```
+
+For examining needed text quantity
+```{r}
+dfs <- list()
+for(i in seq(25,5000,25)){
+  mean_nrc <- c()
+  sd_nrc <- c()
+  mean_bing <- c()
+  sd_bing <- c()
+  mean_sent <- c()
+  sd_sent <- c()
+  
+  for(j in seq(1,100)){
+    words <- sample_n(tbl = reviews_scored, size = i, replace = TRUE)
+    mean_nrc[j] <- mean(words$nrc, na.rm = TRUE)
+    sd_nrc[j] <- sd(words$nrc, na.rm = T)
+    mean_bing[j] <- mean(words$bing, na.rm = TRUE)
+    sd_bing[j] <- sd(words$bing, na.rm = T)
+    mean_sent[j] <- mean(words$sentiword, na.rm = TRUE)
+    sd_sent[j] <- sd(words$sentiword, na.rm = T)
+  }
+  dfs[[i]] <- data.frame(n_size = rep(i,1000), mean_nrc, sd_nrc, mean_bing, sd_bing, mean_sent, sd_sent)
+}
+scores <- bind_rows(dfs)
+```
+
+```{r}
+library(reshape2)
+ggplot(scores%>%
+         select(n_size, mean_nrc, mean_bing, mean_sent)%>%
+         melt(id.vars = 'n_size'), 
+       aes(x = n_size, y = value))+
+  geom_point(aes(color = variable), alpha = .025)+
+  theme_yaz()+
+  labs(title = 'Distribution of Sample Mean Sentiment Scores by Sample Size',
+       y = 'Average Score', x = 'Sample Size',
+       subtitle = 'Based on samples of words from Yelp reviews',
+       caption = 'Chart | Josh Yazman (@jyazman2012)')+
+  annotate('text', x = 4900, y = .75, label = 'bold("Bing")', color = yaz_cols[3], parse = TRUE)+
+  annotate('text', x = 4900, y = .9, label = 'bold("NRC")', color = yaz_cols[1], parse = TRUE)+
+  annotate('text', x = 4900, y = .6, label = 'bold("Sentiword")', color = yaz_cols[2], parse = TRUE)+
+  scale_color_manual(values = c(yaz_cols[c(1,3,2)]))+
+  theme(legend.position = 'none')
+
+ggsave(file = '~/Desktop/yelp_dataset_challenge_academic_dataset/Word Count Stability.pdf',
+       width = 6.5, height = 4.5)
+
+ggplot(scores%>%
+         group_by(n_size)%>%
+         summarise(sd_bing = sd(mean_bing, na.rm = T),
+                   sd_nrc = sd(mean_nrc, na.rm = T),
+                   sd_sent = sd(mean_sent, na.rm = T))%>%
+         melt(id.vars = 'n_size'),
+       aes(x = n_size, y = value, color = variable))+
+  geom_line(size = 1.5)+
+  labs(title = 'Standard Deviation of Mean Sentiment Scores by Sample Size',
+       x = 'Sample Size', y = 'Standard Deviation',
+       caption = 'Chart | Josh Yazman (@jyazman2012)')+
+  scale_color_manual(name = 'Lexicon', values = c(yaz_cols[c(3,1,2)]), labels = c('Bing','NRC','Sentiword'))+
+  theme_yaz()
+ggsave(file = '~/Desktop/yelp_dataset_challenge_academic_dataset/Word Count SDs.pdf',
+       width = 6.5, height = 4.5)
+```
+

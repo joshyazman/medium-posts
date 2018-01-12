@@ -1,0 +1,5 @@
+Files and data related to the Medium post "These American Lives"
+
+This is a text analysis of This American Life transcripts scraed from https://www.thisamericanlife.org
+
+Methods used focus mostly on LDA and sentiment analysis

@@ -1,0 +1,65 @@
+---
+title: "This American Life Text Data Exploration"
+output: html_notebook
+---
+
+The new website for This American Life include structured transcripts for 550 episodes. In this document, I go through a series of web scraping, exploratory analysis, and topic modeling steps to classify and describe episodes.
+
+```{r}
+library(rvest)
+library(dplyr)
+
+episode <- seq(1,550,1)
+episode <- episode[!episode %in% c(460, 473, 474, 476, 477, 479, 487, 497)]
+transcript <- c()
+title <- c()
+for(i in episode){ # Failures on 460, 473, 474, 476, 477, 479, 487, 497
+    page <- read_html(paste0('https://www.thisamericanlife.org/',i,'/transcript'))
+    transcript[i] <- page%>%
+      html_nodes('div p')%>%
+      html_text()%>%
+      paste(collapse = ' ')
+    title[i] <- strsplit(page%>%html_node('header h1')%>%html_text(), ': ')[[1]][2]
+}
+
+transcripts <- data.frame(episode = seq(1,550), transcript, title)%>%
+  mutate(transcript = gsub(',','',transcript))
+# write.csv(transcripts, 'transcripts.csv', row.names = F)
+```
+
+My initial goal is topic modeling. I want to cluster words that are used frequently in proximity to one another. The first step to doing that is to create a document term matrix and run the `ldatuning` steps to determine the number of topics in the transcripts overall. 
+
+```{r}
+library(tidytext)
+library(ldatuning)
+library(textstem)
+replace_me <- 'Note: This American Life is produced for the ear and designed to be heard, not read. We strongly encourage you to listen to the audio, which includes emotion and emphasis that\'s not on the page. Transcripts are generated using a combination of speech recognition software and human transcribers, and may contain errors. Please check the corresponding audio before quoting in print.'
+
+reg <- "([^A-Za-z\\d#@']|'(?![A-Za-z\\d#@]))"
+tal_words <- transcripts%>%
+  mutate(transcript = lemmatize_strings(gsub(replace_me, '', transcript)))%>%
+  unnest_tokens(word, transcript, token = "regex", pattern = reg)
+
+tal_words_summary <- tal_words%>%
+  group_by(word, title)%>%
+  summarise(n = n())%>%
+  mutate(title = as.character(title))
+
+tal_dtm <- cast_dtm(
+  data = tal_words_summary, 
+  document = title,
+  term = word, 
+  value = n
+  )
+
+tuning.result <- FindTopicsNumber(
+  tal_dtm,
+  topics = seq(from = 2, to = 25, by = 1),
+  metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+  method = "Gibbs",
+  control = list(seed = 77),
+  mc.cores = 2L,
+  verbose = TRUE
+)
+```
+

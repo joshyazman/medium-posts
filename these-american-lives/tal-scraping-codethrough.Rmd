@@ -1,0 +1,59 @@
+---
+title: "Scraping This American Life Transcripts"
+output: html_notebook
+---
+
+This American Life, a weekly radio show highlighting interesting personal stories, recently redesigned their website which includes over 600 transcripts of past episodes. To perform text analysis for a recent blog post, I scraped all available transcripts and formatted them as a dataframe. 
+
+To start, we need the `rvest` and `dplyr` packages.
+```{r, echo = T}
+library(rvest)
+library(dplyr)
+```
+
+At the time of the initial scraping, there were 634 episodes of This American Life published on the site. We'll start by reading one episode and formatting it, then loop through all of them and capture all available text. The `read_html` function pulls the html from www.thisamericanlife.org. Then, through a series of `magrittr` pipes, the `rvest` functions `html_nodes` and `html_text` capture all instances of `div p` on the page and extract the text from them. We wind of with a vector of sentences which can be collapsed to a single string in the final step. 
+
+```{r, echo = T}
+page <- read_html(paste0('https://www.thisamericanlife.org/1/transcript'))
+page%>%
+  html_nodes('div p')%>%
+  html_text()%>%
+  paste(collapse = ' ')
+```
+
+Episode titles come from a different div and come with the episode number attached. We retrieve the title and episode number and then split the string to capture the part we want. 
+```{r, echo = T}
+title.raw <- page%>%html_node('header h1')%>%html_text()
+title <- strsplit(title.raw, ': ')[[1]][2]
+```
+
+Great! We have one episode. But now we want the other 633. Generally, `R` users are discouraged from using loops, but I think they help me organize my code and think through problems ([more](https://kbroman.wordpress.com/2013/04/02/apply-vs-for/)). Here's a loop that iterates 634 times and retrieves eposide text and titles. At each iteration, the data is added to a vector. The three vectors initiated at top of the code chunk are then combined into a dataframe. As a courtesy to This American Life's IT team, I added a five second sleep timer between requests.
+
+```{r, echo = T}
+episode <- seq(1,634,1)
+episode <- episode[!episode %in% c(460, 473, 474, 476, 477, 479, 487, 497)]
+transcript <- c()
+title <- c()
+for(i in episode[1:634]){ # Failures on 460, 473, 474, 476, 477, 479, 487, 497
+    page <- read_html(paste0('https://www.thisamericanlife.org/',i,'/transcript'))
+    transcript[i] <- page%>%
+      html_nodes('div p')%>%
+      html_text()%>%
+      paste(collapse = ' ')
+    title[i] <- strsplit(page%>%html_node('header h1')%>%html_text(), ': ')[[1]][2]
+    Sys.sleep(5)
+}
+
+transcripts <- data.frame(episode = seq(1,634), transcript, title)
+```
+
+Lastly, I want to put this data on github so it's accessible to anyone who wants to reproduce or build on my analysis. To do this, I remove commas and save the file as a csv in two parts (there is a size limit on github files). 
+
+```{r, echo = T}
+transcript <- transcript%>%
+  mutate(transcript = gsub(',','',transcript))
+transcripts %>% filter(episode <= 300) %>% write.csv('transcriptsa.csv', row.names = F)
+transcripts %>% filter(episode > 300) %>% write.csv('transcriptsb.csv', row.names = F)
+```
+
+And we're done! Thanks for reading this tutorial. I hope you check on the Medium post as well.

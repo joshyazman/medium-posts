@@ -1,0 +1,218 @@
+---
+title: "This American Life Text Data Exploration"
+output: html_notebook
+---
+
+The new website for This American Life include structured transcripts for 550 episodes. In this document, I go through a series of web scraping, exploratory analysis, and topic modeling steps to classify and describe episodes.
+
+# Collecting the Data
+
+```{r}
+library(rvest)
+library(dplyr)
+
+episode <- seq(1,634,1)
+episode <- episode[!episode %in% c(460, 473, 474, 476, 477, 479, 487, 497)]
+transcript <- c()
+title <- c()
+for(i in episode[1:634]){ # Failures on 460, 473, 474, 476, 477, 479, 487, 497
+    page <- read_html(paste0('https://www.thisamericanlife.org/',i,'/transcript'))
+    transcript[i] <- page%>%
+      html_nodes('div p')%>%
+      html_text()%>%
+      paste(collapse = ' ')
+    title[i] <- strsplit(page%>%html_node('header h1')%>%html_text(), ': ')[[1]][2]
+}
+
+transcripts <- data.frame(episode = seq(1,634), transcript, title)%>%
+  mutate(transcript = gsub(',','',transcript))
+transcripts %>% filter(episode <= 300) %>% write.csv('transcriptsa.csv', row.names = F)
+transcripts %>% filter(episode > 300) %>% write.csv('transcriptsb.csv', row.names = F)
+
+# After scraping the data once, it's easier to just write a csv and get it later
+# In this case the file was too big for github so I broke it up
+library(readr)
+transcripts <- bind_rows(
+  read_csv('https://raw.githubusercontent.com/joshyazman/medium-posts/master/these-american-lives/transcriptsa.csv'),
+  read_csv('https://raw.githubusercontent.com/joshyazman/medium-posts/master/these-american-lives/transcriptsb.csv')
+)
+tal.cap <- 'Source | This American Life (thisamericanlife.org)\nAnalysis | Josh Yazman (@jyazman2012)'
+```
+
+My initial goal is topic modeling. I want to cluster words that are used frequently in proximity to one another. The first step to doing that is to create a document term matrix and run the `ldatuning` steps to determine the number of topics in the transcripts overall. The output isn't a perfect curve, but it looks like a safe inflection point for all four metrics is somewhere around 12-14 topics. This step is messy and requires a judgement call, so mine is to say we're using 12 topics.
+
+```{r}
+library(tidytext)
+library(ldatuning)
+library(textstem)
+
+# This note is at the top of every story so I just removed it
+replace_me <- 'Note: This American Life is produced for the ear and designed to be heard, not read. We strongly encourage you to listen to the audio, which includes emotion and emphasis that\'s not on the page. Transcripts are generated using a combination of speech recognition software and human transcribers, and may contain errors. Please check the corresponding audio before quoting in print.'
+
+reg <- "([^A-Za-z\\d#@']|'(?![A-Za-z\\d#@]))"
+tal_words <- transcripts%>%
+  mutate(transcript = lemmatize_strings(gsub(replace_me, '', transcript)))%>%
+  unnest_tokens(word, transcript, token = "regex", pattern = reg)%>%
+  filter(!word %in% stop_words$word)
+# aside from stop words, TAL has used 4,960,000 words!
+
+tal_words_summary <- tal_words%>%
+  group_by(word, title)%>%
+  summarise(n = n())%>%
+  mutate(title = as.character(title))
+
+tal_dtm <- cast_dtm(
+  data = tal_words_summary, 
+  document = title,
+  term = word, 
+  value = n
+  )
+
+# tuning.result <- FindTopicsNumber(
+#   tal_dtm,
+#   topics = seq(from = 2, to = 30, by = 2),
+#   metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+#   method = "Gibbs",
+#   control = list(seed = 77),
+#   mc.cores = 2L,
+#   verbose = TRUE
+# )
+# 
+# FindTopicsNumber_plot(tuning.result)
+# ggsave('Topic Number Diagnostics.pdf', height = 8, width = 12)
+```
+
+We train a 12 topic model using the `topicmodels` package then store it's various outputs for use later in the event that we need to reproduce the clusters later. Then I want to print the top 10 words in each topic and assign topics labels based on the commonalities between the top words.
+
+```{r}
+library(topicmodels)
+tal.lda.fit <- LDA(tal_dtm, k = 14)
+tal.beta <- tidy(tal.lda.fit, 'beta')
+# write.csv(tal.beta, 'tal_beta.csv')
+tal.gamma <- tidy(tal.lda.fit, 'gamma')
+# write.csv(tal.gamma, 'tal_gamma.csv')
+
+# The top words aren't really distinctive, so I'm going to remove words that show up in more than 3 of the clusters
+
+topic_stopwords_a <- tal.beta%>%
+  group_by(topic)%>%
+  top_n(15)%>%
+  ungroup()%>%
+  group_by(term)%>%
+  summarise(n = n())%>%
+  filter(n >= 3)%>%
+  .$term
+
+topic_stopwords_b <- tal.beta%>%
+  filter(!term %in% topic_stopwords_a)%>%
+  group_by(topic)%>%
+  top_n(15)%>%
+  ungroup()%>%
+  group_by(term)%>%
+  summarise(n = n())%>%
+  filter(n >= 2)%>%
+  .$term
+
+topic_stopwords_c <- tal.beta%>%
+  filter(!term %in% c(topic_stopwords_a, topic_stopwords_b))%>%
+  group_by(topic)%>%
+  top_n(15)%>%
+  ungroup()%>%
+  group_by(term)%>%
+  summarise(n = n())%>%
+  filter(n >= 2)%>%
+  .$term
+
+topic_stopwords_d <- tal.beta%>%
+  filter(!term %in% c(topic_stopwords_a, topic_stopwords_b, topic_stopwords_c))%>%
+  group_by(topic)%>%
+  top_n(15)%>%
+  ungroup()%>%
+  group_by(term)%>%
+  summarise(n = n())%>%
+  filter(n >= 2)%>%
+  .$term
+
+top_15_words <-tal.beta%>%
+  filter(!term %in% c(topic_stopwords_a, topic_stopwords_b,
+                      topic_stopwords_c, topic_stopwords_d))%>%
+  group_by(topic)%>%
+  top_n(15)%>%
+  ungroup() 
+
+top_15_words%>%
+  filter(!term %in% c(topic_stopwords_a, topic_stopwords_b,
+                      topic_stopwords_c, topic_stopwords_d))%>%
+  group_by(term)%>%
+  summarise(n = n())%>%
+  arrange(desc(n))
+
+group_names <- data.frame(
+  topic = seq(1,14),
+  label = c('Communities','Arts','Executives','Identities','Exploration','War','Financial Woes',
+            'Vulnerability','Investigation','Love and Loss','Poultry Slam','Politics',
+            'Romantic Relationships','Loss')
+)
+
+# Examples
+# Communities: https://www.thisamericanlife.org/565/lower-9-10 
+# Arts: https://www.thisamericanlife.org/218/act-v
+# Executives: https://www.thisamericanlife.org/84/harold
+# Identities: https://www.thisamericanlife.org/157/secret-life-of-daytime
+# Exploration: https://www.thisamericanlife.org/620/to-be-real
+# War: https://www.thisamericanlife.org/266/im-from-the-private-sector-and-im-here-to-help
+# Financial Woes: https://www.thisamericanlife.org/365/another-frightening-show-about-the-economy
+# Vulnerability: https://www.thisamericanlife.org/522/tarred-and-feathered or https://www.thisamericanlife.org/550/three-miles
+# Investigation: https://www.thisamericanlife.org/427/original-recipe
+# Acclimation: https://www.thisamericanlife.org/144/where-words-fail
+# Poultry Slam: https://www.thisamericanlife.org/452/poultry-slam-2011
+# Politics: https://www.thisamericanlife.org/621/fear-and-loathing-in-homer-and-rockville
+# Romantic Relationships: https://www.thisamericanlife.org/587/the-perils-of-intimacy
+# Loss: https://www.thisamericanlife.org/446/living-without-2011
+
+ggplot(inner_join(top_15_words, group_names), aes(x = reorder(term, beta), y = beta))+
+  geom_col(fill = yaz_cols[1])+
+  coord_flip()+
+  facet_wrap(~label, scales = 'free', nrow = 2)+
+  labs(title = 'Topic Defining Terms',
+       y = 'Beta Term Importance to Topic',
+       x = element_blank(),
+       caption = tal.cap)+
+  theme_yaz()
+ggsave('Topic Defining Terms.pdf', width = 12, height = 5)
+```
+
+Pull the top headlines from the topics that aren't obvious to define
+```{r}
+tal.gamma%>%
+  group_by(topic)%>%
+  top_n(15)%>%
+  ungroup()%>%
+  filter(topic >=10)
+```
+
+Are some types of stories more prevalent than others? 
+Since LDA is a soft clustering technique, we don't necessarily classify stories, but instead we create clusters and assign each episode a probability that it belongs to a particular story. To get a count of stories by topic, we need to take some step to classify stories more concretely. For this I'll consider a story as belonging to a topic if its topic membership probability is above median for the topic itself.
+
+```{r}
+library(ggridges)
+ggplot(tal.gamma, aes(x = gamma, y = as.character(topic)))+
+  geom_density_ridges()
+
+topic_n <- tal.gamma%>%
+  group_by(topic)%>%
+  mutate(count_me = ifelse(gamma > .1,1,0))%>%
+  group_by(topic)%>%
+  summarise(n = sum(count_me))%>%
+  inner_join(group_names)
+
+ggplot(topic_n, aes(x = reorder(as.character(label), n), y = n))+
+  geom_col(fill = yaz_cols[1])+
+  coord_flip()+
+  labs(title = 'Overall Topic Frequency',
+       x = element_blank(),
+       y = 'Number of Episodes',
+       caption = tal.cap)+
+  theme_yaz()
+```
+

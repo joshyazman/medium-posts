@@ -1,0 +1,157 @@
+---
+title: "Linear Modeling of Point Spreads"
+output: html_notebook
+---
+
+This is the code used for the Medium post on linear modeling of point spreads. It should be fully reproducible for you!
+
+Download the data I've cleaned and prepped for you
+```{r}
+library(readr)
+scaled_games <- read_csv('https://raw.githubusercontent.com/joshyazman/medium-posts/master/linear-modeling-point-spreads/scaled_games.csv')
+```
+
+Use the `GGally::ggpairs` function to produce a set of plots of all combinations of two variables in the data set. 
+```{r}
+library(dplyr)
+library(GGally)
+library(ggplot2)
+library(yaztheme)
+
+ggsave(plot = ggpairs(scaled_games%>%
+                        sample_n(5000)%>%
+                        select(contains('spread')))+
+         labs(title = 'Exploratory Analysis of CBB Statistics')+
+         theme_yaz(),
+       file = 'PRED 454 - Scaled Distributions for Post.pdf', height = 10, width = 10)
+```
+
+Some relationships that look fruitful for predicting point spread are field goal and three point percentage spreads and assist, block, and turnover spreads.
+```{r}
+heur.lm.fit <- lm(point.spread~fg.pct.spread+drb.spread+assist.spread+three.pct.spread+block.spread+tov.spread, 
+                  data = train.scaled)
+summary(heur.lm.fit)
+heur.lm.pred <- data.frame(prediction = predict(heur.lm.fit, newdata = test.scaled))
+heur.lm.diag <- bind_cols(test.scaled%>%
+            select(point.spread, fg.pct.spread, assist.spread, three.pct.spread, 
+                   block.spread),
+          heur.lm.pred)%>%
+  mutate(abs.error = abs(point.spread - prediction))%>%
+  select(-prediction)%>%
+  ggpairs()+
+  labs(title = 'Linear Model - Manual Variable Selection: Diagnostics')+
+  theme_yaz()
+ggsave(plot = heur.lm.diag,
+       filename = 'Linear Model - Manual Variable Selection - Diagnostics.pdf',
+       height = 8, width = 8)
+```
+
+Moving on to bi-directional stepwise selection
+```{r}
+library(leaps)
+both.lm <- regsubsets(point.spread~., 
+                      data = train.scaled%>%select(-outcome),
+                      nvmax = ncol(train.scaled)-1, 
+                      method = 'seqrep')
+
+mod.sum <- summary(both.lm)
+
+both.lm.fit <- lm(point.spread~fg.pct.spread + three.pct.spread + ft.pct.spread + drb.spread + tov.spread,
+                  data = train.scaled)
+summary(both.lm.fit)
+both.lm.pred <- predict(both.lm.fit, newdata = test.scaled)
+summary(lm(both.lm.pred~test.scaled$point.spread))
+both.lm.diag <- bind_cols(test.scaled%>%
+                            select(point.spread, fg.pct.spread, three.pct.spread,
+                                   ft.pct.spread, drb.spread, tov.spread),
+                          prediction = both.lm.pred)%>%
+  mutate(error = point.spread - prediction)%>%
+  ggpairs()+
+  labs(title = 'Linear Model - Bidirectional Stepwise Variable Selection: Diagnostics')+
+  theme_yaz()
+ggsave(plot = both.lm.diag,
+       filename = 'Linear Model - Bidirectional Stepwise Variable Selection - Diagnostics.pdf',
+       width = 8, height = 8)
+```
+
+# Evaluating Regression Models
+Read in the data, use it for predictions, and calculate the MAE of the initial three models. BDS is best, so it gets more weight in the weighted ensemble followed by 
+```{r}
+test_scaled.raw <- games_data('cleaned_games2018.csv')
+test_scaled <- test_scaled.raw%>%
+  select(-home, -outcome, -point.spread,-team, -Opponent)%>%
+  scale(center = T)%>%
+  data.frame()%>%
+  bind_cols(data.frame(outcome = test_scaled.raw$outcome,
+                       point.spread = test_scaled.raw$point.spread,
+                       home = test_scaled.raw$home))
+heur.test <- predict(heur.lm.fit, newdata = test_scaled%>%filter(complete.cases(.)), type = 'response')
+both.test <- predict(both.lm.fit, newdata = test_scaled%>%filter(complete.cases(.)), type = 'response')
+lar.test.pred <- predict(lars.fit, 
+                         newx = model.matrix(point.spread~., 
+                                             data = test_scaled%>%
+                                                select(-outcome)%>%
+                                                filter(complete.cases(.)==T)), 
+                         type = 'fit',
+                         s = 8)
+lar.test <- lar.test.pred$fit
+test_data <- test_scaled%>%
+  filter(complete.cases(.))%>%
+  bind_cols(data.frame(heur.test, both.test, lar.test))%>%
+  select(point.spread, heur.test, both.test, lar.test)%>%
+  mutate(heur.error = heur.test - point.spread,
+         both.error = both.test - point.spread,
+         lar.error = lar.test - point.spread)%>%
+  rowwise()%>%
+  mutate(ens_mean = mean(c(heur.test, both.test, lar.test)),
+         ens_mean.error = ens_mean - point.spread,
+         ens_med = median(c(heur.test, both.test, lar.test)),
+         ens_med.error = ens_med - point.spread)
+
+heur.mae <- mean(abs(test_data$heur.error))
+both.mae <- mean(abs(test_data$both.error))
+lar.mae <- mean(abs(test_data$lar.error))
+ens_mean <- mean(abs(test_data$ens_mean.error))
+ens_med <- mean(abs(test_data$ens_med.error))
+
+library(reshape2)
+library(ggridges)
+test_data%>%
+  melt()%>%
+  filter(variable %in% c('point.spread', 'heur.test', 'both.test', 
+                         'lar.test', 'ens_mean', 'ens_med'))%>%
+  mutate(variable = case_when(
+    variable == 'ens_med' ~ 'Ensemble Median',
+    variable == 'ens_mean' ~ 'Ensemble Average',
+    variable == 'lar.test' ~ 'LAR',
+    variable == 'both.test' ~ 'Bi-Directional Step',
+    variable == 'heur.test' ~ 'Heuristic',
+    variable == 'point.spread' ~ 'Point Spread'
+  ),
+  pt.flag = ifelse(variable == 'Point Spread','1','0'))%>%
+  ggplot(aes(x = value, y = variable, fill = pt.flag))+
+  geom_density_ridges(alpha = .7)+
+  theme_yaz()+
+  labs(title = 'Model Distributions vs. Actual Point Spreads',
+       x = 'Point Spread',
+       y = element_blank(),
+       caption = 'Source | sports-reference.com\nChart | Josh Yazman (@jyazman2012)')+
+  scale_fill_manual(values = yaz_cols[3:4])+
+  theme(legend.position = 'none',
+        axis.line = element_line())
+ggsave('Model Distributions vs. Actual Point Spreads.pdf',
+       height = 4, width = 6)
+
+data.frame(mae = c(heur.mae, both.mae, lar.mae, ens_mean, ens_med),
+           model = c('Heuristic','Bi-Directional Step',
+                     'LAR','Ensemble Average','Ensemble Median'))%>%
+  ggplot(aes(x = model, y = mae))+
+  geom_col(fill = yaz_cols[1])+
+  labs(title = 'MAE by Model',
+       x = element_blank(),
+       y = 'MAE',
+       caption = 'Source | sports-reference.com\nChart | Josh Yazman (@jyazman2012)')+
+  coord_flip()+
+  theme_yaz()
+```
+ggsave('MAE by Model.pdf', height = 4, width = 6)

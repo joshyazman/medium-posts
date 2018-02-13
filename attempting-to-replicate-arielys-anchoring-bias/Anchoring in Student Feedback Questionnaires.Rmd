@@ -1,0 +1,73 @@
+---
+title: "Anchoring in Student Feedback Questionnaires"
+output: html_notebook
+---
+
+One of the earliest times I remember being interested in studying human behavior was watching a PBS documentary called [Mind Over Money](http://www.pbs.org/wgbh/nova/transcripts/3707_money.html). The film features Richard Thaler (recent [Nobel Prize winner](https://www.nytimes.com/2017/10/09/business/nobel-economics-richard-thaler.html)) among a host of other economists and psychologists debating whether or not people are truly rational in making economic decisions. 
+
+In one experiment, students at the university of Chicago are asked to bid on a bottle of wine after writing down the last two digits of their social security number. The SSN has no bearing on the value of the wine and does not really give students any rationale for changing their valuation of the wine, but lo and behold, students with higher SSNs (last two digits) bid higher than those with lower numbers. Thaler, in the film, described the results in an interview:
+"It is a great illustration of anchoring. People are anchored on some number they were given, even when they constructed it at random, like the last two digits of their social security number. It's an almost irresistible force."
+I wanted to see if students in a class I'm teaching will behave the same way in peer evaluations. The 10 week long class is hosted by [General Assembly](https://generalassemb.ly/) and meets online twice per week for two hours. At three points throughout the class, students present data analysis projects to each other and offer each other feedback through a Google form. In my most recent class, I added the anchoring wrinkle into the student questionnaire.
+
+Below are five survey anonymized responses. Students were asked to restate the argument they're evaluating and offer feedback on what was persuasive and non persuasive. But towards the end of the survey, students are asked to record the day of month they were born on (my birthday is January 8th, so I would say "8" here) and offer an overall rating from 1-5. Additionally, I imputed values for the gender differential between reviewers and presenters. 
+
+```{r}
+library(readr)
+library(dplyr)
+anr_raw <- read_csv('AN - Remote AirBnB Project Feedback - Form Responses.csv')%>%
+  select(presenter_id = `Presenter's Name`, reviewer_id = `Reviewer's Name`, 
+         restated_recommendation = `Please briefly restate the investment recommendation given in the presentation`,
+         persuasive = `What part of the presentation was really persuasive to you?`,
+         birth_day = `Please indicate the day of the month your birthday falls on. (Ex: My birthday is January 8th, so I would say 8)`,
+         relative_gender = `relative gender`, 
+         overall_rating = `Please rate the overall presentation on a scale of 1-5`,
+         area_for_improvement = `Which arguments do you think could have been stronger? How?`)
+head(anr_raw)
+```
+
+Before diving into the anchoring question, I want to point out a potential flaw in the data. Almost all ratings are 5 of 4. Having worked through this presentation myself as a student and then as an instructor several times, very few people are actually this good at analyzing and presenting data on their first try. Instead this is likely a reflection of politeness on the part of respondents (it takes a lot for a Lyft driver to get a bad rating - at least from me!). So instead of measuring ratings on a scale of 1-5, I'm going to condense the ratings to "Good" for ratings that received a 5 or "Bad" for everything else in addition to using the 1-5 ratings. The birthdays are more randomly distributed as we would expect (since students don't have a ton of control over that aspect of their lives). 
+
+```{r, fig.height=5, fig.width=10}
+library(ggplot2)
+library(yaztheme)
+library(gridExtra)
+
+grid.arrange(
+  ggplot(anr_raw%>%
+           mutate(overall = as.character(overall_rating))%>%
+           group_by(overall)%>%
+           summarise(n = n()),
+         aes(x = overall, y = n))+
+    geom_col(fill = yaz_cols[1])+
+    coord_flip()+
+    labs(title = 'Distribution of Overall Ratings',
+         y = 'Count of Ratings',
+         x = 'Rating (5 is best, 1 is worst)')+
+    theme_yaz(),
+  ggplot(anr_raw%>%
+           group_by(birth_day)%>%
+           summarise(n = n()),
+         aes(x = birth_day, y = n))+
+    geom_col(fill = yaz_cols[1])+
+    coord_flip()+
+    labs(title = 'Distribution of Birth Dates',
+         y = 'Frequency',
+         x = 'Day of Month Born')+
+    theme_yaz(),
+  nrow = 1
+  )
+
+```
+
+```{r}
+anr_condensed = anr_raw%>%
+  mutate(cond_score = ifelse(overall_rating == 5, 1, 0))
+```
+
+Now let's look at the score distributions as a Poisson regression model. 
+
+
+
+
+
+

@@ -1,0 +1,171 @@
+---
+title: "Understanding Variance in CBB Performance Metrics"
+author: 'Josh Yazman'
+output: html_notebook
+---
+
+# Introduction
+One challenge in predicting basketball outcomes is the need to project the value of predictor variables in order to then predict the point spread or win likelihood of a given team on a given night. One naiive but easy way to project future performance outcomes is to simply take the mean or median of past performance as future performance. This doesn't guarantee that Virginia Tech won't explode for 25 extra points one night in the middle of the season, but the method should give a decent estimate of that likelihood. 
+
+Unfortunately, early in the season, there aren't that many games on which to base an estimate of the average of any given stat. Additionally, teams play out of conference games against mismatched schools early in the season so their performance may not be typical for later games.
+
+The law of large numbers indicates that after a certain number of games played, the average of any statistic should trend towards the true average and smooth out variations in strength of schedule as well as other noise. However, in order to maximize the number of accurate predictions for the season, predictions need to be made as early as it is possible to obtain good, steady projections of predictor variables. The purpose of this post is to determine how many games into the season a forecaster needs to wait in order to balance those factors. 
+
+# Obtaining and Preparing the Data
+The available data is scraped from sports-reference.com. Each college basketball team has a page containing a csv file of their game logs for the season. Game logs are downloaded for 351 teams between the 2012-2013 and 2016-2017 seasons. All regular season and post-season games are included. Fields such as points for and points again are condensed to differentials (for each variable we use `n_for - n_against`). The data is then scaled and centered as it will be for the actual model building process.
+
+```{r}
+setwd('C:/Users/joshy/Desktop/cbb-stats/')
+library(readr)
+library(dplyr)
+library(lubridate)
+game_data.raw <- read_csv('cleaned_games.csv')%>%
+  mutate(loc.away = ifelse(location == 'away', 1, 0),
+         loc.home = ifelse(location == 'home', 1, 0),
+         win = ifelse(outcome == 'W', 1, 0),
+         year = year(Date))
+
+game_data <- game_data.raw%>%
+  mutate(point.d = points_for - points_against,
+         fg.d = FGpct.for - FGpct.against,
+         three.d = `3Ppct.for` - `3Ppct.against`,
+         ft.d = FTpct.for - FTpct.against,
+         orb.d = ORB.for - ORB.against,
+         drb.d = (TRB.for - ORB.for) - (TRB.against - ORB.against),
+         ast.d = AST.for - AST.against,
+         stl.d = STL - STL.against,
+         blk.d = BLK - BLK.against,
+         tov.d = TOV - TOV.against,
+         pf.d = PF - PF.against)%>%
+  select(point.d, fg.d, three.d, ft.d, 
+         orb.d, drb.d, ast.d, stl.d, blk.d, tov.d, pf.d)%>%
+  scale(scale = T, center = T)%>%
+  data.frame()%>%
+  bind_cols(game_data.raw%>%
+              select(g = G, team, loc.away, loc.home, win, year))
+
+head(game_data, 100)%>%View()
+```
+
+Next we investigate the occurance of null or missing data. Null values can be imputed with decision tree functions built into the `mice` package. The only missing values are about .5% of free throw differentials. 
+```{r}
+nulls <- data.frame(col = as.character(colnames(game_data)), 
+                    pct_null = round(colSums(is.na(game_data))*100/(colSums(is.na(game_data))+colSums(!is.na(game_data))),2))%>%
+  filter(!col %in% c('g', 'team'))
+
+library(mice)
+temp_df <- mice(game_data%>%select(-g, -team, -win), method = 'cart', maxit = 1)
+train <- complete(temp_df)%>%
+  bind_cols(game_data%>%dplyr::select(g, team, win))
+head(train, 100)
+```
+
+After scaling and centering, all of the numeric predictor variables appear to follow fairly normal distributions, which is nice! That means median and mean predictions should yield similar results. 
+```{r, fig.height=12, fig.width=12}
+library(ggplot2)
+library(yaztheme)
+library(GGally)
+
+pairs <- ggpairs(train%>%select(-team, -g, -year))
+# ggsave(plot = pairs, filename = 'pairs.pdf', width = 12, height = 12, device = 'pdf')
+pairs
+```
+
+# Bootstrapping Averages and Medians for Each Statistic
+The next step is to loop through each team, year, and place in the season to calculate the mean and median values for each statistic tested here[^1]. Each statistic is calculated using a bootstrapped resampling method wherein the data is repeatedly sampled with replacement and a range of possible values is calculated. Both mean and median values for each of the 9 numeric fields are calculated. 
+
+```{r}
+total.df <- list()
+for(i in seq(341,length(unique(train$team)))){
+  year.df <- list()
+  for(y in seq(1,length(unique(train$year)))){
+    game.df <- list()
+    for(n in seq(5,25)){
+      df <- train%>%filter(g <= n & year == train$year[y] & team == unique(train$team)[i])
+      point.dfs <- list()
+      for(b in seq(1,50)){
+        samp <- sample_frac(df, .9, replace = TRUE)
+        point.dfs[[b]] <- samp%>%
+          select(-win)%>%
+          group_by(year, team)%>%
+          summarise_all(funs(mean, median))%>%
+          mutate(n.games = n)
+      }
+      game.df[[n]] <- bind_rows(point.dfs)
+    }
+    year.df[[y]] <- bind_rows(game.df)
+  }
+  total.df[[i]] <- bind_rows(year.df)
+}
+
+total_samples <- bind_rows(total.df)
+
+# Saved the file for later since it is far too computationally expensive to run more often than absolutely necessary
+# write.csv(file = 'total_samples.csv', x = total_samples)
+
+head(total_samples, 100)
+```
+
+# Analysis
+Because the process of resampled bootstrapping produces a reange of mean and median estimates at each point in the season, the resulting dataset can be used to analyze the variability in bootstrapped estimates at any point in time. The target metric is the standard deviation of each set of estimates. Variability should diminish as the season goes on and sample size of games increases. 
+
+```{r, fig.width=10, fig.height=6}
+spread.vars <- total_samples%>%
+  select(-loc.away_mean, -loc.home_mean, -loc.away_median, -loc.home_median,
+         -contains('g_'))%>%
+  group_by(year, team, n.games)%>%
+  summarise_all(funs(sd))%>%
+  reshape2::melt(id.vars = c('year','team','n.games'))%>%
+  mutate(type = ifelse(variable %in% 
+                         c('drb.d_mean_sd','pf.d_mean_sd','stl.d_mean_sd','blk.d_mean_sd',
+                           'drb.d_median_sd','pf.d_median_sd','stl.d_median_sd','blk.d_median_sd'),
+                       'Defense', 'Offense'))
+
+mean_sds <- spread.vars%>%filter(grepl('mean_sd', variable))
+med_sds <- spread.vars%>%filter(grepl('median_sd', variable))
+
+library(yaztheme)
+library(ggplot2)
+library(gridExtra)
+
+stat_viz <- function(df, ball_side = 'Offense', title = 'Variability'){
+  viz <- ggplot(df%>%filter(type == ball_side), 
+                aes(x = n.games, y = value, color = variable))+
+    stat_smooth()+
+    yaztheme::theme_yaz()+
+    labs(title = title,
+         x = 'Number of Games Played',
+         y = 'Variability')
+  
+  if(ball_side == 'Offense'){
+    viz <- viz+
+      scale_color_manual(name = 'Variable', values = yaz_cols, 
+                       labels = c('Points','Field Goals','Three Pointers',
+                                  'Free Throws','Off. Rebounds','Assists',
+                                  'Turnovers'))
+  } else {
+    viz <- viz+
+      scale_color_manual(name = 'Variable', values = yaz_cols, 
+                       labels = c('Def. Rebounds','Steals','Blocks','Personal Fouls'))
+  }
+  return(viz)
+}
+
+var.vis <- grid.arrange(
+  stat_viz(mean_sds, 'Offense', title = 'Standard Deviation of Mean Offensive Stats'),
+  stat_viz(mean_sds, 'Defense', title = 'Standard Deviation of Mean Defensive Stats'),
+  stat_viz(med_sds, 'Offense', title = 'Standard Deviation of Median Offensive Stats'),
+  stat_viz(med_sds, 'Defense', title = 'Standard Deviation of Median Defensive Stats'),
+  nrow = 2
+)
+
+# ggsave(plot = var.vis, filename  = 'variability_graphs.pdf', width = 10, height = 6)
+```
+
+That's exactly what the results of this analysis demonstrate. Early in the season, the typical variability in the data is significantly higher than later in the season. An average of steals in the first five games will not be nearly as generalizeable as an average of steals taken after the 20th game. This effect appears to level off around game 12 for teams. 
+
+# Conclusion
+
+
+
+[^1]: Warning! This is an incredibly expensive process. My computer had to run for about 22 hours to execute this process. Also, this is almost certainly not the most efficient code to use. If you know of a better way, I'm all about it! Send me an email at joshyazman [at] gmail [dot] com. 

@@ -1,0 +1,88 @@
+
+# Recreating the boosted classification trees from the charity predictions project in PREDICT 422
+
+## Read in the data
+Need to drop the `id` column so it's not used in any splitting process
+```{r}
+library(dplyr)
+library(readr)
+dat <- read_csv('raw_data.csv')%>%
+  select(-id)%>%
+  
+dat
+```
+
+## Classification 
+```{r}
+library(gbm)
+class.fit <- gbm(formula = donor ~., data = dat%>%select(-damt),
+                 distribution = 'bernoulli',
+                 n.trees = 10000,
+                 interaction.depth = 4)
+
+class.pred <- predict(class.fit,
+                      newdata = dat%>%select(-damt),
+                      n.trees = 10000,
+                      type = 'response')
+
+class.fit.sum <- summary(class.fit)
+```
+
+# Model evaluation
+
+First, for each model, I want to see how much each variable impacted the prediction by showing bar charts of how often each variable was used as a split.
+```{r}
+library(ggplot2)
+library(yaztheme)
+
+var_imp <- ggplot(class.fit.sum, aes(x = reorder(var, rel.inf), y = rel.inf))+
+  geom_col(fill = yaz_cols[3])+
+  labs(title = 'Variable Importance',
+       y = 'Percentage of Splits Using Variable',
+       x = element_blank())+
+  coord_flip()+
+  theme_yaz()
+ggsave('Variable Importance by Model.pdf', height = 4, width = 6)
+```
+
+Now to evaluate the classification accuracy by plotting the distribution of probabilities compared to actual values and then measure actual classification error
+
+```{r}
+class.acc.df <- data.frame(actual = dat$donor, predicted = class.pred)%>%
+  mutate(win = ifelse(actual == round(predicted),1,0))
+ggplot(class.acc.df, aes(x = predicted*100, fill = as.character(actual)))+
+  geom_density(alpha = .7)+
+  scale_fill_manual(name = 'Donor', labels = c('No','Yes'), 
+                    values = yaz_cols[3:4])+
+  labs(title = 'Distribution of Donation Predictions',
+       y = 'Density',
+       x = 'Predicted Donation Likelihood')+
+  theme_yaz()
+ggsave('Distribution of Donation Predictions.pdf', width = 6, height = 4)
+```
+
+Calcualte profit assuming the average donor gives \$14.50 and each letter costs \$2. It's not enough to just set the cutoff at 50% donation likelihood, you need to set the cutoff at the point of diminishing marginal return.
+```{r}
+class.cum.prof <- class.acc.df%>%
+  arrange(desc(predicted))%>%
+  mutate(profit = ifelse(actual == 1, 12.5, -2),
+         total_profit = cumsum(profit))
+
+max.prof <- max(class.cum.prof$total_profit)
+maximizing.prob <- class.cum.prof$predicted[class.cum.prof$total_profit == max.prof]
+
+sum(class.cum.prof$profit)
+ggplot(class.cum.prof, aes(x = predicted*100, y = total_profit))+
+  geom_line(color = yaz_cols[4])+
+  scale_x_reverse()+
+  geom_vline(xintercept = maximizing.prob*100, linetype = 'dashed')+
+  annotate('text', x = 75, y = 100, label = 'Mail')+
+  annotate('text', x = 15, y = 100, label = 'Do Not Mail')+
+  # annotate('text', x = 65, y = max.prof, label = '')+
+  labs(title = 'Cumulative Profit by Donation Likelihood',
+       subtitle = 'Predicted maximum profit is $35,294 mailing to modeled donors only compared to $31,409 mailing to everyone',
+       x = 'Donation Likelihood (Predicted)',
+       y = 'Total Profit')+
+  theme_yaz()
+ggsave('Cumulative Profit by Donation Likelihood.pdf', width = 8, height = 5)
+```

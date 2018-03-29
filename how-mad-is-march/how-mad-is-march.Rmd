@@ -1,0 +1,203 @@
+---
+title: "How Mad Is March?"
+output: html_notebook
+---
+
+This notebook contains code for a few attempts I took at quantifying the madness in March. This analysis focuses primarily on seeding as a predictor because I was too lazy to scrape all the data from 1985 onward or connect my own data to this!
+
+# Read Data and Packages
+```{r}
+library(MASS)
+library(tidyverse)
+library(yaztheme)
+library(ggridges)
+results <- read_csv('results_1985_2017.csv')%>%
+  mutate(lower_seed_win = ifelse(winner_seed < not_winner_seed, 1, 0),
+         lower_seed_spread = ifelse(winner_seed < not_winner_seed, 
+                                    winner_points - not_winner_points, 
+                                    not_winner_points - winner_points))
+matchups <- read_csv('matchups.csv')
+chart_cap <- 'Data | Sports Reference\nChart | Josh Yazman (@jyazman2012)'
+```
+
+# How Likely is the Lower Seed to Win One Game?
+The selection committee has been historically good at seeding teams. 
+```{r}
+ggplot(results, aes(x = lower_seed_spread, y = as.character(year)))+
+  geom_vline(xintercept = 0, linetype = 'dashed')+
+  geom_density_ridges(fill = yaz_cols[1], alpha = .7)+
+  labs(title = 'Point Spreads for Lower Seeded Team by Year',
+       caption = chart_cap,
+       y = element_blank(),
+       x = 'Point Spread')+
+  theme_yaz()
+ggsave('Point Spreads Ridgeline Plot.png', height = 7, width = 5)
+
+results%>%
+  group_by(year)%>%
+  summarise(win_pct = mean(lower_seed_win)*100)%>%
+  ggplot(aes(year, win_pct))+
+  geom_line(color = yaz_cols[1])+
+  stat_smooth(color = yaz_cols[3])+
+  labs(title = 'Win Percentage of Lower-Seeded Team by Year',
+       y = 'Lower Seed Win Percentage',
+       x = 'Year',
+       caption = chart_cap)+
+  theme_yaz()+
+  scale_x_continuous(breaks = seq(1986,2018,4))+
+  ylim(0,80)
+ggsave('Win Percentage of Lower-Seeded Team by Year.png', width = 6, height = 4)
+
+results%>%
+  count(winner_seed)%>%
+  # group_by(winner_seed, round)%>%
+  # mutate(n_games = n())%>%
+  # ungroup()%>%
+  # mutate(win_pct = round(n*100/n_games,2))%>%
+  ggplot(aes(x = winner_seed, y = n))+
+  geom_col(fill = yaz_cols[1])+
+  scale_x_continuous(breaks = seq(1,16,1))+
+  labs(title = 'Wins by Seed - 1985 to 2018',
+       y = 'Wins Since 1985',
+       x = 'Seed',
+       caption = chart_cap)+
+  theme_yaz()
+ggsave('Wins by Seed Since 1985.png', width = 6, height = 4)
+```
+
+# How Well Does Seed Model Win Probability?
+Build an overall logistic regression model of win probability by seed. Being one seed higher offers an 18
+```{r}
+alpha_results <- results%>%
+  mutate(a_seed = ifelse(winner_name < not_winner_name, 
+                         (winner_seed - not_winner_seed)*-1,
+                         (not_winner_seed - winner_seed)*-1),
+         a_winner = ifelse(winner_name < not_winner_name, 1, 0))
+
+prob.fit <- glm(a_winner ~ a_seed, data = alpha_results, family = 'binomial')
+prob.fit1 <- glm(a_winner ~ a_seed, data = alpha_results%>%filter(round_number == 0), family = 'binomial')
+prob.fit2 <- glm(a_winner ~ a_seed, data = alpha_results%>%filter(round_number == 1), family = 'binomial')
+prob.fit3 <- glm(a_winner ~ a_seed, data = alpha_results%>%filter(round_number == 2), family = 'binomial')
+prob.fit4 <- glm(a_winner ~ a_seed, data = alpha_results%>%filter(round_number == 3), family = 'binomial')
+
+seed_odds <- ((confint.default(prob.fit)%>%exp()-1)*100)[2,]
+rnd1_odds <- ((confint.default(prob.fit1)%>%exp()-1)*100)[2,]
+rnd2_odds <- ((confint.default(prob.fit2)%>%exp()-1)*100)[2,]
+rnd3_odds <- ((confint.default(prob.fit3)%>%exp()-1)*100)[2,]
+rnd4_odds <- ((confint.default(prob.fit4)%>%exp()-1)*100)[2,]
+
+win_probs <- data.frame(round(rbind(seed_odds, rnd1_odds, rnd2_odds, rnd3_odds, rnd4_odds)),
+                        round = c('Overall','First Round','Second Round','Sweet 16','Elite 8'),
+                        order = seq(5,1))%>%
+  select(round, order, lo = X2.5.., hi = X97.5..)
+
+ggplot(win_probs, aes(x = reorder(round, order), y = lo))+
+  geom_errorbar(aes(ymin = lo, ymax = hi),
+                size = 1, width = 0.15,
+                color = yaz_cols[1])+
+  labs(title = 'Marginal Win Probability of a One Seed Advantage',
+       y = 'Marginal Effect',
+       x = element_blank(),
+       caption = chart_cap)+
+  theme_yaz()+
+  coord_flip()
+ggsave('Marginal Win Probability of a One Seed Advantage.png', height = 3, width = 6)
+```
+
+The number of games is probably too small to go much past the Sweet 16, but the overall model should be interesting to look at over time.
+```{r}
+year_lo <- c()
+year_pe <- c()
+year_hi <- c()
+for(i in seq(1,length(unique(alpha_results$year)))){
+  tourney_year <- alpha_results%>%filter(year == unique(alpha_results$year)[i])
+  prob.fit.time <- glm(a_winner ~ a_seed, data = tourney_year, family = 'binomial')
+  year_lo[i] <- ((confint.default(prob.fit.time)%>%exp()-1)*100)[2,1]
+  year_pe[i] <- ((prob.fit.time$coefficients%>%exp()-1)*100)[2]
+  year_hi[i] <- ((confint.default(prob.fit.time)%>%exp()-1)*100)[2,2]
+}
+
+win_probs_time <- data.frame(lo = year_lo,
+                        pe = year_pe,
+                        hi = year_hi,
+                        year = unique(alpha_results$year))%>%
+  select(year, lo, pe, hi)
+
+ggplot(win_probs_time, aes(x = year, y = pe))+
+  geom_ribbon(aes(ymin = lo, ymax = hi),
+              alpha = .5,
+              fill = yaz_cols[3])+
+  geom_line(color = yaz_cols[4])+
+  geom_hline(yintercept = ((prob.fit$coefficients%>%exp()-1)*100)[2],
+             linetype = 'dashed')+
+  annotate('text', x = 2019, y = 35, label = 'Dashed Line is Average', angle = 90, size = 2.5)+
+  labs(title = 'Marginal Benefit of Better Seed by Year',
+       y = 'Marginal Benefit', x = element_blank(),
+       caption = chart_cap)+
+  theme_yaz()+
+  xlim(1985,2019)+
+  scale_x_continuous(breaks = seq(1985,2019,5))
+ggsave('Marginal Benefit of Better Seed by Year.png', height = 4, width = 6)
+```
+
+# How well does seed explain the number of games won
+Simply using seed as a predictor in a negative binomial regression model produces remarkably good estimates of number of games won by team. 
+```{r}
+n_wins_df <- results%>%
+  filter(round_number <= 3)%>%
+  count(year, winner_name, winner_seed)
+
+nb.fit <- glm.nb(n ~ winner_seed, data = n_wins_df)
+
+win_n_time <- predict(nb.fit, n_wins_df, type = 'response')
+
+wins_by_seed <- bind_cols(n_wins_df, data.frame(n_predicted = round(win_n_time)))
+
+ggplot(wins_by_seed%>%
+         group_by(winner_seed)%>%
+         summarise(n_won = sum(n),
+                   n_pred = sum(round(n_predicted)))%>%
+         reshape2::melt(id.vars = 'winner_seed'), 
+       aes(x = winner_seed, y = value, fill = variable))+
+  geom_col(position = position_dodge())+
+  scale_fill_manual(name = element_blank(),
+                    values = yaz_cols[3:4],
+                    labels = c('Actual','Predicted'))+
+  theme_yaz()+
+  labs(title = 'Predicted vs. Actual Wins by Seed: 1985-2018',
+       x = 'Seed', y = 'Number of Wins')+
+  scale_x_continuous(breaks = seq(1,16))
+ggsave('Predicted vs Actual Wins by Seed.png', height = 4, width = 6)
+
+difference_by_year <- wins_by_seed%>%
+  group_by(year, winner_seed)%>%
+  summarise(diff = sum(n_predicted)- sum(n))
+
+add_rows <- list() 
+
+for(i in seq(1985,2018)){
+  df <- difference_by_year%>%filter(year == i)
+  missing_seeds <- setdiff(seq(1,16), unique(df$winner_seed))
+  extra_rows <- data.frame(year = rep(i,length(missing_seeds)),
+                           winner_seed = missing_seeds)
+  missing_difference <- round(predict(nb.fit, extra_rows, type = 'response'))
+  
+  add_rows[[i]] <- bind_cols(extra_rows, data.frame(diff = missing_difference))
+}
+
+ggplot(difference_by_year%>%bind_rows(add_rows), aes(x = year, y = -diff))+
+  facet_wrap(~winner_seed)+
+  geom_hline(yintercept = 0, color = yaz_cols[3], linetype = 'dashed')+
+  geom_line(color = yaz_cols[1])+
+  labs(title = 'Games Won Relative To Expectations by Year and Seed',
+       y = 'Games Won Relative to Expectation',
+       x = 'Year')+
+  theme_yaz()+
+  theme(axis.line = element_line())+
+  annotate("segment", x=-Inf, xend=Inf, y=-Inf, yend=-Inf)+
+  annotate("segment", x=-Inf, xend=-Inf, y=-Inf, yend=Inf)+
+  scale_x_continuous(breaks = seq(1985,2018,5), 
+                     labels = substring(seq(1985,2018,5),3,4))
+ggsave('Games Won Relative To Expectations by Year and Seed.png')
+```
+

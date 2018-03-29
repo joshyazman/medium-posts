@@ -1,0 +1,2136 @@
+year,round_number,round,region,winner_name,winner_seed,winner_points,not_winner_name,not_winner_seed,not_winner_points
+1985,0,First round,region_0,Georgetown,1,68,Lehigh,16,43
+1985,0,First round,region_0,Temple,8,60,Virginia Tech,9,57
+1985,0,First round,region_0,SMU,5,85,Old Dominion,12,68
+1985,0,First round,region_0,Loyola (IL),4,59,Iona,13,58
+1985,0,First round,region_0,Georgia,6,67,Wichita State,11,59
+1985,0,First round,region_0,Illinois,3,76,Northeastern,14,57
+1985,0,First round,region_0,Syracuse,7,70,DePaul,10,65
+1985,0,First round,region_0,Georgia Tech,2,65,Mercer,15,58
+1985,0,First round,region_1,Oklahoma,1,96,North Carolina A&T,16,83
+1985,0,First round,region_1,Illinois State,9,58,USC,8,55
+1985,0,First round,region_1,Louisiana Tech,5,78,Pitt,12,54
+1985,0,First round,region_1,Ohio State,4,75,Iowa State,13,64
+1985,0,First round,region_1,Boston College,11,55,Texas Tech,6,53
+1985,0,First round,region_1,Duke,3,75,Pepperdine,14,62
+1985,0,First round,region_1,Alabama-Birmingham,7,70,Michigan State,10,68
+1985,0,First round,region_1,Memphis,2,67,Penn,15,55
+1985,0,First round,region_2,Michigan,1,59,Fairleigh Dickinson,16,55
+1985,0,First round,region_2,Villanova,8,51,Dayton,9,49
+1985,0,First round,region_2,Maryland,5,69,Miami (OH),12,68
+1985,0,First round,region_2,Navy,13,78,LSU,4,55
+1985,0,First round,region_2,Auburn,11,59,Purdue,6,58
+1985,0,First round,region_2,Kansas,3,49,Ohio,14,38
+1985,0,First round,region_2,Notre Dame,7,79,Oregon State,10,70
+1985,0,First round,region_2,UNC,2,76,Middle Tennessee,15,57
+1985,0,First round,region_3,St. John's (NY),1,83,Southern,16,59
+1985,0,First round,region_3,Arkansas,9,63,Iowa,8,54
+1985,0,First round,region_3,Kentucky,12,66,Washington,5,58
+1985,0,First round,region_3,UNLV,4,85,San Diego State,13,80
+1985,0,First round,region_3,UTEP,11,79,Tulsa,6,75
+1985,0,First round,region_3,North Carolina State,3,65,Nevada,14,56
+1985,0,First round,region_3,Alabama,7,50,Arizona,10,41
+1985,0,First round,region_3,VCU,2,81,Marshall,15,65
+1985,1,Second round,region_0,Georgetown,1,63,Temple,8,46
+1985,1,Second round,region_0,Loyola (IL),4,70,SMU,5,57
+1985,1,Second round,region_0,Illinois,3,74,Georgia,6,58
+1985,1,Second round,region_0,Georgia Tech,2,70,Syracuse,7,53
+1985,1,Second round,region_1,Oklahoma,1,75,Illinois State,9,69
+1985,1,Second round,region_1,Louisiana Tech,5,79,Ohio State,4,67
+1985,1,Second round,region_1,Boston College,11,74,Duke,3,73
+1985,1,Second round,region_1,Memphis,2,67,Alabama-Birmingham,7,66
+1985,1,Second round,region_2,Villanova,8,59,Michigan,1,55
+1985,1,Second round,region_2,Maryland,5,64,Navy,13,59
+1985,1,Second round,region_2,Auburn,11,66,Kansas,3,64
+1985,1,Second round,region_2,UNC,2,60,Notre Dame,7,58
+1985,1,Second round,region_3,St. John's (NY),1,68,Arkansas,9,65
+1985,1,Second round,region_3,Kentucky,12,64,UNLV,4,61
+1985,1,Second round,region_3,North Carolina State,3,86,UTEP,11,73
+1985,1,Second round,region_3,Alabama,7,63,VCU,2,59
+1985,2,Sweet Sixteen,region_0,Georgetown,1,65,Loyola (IL),4,53
+1985,2,Sweet Sixteen,region_0,Georgia Tech,2,61,Illinois,3,53
+1985,2,Sweet Sixteen,region_1,Oklahoma,1,86,Louisiana Tech,5,84
+1985,2,Sweet Sixteen,region_1,Memphis,2,59,Boston College,11,57
+1985,2,Sweet Sixteen,region_2,Villanova,8,46,Maryland,5,43
+1985,2,Sweet Sixteen,region_2,UNC,2,62,Auburn,11,56
+1985,2,Sweet Sixteen,region_3,St. John's (NY),1,86,Kentucky,12,70
+1985,2,Sweet Sixteen,region_3,North Carolina State,3,61,Alabama,7,55
+1985,3,Elite Eight,region_0,Georgetown,1,60,Georgia Tech,2,54
+1985,3,Elite Eight,region_1,Memphis,2,63,Oklahoma,1,61
+1985,3,Elite Eight,region_2,Villanova,8,56,UNC,2,44
+1985,3,Elite Eight,region_3,St. John's (NY),1,69,North Carolina State,3,60
+1985,4,Final Four,region_4,Villanova,8,52,Memphis,2,45
+1985,4,Final Four,region_4,Georgetown,1,77,St. John's (NY),1,59
+1985,5,Championship,region_4,Villanova,8,66,Georgetown,1,64
+1986,0,First round,region_0,Duke,1,85,Mississippi Valley State,16,78
+1986,0,First round,region_0,Old Dominion,8,72,West Virginia,9,64
+1986,0,First round,region_0,DePaul,12,72,Virginia,5,68
+1986,0,First round,region_0,Oklahoma,4,80,Northeastern,13,74
+1986,0,First round,region_0,St. Joseph's,6,60,Richmond,11,59
+1986,0,First round,region_0,Cleveland State,14,83,Indiana,3,79
+1986,0,First round,region_0,Navy,7,87,Tulsa,10,68
+1986,0,First round,region_0,Syracuse,2,101,Brown,15,52
+1986,0,First round,region_1,Kansas,1,71,North Carolina A&T,16,46
+1986,0,First round,region_1,Temple,9,61,Jacksonville,8,50
+1986,0,First round,region_1,Michigan State,5,72,Washington,12,70
+1986,0,First round,region_1,Georgetown,4,70,Texas Tech,13,64
+1986,0,First round,region_1,North Carolina State,6,66,Iowa,11,64
+1986,0,First round,region_1,Arkansas-Little Rock,14,90,Notre Dame,3,83
+1986,0,First round,region_1,Iowa State,7,81,Miami (OH),10,79
+1986,0,First round,region_1,Michigan,2,70,Akron,15,64
+1986,0,First round,region_2,Kentucky,1,75,Davidson,16,55
+1986,0,First round,region_2,Western Kentucky,8,67,Nebraska,9,59
+1986,0,First round,region_2,Alabama,5,97,Xavier,12,80
+1986,0,First round,region_2,Illinois,4,75,Fairfield,13,51
+1986,0,First round,region_2,LSU,11,94,Purdue,6,87
+1986,0,First round,region_2,Memphis,3,95,Ball State,14,63
+1986,0,First round,region_2,Villanova,10,71,Virginia Tech,7,62
+1986,0,First round,region_2,Georgia Tech,2,68,Marist,15,53
+1986,0,First round,region_3,St. John's (NY),1,83,Montana State,16,74
+1986,0,First round,region_3,Auburn,8,73,Arizona,9,63
+1986,0,First round,region_3,Maryland,5,69,Pepperdine,12,64
+1986,0,First round,region_3,UNLV,4,74,Louisiana-Monroe,13,51
+1986,0,First round,region_3,Alabama-Birmingham,6,66,Missouri,11,64
+1986,0,First round,region_3,UNC,3,84,Utah,14,72
+1986,0,First round,region_3,Bradley,7,83,UTEP,10,65
+1986,0,First round,region_3,Louisville,2,93,Drexel,15,73
+1986,1,Second round,region_0,Duke,1,89,Old Dominion,8,61
+1986,1,Second round,region_0,DePaul,12,74,Oklahoma,4,69
+1986,1,Second round,region_0,Cleveland State,14,75,St. Joseph's,6,69
+1986,1,Second round,region_0,Navy,7,97,Syracuse,2,85
+1986,1,Second round,region_1,Kansas,1,65,Temple,9,43
+1986,1,Second round,region_1,Michigan State,5,80,Georgetown,4,68
+1986,1,Second round,region_1,North Carolina State,6,80,Arkansas-Little Rock,14,66
+1986,1,Second round,region_1,Iowa State,7,72,Michigan,2,69
+1986,1,Second round,region_2,Kentucky,1,71,Western Kentucky,8,64
+1986,1,Second round,region_2,Alabama,5,58,Illinois,4,56
+1986,1,Second round,region_2,LSU,11,83,Memphis,3,81
+1986,1,Second round,region_2,Georgia Tech,2,66,Villanova,10,61
+1986,1,Second round,region_3,Auburn,8,81,St. John's (NY),1,65
+1986,1,Second round,region_3,UNLV,4,70,Maryland,5,64
+1986,1,Second round,region_3,UNC,3,77,Alabama-Birmingham,6,59
+1986,1,Second round,region_3,Louisville,2,82,Bradley,7,68
+1986,2,Sweet Sixteen,region_0,Duke,1,74,DePaul,12,67
+1986,2,Sweet Sixteen,region_0,Navy,7,71,Cleveland State,14,70
+1986,2,Sweet Sixteen,region_1,Kansas,1,96,Michigan State,5,86
+1986,2,Sweet Sixteen,region_1,North Carolina State,6,70,Iowa State,7,66
+1986,2,Sweet Sixteen,region_2,Kentucky,1,68,Alabama,5,63
+1986,2,Sweet Sixteen,region_2,LSU,11,70,Georgia Tech,2,64
+1986,2,Sweet Sixteen,region_3,Auburn,8,70,UNLV,4,63
+1986,2,Sweet Sixteen,region_3,Louisville,2,94,UNC,3,79
+1986,3,Elite Eight,region_0,Duke,1,71,Navy,7,50
+1986,3,Elite Eight,region_1,Kansas,1,75,North Carolina State,6,67
+1986,3,Elite Eight,region_2,LSU,11,59,Kentucky,1,57
+1986,3,Elite Eight,region_3,Louisville,2,84,Auburn,8,76
+1986,4,Final Four,region_4,Louisville,2,88,LSU,11,77
+1986,4,Final Four,region_4,Duke,1,71,Kansas,1,67
+1986,5,Championship,region_4,Louisville,2,72,Duke,1,69
+1987,0,First round,region_0,UNC,1,113,Penn,16,82
+1987,0,First round,region_0,Michigan,9,97,Navy,8,82
+1987,0,First round,region_0,Notre Dame,5,84,Middle Tennessee,12,71
+1987,0,First round,region_0,Texas Christian,4,76,Marshall,13,60
+1987,0,First round,region_0,Florida,6,82,North Carolina State,11,70
+1987,0,First round,region_0,Purdue,3,104,Northeastern,14,95
+1987,0,First round,region_0,Western Kentucky,10,64,West Virginia,7,62
+1987,0,First round,region_0,Syracuse,2,79,Georgia Southern,15,73
+1987,0,First round,region_1,Indiana,1,92,Fairfield,16,58
+1987,0,First round,region_1,Auburn,8,62,San Diego,9,61
+1987,0,First round,region_1,Duke,5,58,Texas A&M,12,51
+1987,0,First round,region_1,Xavier,13,70,Missouri,4,69
+1987,0,First round,region_1,St. John's (NY),6,57,Wichita State,11,55
+1987,0,First round,region_1,DePaul,3,76,Louisiana Tech,14,62
+1987,0,First round,region_1,LSU,10,85,Georgia Tech,7,79
+1987,0,First round,region_1,Temple,2,75,Southern,15,56
+1987,0,First round,region_2,Georgetown,1,75,Bucknell,16,53
+1987,0,First round,region_2,Ohio State,9,91,Kentucky,8,77
+1987,0,First round,region_2,Kansas,5,66,Houston,12,55
+1987,0,First round,region_2,Missouri State,13,65,Clemson,4,60
+1987,0,First round,region_2,Providence,6,90,Alabama-Birmingham,11,68
+1987,0,First round,region_2,Austin Peay,14,68,Illinois,3,67
+1987,0,First round,region_2,New Orleans,7,83,BYU,10,79
+1987,0,First round,region_2,Alabama,2,88,North Carolina A&T,15,71
+1987,0,First round,region_3,UNLV,1,95,Idaho State,16,70
+1987,0,First round,region_3,Kansas State,9,82,Georgia,8,79
+1987,0,First round,region_3,Wyoming,12,64,Virginia,5,60
+1987,0,First round,region_3,UCLA,4,92,Central Michigan,13,73
+1987,0,First round,region_3,Oklahoma,6,74,Tulsa,11,69
+1987,0,First round,region_3,Pitt,3,93,Marist,14,68
+1987,0,First round,region_3,UTEP,7,98,Arizona,10,91
+1987,0,First round,region_3,Iowa,2,99,Santa Clara,15,76
+1987,1,Second round,region_0,UNC,1,109,Michigan,9,97
+1987,1,Second round,region_0,Notre Dame,5,58,Texas Christian,4,57
+1987,1,Second round,region_0,Florida,6,85,Purdue,3,66
+1987,1,Second round,region_0,Syracuse,2,104,Western Kentucky,10,86
+1987,1,Second round,region_1,Indiana,1,107,Auburn,8,90
+1987,1,Second round,region_1,Duke,5,65,Xavier,13,60
+1987,1,Second round,region_1,DePaul,3,83,St. John's (NY),6,75
+1987,1,Second round,region_1,LSU,10,72,Temple,2,62
+1987,1,Second round,region_2,Georgetown,1,82,Ohio State,9,79
+1987,1,Second round,region_2,Kansas,5,67,Missouri State,13,63
+1987,1,Second round,region_2,Providence,6,90,Austin Peay,14,87
+1987,1,Second round,region_2,Alabama,2,101,New Orleans,7,76
+1987,1,Second round,region_3,UNLV,1,80,Kansas State,9,61
+1987,1,Second round,region_3,Wyoming,12,78,UCLA,4,68
+1987,1,Second round,region_3,Oklahoma,6,96,Pitt,3,93
+1987,1,Second round,region_3,Iowa,2,84,UTEP,7,82
+1987,2,Sweet Sixteen,region_0,UNC,1,74,Notre Dame,5,68
+1987,2,Sweet Sixteen,region_0,Syracuse,2,87,Florida,6,81
+1987,2,Sweet Sixteen,region_1,Indiana,1,88,Duke,5,82
+1987,2,Sweet Sixteen,region_1,LSU,10,63,DePaul,3,58
+1987,2,Sweet Sixteen,region_2,Georgetown,1,70,Kansas,5,57
+1987,2,Sweet Sixteen,region_2,Providence,6,103,Alabama,2,82
+1987,2,Sweet Sixteen,region_3,UNLV,1,92,Wyoming,12,78
+1987,2,Sweet Sixteen,region_3,Iowa,2,93,Oklahoma,6,91
+1987,3,Elite Eight,region_0,Syracuse,2,79,UNC,1,75
+1987,3,Elite Eight,region_1,Indiana,1,77,LSU,10,76
+1987,3,Elite Eight,region_2,Providence,6,88,Georgetown,1,73
+1987,3,Elite Eight,region_3,UNLV,1,84,Iowa,2,81
+1987,4,Final Four,region_4,Indiana,1,97,UNLV,1,93
+1987,4,Final Four,region_4,Syracuse,2,77,Providence,6,63
+1987,5,Championship,region_4,Indiana,1,74,Syracuse,2,73
+1988,0,First round,region_0,Temple,1,87,Lehigh,16,73
+1988,0,First round,region_0,Georgetown,8,66,LSU,9,63
+1988,0,First round,region_0,Georgia Tech,5,90,Iowa State,12,78
+1988,0,First round,region_0,Richmond,13,72,Indiana,4,69
+1988,0,First round,region_0,Rhode Island,11,87,Missouri,6,80
+1988,0,First round,region_0,Syracuse,3,69,North Carolina A&T,14,55
+1988,0,First round,region_0,SMU,7,83,Notre Dame,10,75
+1988,0,First round,region_0,Duke,2,85,Boston University,15,69
+1988,0,First round,region_1,Purdue,1,94,Fairleigh Dickinson,16,79
+1988,0,First round,region_1,Memphis,9,75,Baylor,8,60
+1988,0,First round,region_1,DePaul,5,83,Wichita State,12,62
+1988,0,First round,region_1,Kansas State,4,66,La Salle,13,53
+1988,0,First round,region_1,Kansas,6,85,Xavier,11,72
+1988,0,First round,region_1,Murray State,14,78,North Carolina State,3,75
+1988,0,First round,region_1,Vanderbilt,7,80,Utah State,10,77
+1988,0,First round,region_1,Pitt,2,108,Eastern Michigan,15,90
+1988,0,First round,region_2,Oklahoma,1,94,Chattanooga,16,66
+1988,0,First round,region_2,Auburn,8,90,Bradley,9,86
+1988,0,First round,region_2,Louisville,5,70,Oregon State,12,61
+1988,0,First round,region_2,BYU,4,98,Charlotte,13,92
+1988,0,First round,region_2,Villanova,6,82,Arkansas,11,74
+1988,0,First round,region_2,Illinois,3,81,UTSA,14,72
+1988,0,First round,region_2,Maryland,7,92,UCSB,10,82
+1988,0,First round,region_2,Kentucky,2,99,Southern,15,84
+1988,0,First round,region_3,Arizona,1,90,Cornell,16,50
+1988,0,First round,region_3,Seton Hall,8,80,UTEP,9,64
+1988,0,First round,region_3,Iowa,5,102,Florida State,12,98
+1988,0,First round,region_3,UNLV,4,54,Missouri State,13,50
+1988,0,First round,region_3,Florida,6,62,St. John's (NY),11,59
+1988,0,First round,region_3,Michigan,3,63,Boise State,14,58
+1988,0,First round,region_3,Loyola Marymount,10,119,Wyoming,7,115
+1988,0,First round,region_3,UNC,2,83,North Texas,15,65
+1988,1,Second round,region_0,Temple,1,74,Georgetown,8,53
+1988,1,Second round,region_0,Richmond,13,59,Georgia Tech,5,55
+1988,1,Second round,region_0,Rhode Island,11,97,Syracuse,3,94
+1988,1,Second round,region_0,Duke,2,94,SMU,7,79
+1988,1,Second round,region_1,Purdue,1,100,Memphis,9,73
+1988,1,Second round,region_1,Kansas State,4,66,DePaul,5,58
+1988,1,Second round,region_1,Kansas,6,61,Murray State,14,58
+1988,1,Second round,region_1,Vanderbilt,7,80,Pitt,2,74
+1988,1,Second round,region_2,Oklahoma,1,107,Auburn,8,87
+1988,1,Second round,region_2,Louisville,5,97,BYU,4,76
+1988,1,Second round,region_2,Villanova,6,66,Illinois,3,63
+1988,1,Second round,region_2,Kentucky,2,90,Maryland,7,81
+1988,1,Second round,region_3,Arizona,1,84,Seton Hall,8,55
+1988,1,Second round,region_3,Iowa,5,104,UNLV,4,86
+1988,1,Second round,region_3,Michigan,3,108,Florida,6,85
+1988,1,Second round,region_3,UNC,2,123,Loyola Marymount,10,97
+1988,2,Sweet Sixteen,region_0,Temple,1,69,Richmond,13,47
+1988,2,Sweet Sixteen,region_0,Duke,2,73,Rhode Island,11,72
+1988,2,Sweet Sixteen,region_1,Kansas State,4,73,Purdue,1,70
+1988,2,Sweet Sixteen,region_1,Kansas,6,77,Vanderbilt,7,64
+1988,2,Sweet Sixteen,region_2,Oklahoma,1,108,Louisville,5,98
+1988,2,Sweet Sixteen,region_2,Villanova,6,80,Kentucky,2,74
+1988,2,Sweet Sixteen,region_3,Arizona,1,99,Iowa,5,79
+1988,2,Sweet Sixteen,region_3,UNC,2,78,Michigan,3,69
+1988,3,Elite Eight,region_0,Duke,2,63,Temple,1,53
+1988,3,Elite Eight,region_1,Kansas,6,71,Kansas State,4,58
+1988,3,Elite Eight,region_2,Oklahoma,1,78,Villanova,6,59
+1988,3,Elite Eight,region_3,Arizona,1,70,UNC,2,52
+1988,4,Final Four,region_4,Kansas,6,66,Duke,2,59
+1988,4,Final Four,region_4,Oklahoma,1,86,Arizona,1,78
+1988,5,Championship,region_4,Kansas,6,83,Oklahoma,1,79
+1989,0,First round,region_0,Georgetown,1,50,Princeton,16,49
+1989,0,First round,region_0,Notre Dame,9,81,Vanderbilt,8,65
+1989,0,First round,region_0,North Carolina State,5,81,South Carolina,12,66
+1989,0,First round,region_0,Iowa,4,87,Rutgers,13,73
+1989,0,First round,region_0,Minnesota,11,86,Kansas State,6,75
+1989,0,First round,region_0,Siena,14,80,Stanford,3,78
+1989,0,First round,region_0,West Virginia,7,84,Tennessee,10,68
+1989,0,First round,region_0,Duke,2,90,South Carolina State,15,69
+1989,0,First round,region_1,Illinois,1,77,McNeese State,16,71
+1989,0,First round,region_1,Ball State,9,68,Pitt,8,64
+1989,0,First round,region_1,Arkansas,5,120,Loyola Marymount,12,101
+1989,0,First round,region_1,Louisville,4,76,Arkansas-Little Rock,13,71
+1989,0,First round,region_1,Texas,11,76,Georgia Tech,6,70
+1989,0,First round,region_1,Missouri,3,85,Creighton,14,69
+1989,0,First round,region_1,Colorado State,10,68,Florida,7,46
+1989,0,First round,region_1,Syracuse,2,104,Bucknell,15,81
+1989,0,First round,region_2,Oklahoma,1,72,ETSU,16,71
+1989,0,First round,region_2,Louisiana Tech,9,83,La Salle,8,74
+1989,0,First round,region_2,Virginia,5,100,Providence,12,97
+1989,0,First round,region_2,Middle Tennessee,13,97,Florida State,4,83
+1989,0,First round,region_2,South Alabama,11,86,Alabama,6,84
+1989,0,First round,region_2,Michigan,3,92,Xavier,14,87
+1989,0,First round,region_2,UCLA,7,84,Iowa State,10,74
+1989,0,First round,region_2,UNC,2,93,Southern,15,79
+1989,0,First round,region_3,Arizona,1,94,Robert Morris,16,60
+1989,0,First round,region_3,Clemson,9,83,Saint Mary's (CA),8,70
+1989,0,First round,region_3,DePaul,12,66,Memphis,5,63
+1989,0,First round,region_3,UNLV,4,68,Idaho,13,56
+1989,0,First round,region_3,Evansville,11,94,Oregon State,6,90
+1989,0,First round,region_3,Seton Hall,3,60,Missouri State,14,51
+1989,0,First round,region_3,UTEP,7,85,LSU,10,74
+1989,0,First round,region_3,Indiana,2,99,George Mason,15,85
+1989,1,Second round,region_0,Georgetown,1,81,Notre Dame,9,74
+1989,1,Second round,region_0,North Carolina State,5,102,Iowa,4,96
+1989,1,Second round,region_0,Minnesota,11,80,Siena,14,67
+1989,1,Second round,region_0,Duke,2,70,West Virginia,7,63
+1989,1,Second round,region_1,Illinois,1,72,Ball State,9,60
+1989,1,Second round,region_1,Louisville,4,93,Arkansas,5,84
+1989,1,Second round,region_1,Missouri,3,108,Texas,11,89
+1989,1,Second round,region_1,Syracuse,2,65,Colorado State,10,50
+1989,1,Second round,region_2,Oklahoma,1,124,Louisiana Tech,9,81
+1989,1,Second round,region_2,Virginia,5,104,Middle Tennessee,13,88
+1989,1,Second round,region_2,Michigan,3,91,South Alabama,11,82
+1989,1,Second round,region_2,UNC,2,88,UCLA,7,81
+1989,1,Second round,region_3,Arizona,1,94,Clemson,9,68
+1989,1,Second round,region_3,UNLV,4,85,DePaul,12,70
+1989,1,Second round,region_3,Seton Hall,3,87,Evansville,11,73
+1989,1,Second round,region_3,Indiana,2,92,UTEP,7,69
+1989,2,Sweet Sixteen,region_0,Georgetown,1,69,North Carolina State,5,61
+1989,2,Sweet Sixteen,region_0,Duke,2,87,Minnesota,11,70
+1989,2,Sweet Sixteen,region_1,Illinois,1,83,Louisville,4,69
+1989,2,Sweet Sixteen,region_1,Syracuse,2,83,Missouri,3,80
+1989,2,Sweet Sixteen,region_2,Virginia,5,86,Oklahoma,1,80
+1989,2,Sweet Sixteen,region_2,Michigan,3,92,UNC,2,87
+1989,2,Sweet Sixteen,region_3,UNLV,4,68,Arizona,1,67
+1989,2,Sweet Sixteen,region_3,Seton Hall,3,78,Indiana,2,65
+1989,3,Elite Eight,region_0,Duke,2,85,Georgetown,1,77
+1989,3,Elite Eight,region_1,Illinois,1,89,Syracuse,2,86
+1989,3,Elite Eight,region_2,Michigan,3,102,Virginia,5,65
+1989,3,Elite Eight,region_3,Seton Hall,3,84,UNLV,4,61
+1989,4,Final Four,region_4,Michigan,3,83,Illinois,1,81
+1989,4,Final Four,region_4,Seton Hall,3,95,Duke,2,78
+1989,5,Championship,region_4,Michigan,3,80,Seton Hall,3,79
+1990,0,First round,region_0,UConn,1,76,Boston University,16,52
+1990,0,First round,region_0,University of California,9,65,Indiana,8,63
+1990,0,First round,region_0,Clemson,5,49,BYU,12,47
+1990,0,First round,region_0,La Salle,4,79,Southern Miss,13,63
+1990,0,First round,region_0,St. John's (NY),6,81,Temple,11,65
+1990,0,First round,region_0,Duke,3,81,Richmond,14,46
+1990,0,First round,region_0,UCLA,7,68,Alabama-Birmingham,10,56
+1990,0,First round,region_0,Kansas,2,79,Robert Morris,15,71
+1990,0,First round,region_1,Oklahoma,1,77,Towson,16,68
+1990,0,First round,region_1,UNC,8,83,Missouri State,9,70
+1990,0,First round,region_1,Dayton,12,88,Illinois,5,86
+1990,0,First round,region_1,Arkansas,4,68,Princeton,13,64
+1990,0,First round,region_1,Xavier,6,87,Kansas State,11,79
+1990,0,First round,region_1,Georgetown,3,70,Texas Southern,14,52
+1990,0,First round,region_1,Texas,10,100,Georgia,7,88
+1990,0,First round,region_1,Purdue,2,75,Louisiana-Monroe,15,63
+1990,0,First round,region_2,Michigan State,1,75,Murray State,16,71
+1990,0,First round,region_2,UCSB,9,70,Houston,8,66
+1990,0,First round,region_2,LSU,5,70,Villanova,12,63
+1990,0,First round,region_2,Georgia Tech,4,99,ETSU,13,83
+1990,0,First round,region_2,Minnesota,6,64,UTEP,11,61
+1990,0,First round,region_2,Northern Iowa,14,74,Missouri,3,71
+1990,0,First round,region_2,Virginia,7,75,Notre Dame,10,67
+1990,0,First round,region_2,Syracuse,2,70,Coppin State,15,48
+1990,0,First round,region_3,UNLV,1,102,Arkansas-Little Rock,16,72
+1990,0,First round,region_3,Ohio State,8,84,Providence,9,83
+1990,0,First round,region_3,Ball State,12,54,Oregon State,5,53
+1990,0,First round,region_3,Louisville,4,78,Idaho,13,59
+1990,0,First round,region_3,Loyola Marymount,11,111,New Mexico State,6,92
+1990,0,First round,region_3,Michigan,3,76,Illinois State,14,70
+1990,0,First round,region_3,Alabama,7,71,Colorado State,10,54
+1990,0,First round,region_3,Arizona,2,79,South Florida,15,67
+1990,1,Second round,region_0,UConn,1,74,University of California,9,54
+1990,1,Second round,region_0,Clemson,5,79,La Salle,4,75
+1990,1,Second round,region_0,Duke,3,76,St. John's (NY),6,72
+1990,1,Second round,region_0,UCLA,7,71,Kansas,2,70
+1990,1,Second round,region_1,UNC,8,79,Oklahoma,1,77
+1990,1,Second round,region_1,Arkansas,4,86,Dayton,12,84
+1990,1,Second round,region_1,Xavier,6,74,Georgetown,3,71
+1990,1,Second round,region_1,Texas,10,73,Purdue,2,72
+1990,1,Second round,region_2,Michigan State,1,62,UCSB,9,58
+1990,1,Second round,region_2,Georgia Tech,4,94,LSU,5,91
+1990,1,Second round,region_2,Minnesota,6,81,Northern Iowa,14,78
+1990,1,Second round,region_2,Syracuse,2,63,Virginia,7,61
+1990,1,Second round,region_3,UNLV,1,76,Ohio State,8,65
+1990,1,Second round,region_3,Ball State,12,62,Louisville,4,60
+1990,1,Second round,region_3,Loyola Marymount,11,149,Michigan,3,115
+1990,1,Second round,region_3,Alabama,7,77,Arizona,2,55
+1990,2,Sweet Sixteen,region_0,UConn,1,71,Clemson,5,70
+1990,2,Sweet Sixteen,region_0,Duke,3,90,UCLA,7,81
+1990,2,Sweet Sixteen,region_1,Arkansas,4,96,UNC,8,73
+1990,2,Sweet Sixteen,region_1,Texas,10,102,Xavier,6,89
+1990,2,Sweet Sixteen,region_2,Georgia Tech,4,81,Michigan State,1,80
+1990,2,Sweet Sixteen,region_2,Minnesota,6,82,Syracuse,2,75
+1990,2,Sweet Sixteen,region_3,UNLV,1,69,Ball State,12,67
+1990,2,Sweet Sixteen,region_3,Loyola Marymount,11,62,Alabama,7,60
+1990,3,Elite Eight,region_0,Duke,3,79,UConn,1,78
+1990,3,Elite Eight,region_1,Arkansas,4,88,Texas,10,85
+1990,3,Elite Eight,region_2,Georgia Tech,4,93,Minnesota,6,91
+1990,3,Elite Eight,region_3,UNLV,1,131,Loyola Marymount,11,101
+1990,4,Final Four,region_4,UNLV,1,90,Georgia Tech,4,81
+1990,4,Final Four,region_4,Duke,3,97,Arkansas,4,83
+1990,5,Championship,region_4,UNLV,1,103,Duke,3,73
+1991,0,First round,region_0,UNC,1,101,Northeastern,16,66
+1991,0,First round,region_0,Villanova,9,50,Princeton,8,48
+1991,0,First round,region_0,Eastern Michigan,12,76,Mississippi State,5,56
+1991,0,First round,region_0,Penn State,13,74,UCLA,4,69
+1991,0,First round,region_0,North Carolina State,6,114,Southern Miss,11,85
+1991,0,First round,region_0,Oklahoma State,3,67,New Mexico,14,54
+1991,0,First round,region_0,Temple,10,80,Purdue,7,63
+1991,0,First round,region_0,Richmond,15,73,Syracuse,2,69
+1991,0,First round,region_1,Ohio State,1,97,Towson,16,86
+1991,0,First round,region_1,Georgia Tech,8,87,DePaul,9,70
+1991,0,First round,region_1,Texas,5,73,St. Peter's,12,65
+1991,0,First round,region_1,St. John's (NY),4,75,Northern Illinois,13,68
+1991,0,First round,region_1,UConn,11,79,LSU,6,62
+1991,0,First round,region_1,Xavier,14,89,Nebraska,3,84
+1991,0,First round,region_1,Iowa,7,76,ETSU,10,73
+1991,0,First round,region_1,Duke,2,102,Louisiana-Monroe,15,73
+1991,0,First round,region_2,Arkansas,1,117,Georgia State,16,76
+1991,0,First round,region_2,Arizona State,8,79,Rutgers,9,76
+1991,0,First round,region_2,Wake Forest,5,71,Louisiana Tech,12,65
+1991,0,First round,region_2,Alabama,4,89,Murray State,13,79
+1991,0,First round,region_2,Pitt,6,76,Georgia,11,68
+1991,0,First round,region_2,Kansas,3,55,New Orleans,14,49
+1991,0,First round,region_2,Florida State,7,75,USC,10,72
+1991,0,First round,region_2,Indiana,2,79,Coastal Carolina,15,69
+1991,0,First round,region_3,UNLV,1,99,Montana,16,65
+1991,0,First round,region_3,Georgetown,8,70,Vanderbilt,9,60
+1991,0,First round,region_3,Michigan State,5,60,Green Bay,12,58
+1991,0,First round,region_3,Utah,4,82,South Alabama,13,72
+1991,0,First round,region_3,Creighton,11,64,New Mexico State,6,56
+1991,0,First round,region_3,Seton Hall,3,71,Pepperdine,14,51
+1991,0,First round,region_3,BYU,10,61,Virginia,7,48
+1991,0,First round,region_3,Arizona,2,93,Saint Francis (PA),15,80
+1991,1,Second round,region_0,UNC,1,84,Villanova,9,69
+1991,1,Second round,region_0,Eastern Michigan,12,71,Penn State,13,68
+1991,1,Second round,region_0,Oklahoma State,3,73,North Carolina State,6,64
+1991,1,Second round,region_0,Temple,10,77,Richmond,15,64
+1991,1,Second round,region_1,Ohio State,1,65,Georgia Tech,8,61
+1991,1,Second round,region_1,St. John's (NY),4,84,Texas,5,76
+1991,1,Second round,region_1,UConn,11,66,Xavier,14,50
+1991,1,Second round,region_1,Duke,2,85,Iowa,7,70
+1991,1,Second round,region_2,Arkansas,1,97,Arizona State,8,90
+1991,1,Second round,region_2,Alabama,4,96,Wake Forest,5,88
+1991,1,Second round,region_2,Kansas,3,77,Pitt,6,66
+1991,1,Second round,region_2,Indiana,2,82,Florida State,7,60
+1991,1,Second round,region_3,UNLV,1,62,Georgetown,8,54
+1991,1,Second round,region_3,Utah,4,85,Michigan State,5,84
+1991,1,Second round,region_3,Seton Hall,3,81,Creighton,11,69
+1991,1,Second round,region_3,Arizona,2,76,BYU,10,61
+1991,2,Sweet Sixteen,region_0,UNC,1,93,Eastern Michigan,12,67
+1991,2,Sweet Sixteen,region_0,Temple,10,72,Oklahoma State,3,63
+1991,2,Sweet Sixteen,region_1,St. John's (NY),4,91,Ohio State,1,74
+1991,2,Sweet Sixteen,region_1,Duke,2,81,UConn,11,67
+1991,2,Sweet Sixteen,region_2,Arkansas,1,93,Alabama,4,70
+1991,2,Sweet Sixteen,region_2,Kansas,3,83,Indiana,2,65
+1991,2,Sweet Sixteen,region_3,UNLV,1,83,Utah,4,66
+1991,2,Sweet Sixteen,region_3,Seton Hall,3,81,Arizona,2,77
+1991,3,Elite Eight,region_0,UNC,1,75,Temple,10,72
+1991,3,Elite Eight,region_1,Duke,2,78,St. John's (NY),4,61
+1991,3,Elite Eight,region_2,Kansas,3,93,Arkansas,1,81
+1991,3,Elite Eight,region_3,UNLV,1,77,Seton Hall,3,65
+1991,4,Final Four,region_4,Duke,2,79,UNLV,1,77
+1991,4,Final Four,region_4,Kansas,3,79,UNC,1,73
+1991,5,Championship,region_4,Duke,2,72,Kansas,3,65
+1992,0,First round,region_0,Duke,1,82,Campbell,16,56
+1992,0,First round,region_0,Iowa,9,98,Texas,8,92
+1992,0,First round,region_0,Missouri,5,89,West Virginia,12,78
+1992,0,First round,region_0,Seton Hall,4,78,La Salle,13,76
+1992,0,First round,region_0,Syracuse,6,51,Princeton,11,43
+1992,0,First round,region_0,UMass,3,85,Fordham,14,58
+1992,0,First round,region_0,Iowa State,10,76,Charlotte,7,74
+1992,0,First round,region_0,Kentucky,2,88,Old Dominion,15,69
+1992,0,First round,region_1,Kansas,1,100,Howard,16,67
+1992,0,First round,region_1,UTEP,9,55,Evansville,8,50
+1992,0,First round,region_1,Michigan State,5,61,Missouri State,12,54
+1992,0,First round,region_1,Cincinnati,4,85,Delaware,13,47
+1992,0,First round,region_1,Memphis,6,80,Pepperdine,11,70
+1992,0,First round,region_1,Arkansas,3,80,Murray State,14,69
+1992,0,First round,region_1,Georgia Tech,7,65,Houston,10,60
+1992,0,First round,region_1,USC,2,84,Louisiana-Monroe,15,54
+1992,0,First round,region_2,Ohio State,1,83,Mississippi Valley State,16,56
+1992,0,First round,region_2,UConn,9,86,Nebraska,8,65
+1992,0,First round,region_2,Alabama,5,80,Stanford,12,75
+1992,0,First round,region_2,UNC,4,68,Miami (OH),13,63
+1992,0,First round,region_2,Michigan,6,73,Temple,11,66
+1992,0,First round,region_2,ETSU,14,87,Arizona,3,80
+1992,0,First round,region_2,Tulane,10,61,St. John's (NY),7,57
+1992,0,First round,region_2,Oklahoma State,2,100,Georgia Southern,15,73
+1992,0,First round,region_3,UCLA,1,73,Robert Morris,16,53
+1992,0,First round,region_3,Louisville,8,81,Wake Forest,9,58
+1992,0,First round,region_3,New Mexico State,12,81,DePaul,5,73
+1992,0,First round,region_3,Louisiana-Lafayette,13,87,Oklahoma,4,83
+1992,0,First round,region_3,Georgetown,6,75,South Florida,11,60
+1992,0,First round,region_3,Florida State,3,78,Montana,14,68
+1992,0,First round,region_3,LSU,7,94,BYU,10,83
+1992,0,First round,region_3,Indiana,2,94,Eastern Illinois,15,55
+1992,1,Second round,region_0,Duke,1,75,Iowa,9,62
+1992,1,Second round,region_0,Seton Hall,4,88,Missouri,5,71
+1992,1,Second round,region_0,UMass,3,77,Syracuse,6,71
+1992,1,Second round,region_0,Kentucky,2,106,Iowa State,10,98
+1992,1,Second round,region_1,UTEP,9,66,Kansas,1,60
+1992,1,Second round,region_1,Cincinnati,4,77,Michigan State,5,65
+1992,1,Second round,region_1,Memphis,6,82,Arkansas,3,80
+1992,1,Second round,region_1,Georgia Tech,7,79,USC,2,78
+1992,1,Second round,region_2,Ohio State,1,78,UConn,9,55
+1992,1,Second round,region_2,UNC,4,64,Alabama,5,55
+1992,1,Second round,region_2,Michigan,6,102,ETSU,14,90
+1992,1,Second round,region_2,Oklahoma State,2,87,Tulane,10,71
+1992,1,Second round,region_3,UCLA,1,85,Louisville,8,69
+1992,1,Second round,region_3,New Mexico State,12,81,Louisiana-Lafayette,13,73
+1992,1,Second round,region_3,Florida State,3,78,Georgetown,6,68
+1992,1,Second round,region_3,Indiana,2,89,LSU,7,79
+1992,2,Sweet Sixteen,region_0,Duke,1,81,Seton Hall,4,69
+1992,2,Sweet Sixteen,region_0,Kentucky,2,87,UMass,3,77
+1992,2,Sweet Sixteen,region_1,Cincinnati,4,69,UTEP,9,67
+1992,2,Sweet Sixteen,region_1,Memphis,6,83,Georgia Tech,7,79
+1992,2,Sweet Sixteen,region_2,Ohio State,1,80,UNC,4,73
+1992,2,Sweet Sixteen,region_2,Michigan,6,75,Oklahoma State,2,72
+1992,2,Sweet Sixteen,region_3,UCLA,1,85,New Mexico State,12,78
+1992,2,Sweet Sixteen,region_3,Indiana,2,85,Florida State,3,74
+1992,3,Elite Eight,region_0,Duke,1,104,Kentucky,2,103
+1992,3,Elite Eight,region_1,Cincinnati,4,88,Memphis,6,57
+1992,3,Elite Eight,region_2,Michigan,6,75,Ohio State,1,71
+1992,3,Elite Eight,region_3,Indiana,2,106,UCLA,1,79
+1992,4,Final Four,region_4,Duke,1,81,Indiana,2,78
+1992,4,Final Four,region_4,Michigan,6,76,Cincinnati,4,72
+1992,5,Championship,region_4,Duke,1,71,Michigan,6,51
+1993,0,First round,region_0,UNC,1,85,East Carolina,16,65
+1993,0,First round,region_0,Rhode Island,8,74,Purdue,9,68
+1993,0,First round,region_0,St. John's (NY),5,85,Texas Tech,12,67
+1993,0,First round,region_0,Arkansas,4,94,Holy Cross,13,64
+1993,0,First round,region_0,Virginia,6,78,Manhattan,11,66
+1993,0,First round,region_0,UMass,3,54,Penn,14,50
+1993,0,First round,region_0,New Mexico State,7,93,Nebraska,10,79
+1993,0,First round,region_0,Cincinnati,2,93,Coppin State,15,66
+1993,0,First round,region_1,Indiana,1,97,Wright State,16,54
+1993,0,First round,region_1,Xavier,9,73,New Orleans,8,55
+1993,0,First round,region_1,Oklahoma State,5,74,Marquette,12,62
+1993,0,First round,region_1,Louisville,4,76,Delaware,13,70
+1993,0,First round,region_1,University of California,6,66,LSU,11,64
+1993,0,First round,region_1,Duke,3,105,Southern Illinois,14,70
+1993,0,First round,region_1,BYU,7,80,SMU,10,71
+1993,0,First round,region_1,Kansas,2,94,Ball State,15,72
+1993,0,First round,region_2,Kentucky,1,96,Rider,16,52
+1993,0,First round,region_2,Utah,8,86,Pitt,9,65
+1993,0,First round,region_2,Wake Forest,5,81,Chattanooga,12,58
+1993,0,First round,region_2,Iowa,4,82,Louisiana-Monroe,13,69
+1993,0,First round,region_2,Tulane,11,55,Kansas State,6,53
+1993,0,First round,region_2,Florida State,3,82,Evansville,14,70
+1993,0,First round,region_2,Western Kentucky,7,55,Memphis,10,52
+1993,0,First round,region_2,Seton Hall,2,81,Tennessee State,15,59
+1993,0,First round,region_3,Michigan,1,84,Coastal Carolina,16,52
+1993,0,First round,region_3,UCLA,9,81,Iowa State,8,70
+1993,0,First round,region_3,George Washington,12,82,New Mexico,5,68
+1993,0,First round,region_3,Southern,13,93,Georgia Tech,4,78
+1993,0,First round,region_3,Illinois,6,75,Long Beach State,11,72
+1993,0,First round,region_3,Vanderbilt,3,92,Boise State,14,72
+1993,0,First round,region_3,Temple,7,75,Missouri,10,61
+1993,0,First round,region_3,Santa Clara,15,64,Arizona,2,61
+1993,1,Second round,region_0,UNC,1,112,Rhode Island,8,67
+1993,1,Second round,region_0,Arkansas,4,80,St. John's (NY),5,74
+1993,1,Second round,region_0,Virginia,6,71,UMass,3,56
+1993,1,Second round,region_0,Cincinnati,2,92,New Mexico State,7,55
+1993,1,Second round,region_1,Indiana,1,73,Xavier,9,70
+1993,1,Second round,region_1,Louisville,4,78,Oklahoma State,5,63
+1993,1,Second round,region_1,University of California,6,82,Duke,3,77
+1993,1,Second round,region_1,Kansas,2,90,BYU,7,76
+1993,1,Second round,region_2,Kentucky,1,83,Utah,8,62
+1993,1,Second round,region_2,Wake Forest,5,84,Iowa,4,78
+1993,1,Second round,region_2,Florida State,3,94,Tulane,11,63
+1993,1,Second round,region_2,Western Kentucky,7,72,Seton Hall,2,68
+1993,1,Second round,region_3,Michigan,1,86,UCLA,9,84
+1993,1,Second round,region_3,George Washington,12,90,Southern,13,80
+1993,1,Second round,region_3,Vanderbilt,3,85,Illinois,6,68
+1993,1,Second round,region_3,Temple,7,68,Santa Clara,15,57
+1993,2,Sweet Sixteen,region_0,UNC,1,80,Arkansas,4,74
+1993,2,Sweet Sixteen,region_0,Cincinnati,2,71,Virginia,6,54
+1993,2,Sweet Sixteen,region_1,Indiana,1,82,Louisville,4,69
+1993,2,Sweet Sixteen,region_1,Kansas,2,93,University of California,6,76
+1993,2,Sweet Sixteen,region_2,Kentucky,1,103,Wake Forest,5,69
+1993,2,Sweet Sixteen,region_2,Florida State,3,81,Western Kentucky,7,78
+1993,2,Sweet Sixteen,region_3,Michigan,1,72,George Washington,12,64
+1993,2,Sweet Sixteen,region_3,Temple,7,67,Vanderbilt,3,59
+1993,3,Elite Eight,region_0,UNC,1,75,Cincinnati,2,68
+1993,3,Elite Eight,region_1,Kansas,2,83,Indiana,1,77
+1993,3,Elite Eight,region_2,Kentucky,1,106,Florida State,3,81
+1993,3,Elite Eight,region_3,Michigan,1,77,Temple,7,72
+1993,4,Final Four,region_4,UNC,1,78,Kansas,2,68
+1993,4,Final Four,region_4,Michigan,1,81,Kentucky,1,78
+1993,5,Championship,region_4,UNC,1,77,Michigan,1,71
+1994,0,First round,region_0,UNC,1,71,Liberty,16,51
+1994,0,First round,region_0,Boston College,9,67,Washington State,8,64
+1994,0,First round,region_0,Indiana,5,84,Ohio,12,72
+1994,0,First round,region_0,Temple,4,61,Drexel,13,39
+1994,0,First round,region_0,Penn,11,90,Nebraska,6,80
+1994,0,First round,region_0,Florida,3,64,James Madison,14,62
+1994,0,First round,region_0,George Washington,10,51,Alabama-Birmingham,7,46
+1994,0,First round,region_0,UConn,2,64,Rider,15,46
+1994,0,First round,region_1,Arkansas,1,94,North Carolina A&T,16,79
+1994,0,First round,region_1,Georgetown,9,84,Illinois,8,77
+1994,0,First round,region_1,Tulsa,12,112,UCLA,5,102
+1994,0,First round,region_1,Oklahoma State,4,65,New Mexico State,13,55
+1994,0,First round,region_1,Texas,6,91,Western Kentucky,11,77
+1994,0,First round,region_1,Michigan,3,78,Pepperdine,14,74
+1994,0,First round,region_1,Maryland,10,74,Saint Louis,7,66
+1994,0,First round,region_1,UMass,2,78,Texas State,15,60
+1994,0,First round,region_2,Purdue,1,98,UCF,16,67
+1994,0,First round,region_2,Alabama,9,76,Providence,8,70
+1994,0,First round,region_2,Wake Forest,5,68,College of Charleston,12,58
+1994,0,First round,region_2,Kansas,4,102,Chattanooga,13,73
+1994,0,First round,region_2,Marquette,6,81,Louisiana-Lafayette,11,59
+1994,0,First round,region_2,Kentucky,3,83,Tennessee State,14,70
+1994,0,First round,region_2,Michigan State,7,84,Seton Hall,10,73
+1994,0,First round,region_2,Duke,2,82,Texas Southern,15,70
+1994,0,First round,region_3,Missouri,1,76,Navy,16,53
+1994,0,First round,region_3,Wisconsin,9,80,Cincinnati,8,72
+1994,0,First round,region_3,Green Bay,12,61,University of California,5,57
+1994,0,First round,region_3,Syracuse,4,92,Hawaii,13,78
+1994,0,First round,region_3,Minnesota,6,74,Southern Illinois,11,60
+1994,0,First round,region_3,Louisville,3,67,Boise State,14,58
+1994,0,First round,region_3,Virginia,7,57,New Mexico,10,54
+1994,0,First round,region_3,Arizona,2,81,Loyola (MD),15,55
+1994,1,Second round,region_0,Boston College,9,75,UNC,1,72
+1994,1,Second round,region_0,Indiana,5,67,Temple,4,58
+1994,1,Second round,region_0,Florida,3,70,Penn,11,58
+1994,1,Second round,region_0,UConn,2,75,George Washington,10,63
+1994,1,Second round,region_1,Arkansas,1,85,Georgetown,9,73
+1994,1,Second round,region_1,Tulsa,12,82,Oklahoma State,4,80
+1994,1,Second round,region_1,Michigan,3,84,Texas,6,79
+1994,1,Second round,region_1,Maryland,10,95,UMass,2,87
+1994,1,Second round,region_2,Purdue,1,83,Alabama,9,73
+1994,1,Second round,region_2,Kansas,4,69,Wake Forest,5,58
+1994,1,Second round,region_2,Marquette,6,75,Kentucky,3,63
+1994,1,Second round,region_2,Duke,2,85,Michigan State,7,74
+1994,1,Second round,region_3,Missouri,1,109,Wisconsin,9,96
+1994,1,Second round,region_3,Syracuse,4,64,Green Bay,12,59
+1994,1,Second round,region_3,Louisville,3,60,Minnesota,6,55
+1994,1,Second round,region_3,Arizona,2,71,Virginia,7,58
+1994,2,Sweet Sixteen,region_0,Boston College,9,77,Indiana,5,68
+1994,2,Sweet Sixteen,region_0,Florida,3,69,UConn,2,60
+1994,2,Sweet Sixteen,region_1,Arkansas,1,103,Tulsa,12,84
+1994,2,Sweet Sixteen,region_1,Michigan,3,78,Maryland,10,71
+1994,2,Sweet Sixteen,region_2,Purdue,1,83,Kansas,4,78
+1994,2,Sweet Sixteen,region_2,Duke,2,59,Marquette,6,49
+1994,2,Sweet Sixteen,region_3,Missouri,1,98,Syracuse,4,88
+1994,2,Sweet Sixteen,region_3,Arizona,2,82,Louisville,3,70
+1994,3,Elite Eight,region_0,Florida,3,74,Boston College,9,66
+1994,3,Elite Eight,region_1,Arkansas,1,76,Michigan,3,68
+1994,3,Elite Eight,region_2,Duke,2,69,Purdue,1,60
+1994,3,Elite Eight,region_3,Arizona,2,92,Missouri,1,72
+1994,4,Final Four,region_4,Arkansas,1,91,Arizona,2,82
+1994,4,Final Four,region_4,Duke,2,70,Florida,3,65
+1994,5,Championship,region_4,Arkansas,1,76,Duke,2,72
+1995,0,First round,region_0,Wake Forest,1,79,North Carolina A&T,16,47
+1995,0,First round,region_0,Saint Louis,9,64,Minnesota,8,61
+1995,0,First round,region_0,Alabama,5,91,Penn,12,85
+1995,0,First round,region_0,Oklahoma State,4,73,Drexel,13,49
+1995,0,First round,region_0,Tulsa,6,68,Illinois,11,62
+1995,0,First round,region_0,Old Dominion,14,89,Villanova,3,81
+1995,0,First round,region_0,Stanford,10,70,Charlotte,7,68
+1995,0,First round,region_0,UMass,2,68,St. Peter's,15,51
+1995,0,First round,region_1,Kansas,1,82,Colgate,16,68
+1995,0,First round,region_1,Western Kentucky,8,82,Michigan,9,76
+1995,0,First round,region_1,Miami (OH),12,71,Arizona,5,62
+1995,0,First round,region_1,Virginia,4,96,Nicholls State,13,72
+1995,0,First round,region_1,Memphis,6,77,Louisville,11,56
+1995,0,First round,region_1,Purdue,3,49,Green Bay,14,48
+1995,0,First round,region_1,Syracuse,7,96,Southern Illinois,10,92
+1995,0,First round,region_1,Arkansas,2,79,Texas Southern,15,78
+1995,0,First round,region_2,Kentucky,1,113,Mount St. Mary's,16,67
+1995,0,First round,region_2,Tulane,9,76,BYU,8,70
+1995,0,First round,region_2,Arizona State,5,81,Ball State,12,66
+1995,0,First round,region_2,Manhattan,13,77,Oklahoma,4,67
+1995,0,First round,region_2,Georgetown,6,68,Xavier,11,63
+1995,0,First round,region_2,Weber State,14,79,Michigan State,3,72
+1995,0,First round,region_2,Iowa State,7,64,Florida,10,61
+1995,0,First round,region_2,UNC,2,80,Murray State,15,70
+1995,0,First round,region_3,UCLA,1,92,Florida International,16,56
+1995,0,First round,region_3,Missouri,8,65,Indiana,9,60
+1995,0,First round,region_3,Mississippi State,5,75,Santa Clara,12,67
+1995,0,First round,region_3,Utah,4,76,Long Beach State,13,64
+1995,0,First round,region_3,Texas,11,90,Oregon,6,73
+1995,0,First round,region_3,Maryland,3,87,Gonzaga,14,63
+1995,0,First round,region_3,Cincinnati,7,77,Temple,10,71
+1995,0,First round,region_3,UConn,2,100,Chattanooga,15,71
+1995,1,Second round,region_0,Wake Forest,1,64,Saint Louis,9,59
+1995,1,Second round,region_0,Oklahoma State,4,66,Alabama,5,52
+1995,1,Second round,region_0,Tulsa,6,64,Old Dominion,14,52
+1995,1,Second round,region_0,UMass,2,75,Stanford,10,53
+1995,1,Second round,region_1,Kansas,1,75,Western Kentucky,8,70
+1995,1,Second round,region_1,Virginia,4,60,Miami (OH),12,54
+1995,1,Second round,region_1,Memphis,6,75,Purdue,3,73
+1995,1,Second round,region_1,Arkansas,2,96,Syracuse,7,94
+1995,1,Second round,region_2,Kentucky,1,82,Tulane,9,60
+1995,1,Second round,region_2,Arizona State,5,64,Manhattan,13,54
+1995,1,Second round,region_2,Georgetown,6,53,Weber State,14,51
+1995,1,Second round,region_2,UNC,2,73,Iowa State,7,51
+1995,1,Second round,region_3,UCLA,1,75,Missouri,8,74
+1995,1,Second round,region_3,Mississippi State,5,78,Utah,4,64
+1995,1,Second round,region_3,Maryland,3,82,Texas,11,68
+1995,1,Second round,region_3,UConn,2,96,Cincinnati,7,91
+1995,2,Sweet Sixteen,region_0,Oklahoma State,4,71,Wake Forest,1,66
+1995,2,Sweet Sixteen,region_0,UMass,2,76,Tulsa,6,51
+1995,2,Sweet Sixteen,region_1,Virginia,4,67,Kansas,1,58
+1995,2,Sweet Sixteen,region_1,Arkansas,2,96,Memphis,6,91
+1995,2,Sweet Sixteen,region_2,Kentucky,1,97,Arizona State,5,73
+1995,2,Sweet Sixteen,region_2,UNC,2,74,Georgetown,6,64
+1995,2,Sweet Sixteen,region_3,UCLA,1,86,Mississippi State,5,67
+1995,2,Sweet Sixteen,region_3,UConn,2,99,Maryland,3,89
+1995,3,Elite Eight,region_0,Oklahoma State,4,68,UMass,2,54
+1995,3,Elite Eight,region_1,Arkansas,2,68,Virginia,4,61
+1995,3,Elite Eight,region_2,UNC,2,74,Kentucky,1,61
+1995,3,Elite Eight,region_3,UCLA,1,102,UConn,2,96
+1995,4,Final Four,region_4,UCLA,1,74,Oklahoma State,4,61
+1995,4,Final Four,region_4,Arkansas,2,75,UNC,2,68
+1995,5,Championship,region_4,UCLA,1,89,Arkansas,2,78
+1996,0,First round,region_0,UMass,1,92,UCF,16,70
+1996,0,First round,region_0,Stanford,9,66,Bradley,8,58
+1996,0,First round,region_0,Arkansas,12,86,Penn State,5,80
+1996,0,First round,region_0,Marquette,4,68,Monmouth,13,44
+1996,0,First round,region_0,UNC,6,83,New Orleans,11,62
+1996,0,First round,region_0,Texas Tech,3,74,Northern Illinois,14,73
+1996,0,First round,region_0,New Mexico,7,69,Kansas State,10,48
+1996,0,First round,region_0,Georgetown,2,93,Mississippi Valley State,15,56
+1996,0,First round,region_1,Kentucky,1,110,San Jose State,16,72
+1996,0,First round,region_1,Virginia Tech,9,61,Green Bay,8,48
+1996,0,First round,region_1,Iowa State,5,74,University of California,12,64
+1996,0,First round,region_1,Utah,4,72,Canisius,13,43
+1996,0,First round,region_1,Louisville,6,82,Tulsa,11,80
+1996,0,First round,region_1,Villanova,3,92,Portland,14,58
+1996,0,First round,region_1,Texas,10,80,Michigan,7,76
+1996,0,First round,region_1,Wake Forest,2,62,Louisiana-Monroe,15,50
+1996,0,First round,region_2,UConn,1,68,Colgate,16,59
+1996,0,First round,region_2,Eastern Michigan,9,75,Duke,8,60
+1996,0,First round,region_2,Mississippi State,5,58,VCU,12,51
+1996,0,First round,region_2,Princeton,13,43,UCLA,4,41
+1996,0,First round,region_2,Boston College,11,64,Indiana,6,51
+1996,0,First round,region_2,Georgia Tech,3,90,Austin Peay,14,79
+1996,0,First round,region_2,Temple,7,61,Oklahoma,10,43
+1996,0,First round,region_2,Cincinnati,2,66,North Carolina-Greensboro,15,61
+1996,0,First round,region_3,Purdue,1,73,Western Carolina,16,71
+1996,0,First round,region_3,Georgia,8,81,Clemson,9,74
+1996,0,First round,region_3,Drexel,12,75,Memphis,5,63
+1996,0,First round,region_3,Syracuse,4,88,Montana State,13,55
+1996,0,First round,region_3,Iowa,6,81,George Washington,11,79
+1996,0,First round,region_3,Arizona,3,90,Valparaiso,14,51
+1996,0,First round,region_3,Santa Clara,10,91,Maryland,7,79
+1996,0,First round,region_3,Kansas,2,92,South Carolina State,15,54
+1996,1,Second round,region_0,UMass,1,79,Stanford,9,74
+1996,1,Second round,region_0,Arkansas,12,65,Marquette,4,56
+1996,1,Second round,region_0,Texas Tech,3,92,UNC,6,73
+1996,1,Second round,region_0,Georgetown,2,73,New Mexico,7,62
+1996,1,Second round,region_1,Kentucky,1,84,Virginia Tech,9,60
+1996,1,Second round,region_1,Utah,4,73,Iowa State,5,67
+1996,1,Second round,region_1,Louisville,6,68,Villanova,3,64
+1996,1,Second round,region_1,Wake Forest,2,65,Texas,10,62
+1996,1,Second round,region_2,UConn,1,95,Eastern Michigan,9,81
+1996,1,Second round,region_2,Mississippi State,5,63,Princeton,13,41
+1996,1,Second round,region_2,Georgia Tech,3,103,Boston College,11,89
+1996,1,Second round,region_2,Cincinnati,2,78,Temple,7,65
+1996,1,Second round,region_3,Georgia,8,76,Purdue,1,69
+1996,1,Second round,region_3,Syracuse,4,69,Drexel,12,58
+1996,1,Second round,region_3,Arizona,3,87,Iowa,6,73
+1996,1,Second round,region_3,Kansas,2,76,Santa Clara,10,51
+1996,2,Sweet Sixteen,region_0,UMass,1,79,Arkansas,12,63
+1996,2,Sweet Sixteen,region_0,Georgetown,2,98,Texas Tech,3,90
+1996,2,Sweet Sixteen,region_1,Kentucky,1,101,Utah,4,70
+1996,2,Sweet Sixteen,region_1,Wake Forest,2,60,Louisville,6,59
+1996,2,Sweet Sixteen,region_2,Mississippi State,5,60,UConn,1,55
+1996,2,Sweet Sixteen,region_2,Cincinnati,2,87,Georgia Tech,3,70
+1996,2,Sweet Sixteen,region_3,Syracuse,4,83,Georgia,8,81
+1996,2,Sweet Sixteen,region_3,Kansas,2,83,Arizona,3,80
+1996,3,Elite Eight,region_0,UMass,1,86,Georgetown,2,62
+1996,3,Elite Eight,region_1,Kentucky,1,83,Wake Forest,2,63
+1996,3,Elite Eight,region_2,Mississippi State,5,73,Cincinnati,2,63
+1996,3,Elite Eight,region_3,Syracuse,4,60,Kansas,2,57
+1996,4,Final Four,region_4,Kentucky,1,81,UMass,1,74
+1996,4,Final Four,region_4,Syracuse,4,77,Mississippi State,5,69
+1996,5,Championship,region_4,Kentucky,1,76,Syracuse,4,67
+1997,0,First round,region_0,UNC,1,82,Fairfield,16,74
+1997,0,First round,region_0,Colorado,9,80,Indiana,8,62
+1997,0,First round,region_0,University of California,5,55,Princeton,12,52
+1997,0,First round,region_0,Villanova,4,101,LIU-Brooklyn,13,91
+1997,0,First round,region_0,Louisville,6,65,UMass,11,57
+1997,0,First round,region_0,New Mexico,3,59,Old Dominion,14,55
+1997,0,First round,region_0,Texas,10,71,Wisconsin,7,58
+1997,0,First round,region_0,Coppin State,15,78,South Carolina,2,65
+1997,0,First round,region_1,Minnesota,1,78,Texas State,16,46
+1997,0,First round,region_1,Temple,9,62,Ole Miss,8,40
+1997,0,First round,region_1,Tulsa,5,81,Boston University,12,52
+1997,0,First round,region_1,Clemson,4,68,Miami (OH),13,56
+1997,0,First round,region_1,Iowa State,6,69,Illinois State,11,57
+1997,0,First round,region_1,Cincinnati,3,86,Butler,14,69
+1997,0,First round,region_1,Xavier,7,80,Vanderbilt,10,68
+1997,0,First round,region_1,UCLA,2,109,Charleston Southern,15,75
+1997,0,First round,region_2,Kansas,1,78,Jackson State,16,64
+1997,0,First round,region_2,Purdue,8,83,Rhode Island,9,76
+1997,0,First round,region_2,College of Charleston,12,75,Maryland,5,66
+1997,0,First round,region_2,Arizona,4,65,South Alabama,13,57
+1997,0,First round,region_2,Illinois,6,90,USC,11,77
+1997,0,First round,region_2,Chattanooga,14,73,Georgia,3,70
+1997,0,First round,region_2,Providence,10,81,Marquette,7,59
+1997,0,First round,region_2,Duke,2,71,Murray State,15,68
+1997,0,First round,region_3,Kentucky,1,92,Montana,16,54
+1997,0,First round,region_3,Iowa,8,73,Virginia,9,60
+1997,0,First round,region_3,Boston College,5,73,Valparaiso,12,66
+1997,0,First round,region_3,St. Joseph's,4,75,Pacific,13,65
+1997,0,First round,region_3,Stanford,6,80,Oklahoma,11,67
+1997,0,First round,region_3,Wake Forest,3,68,Saint Mary's (CA),14,46
+1997,0,First round,region_3,Charlotte,7,79,Georgetown,10,67
+1997,0,First round,region_3,Utah,2,75,Navy,15,61
+1997,1,Second round,region_0,UNC,1,73,Colorado,9,56
+1997,1,Second round,region_0,University of California,5,75,Villanova,4,68
+1997,1,Second round,region_0,Louisville,6,64,New Mexico,3,63
+1997,1,Second round,region_0,Texas,10,82,Coppin State,15,81
+1997,1,Second round,region_1,Minnesota,1,76,Temple,9,57
+1997,1,Second round,region_1,Clemson,4,65,Tulsa,5,59
+1997,1,Second round,region_1,Iowa State,6,67,Cincinnati,3,66
+1997,1,Second round,region_1,UCLA,2,96,Xavier,7,83
+1997,1,Second round,region_2,Kansas,1,75,Purdue,8,61
+1997,1,Second round,region_2,Arizona,4,73,College of Charleston,12,69
+1997,1,Second round,region_2,Chattanooga,14,75,Illinois,6,63
+1997,1,Second round,region_2,Providence,10,98,Duke,2,87
+1997,1,Second round,region_3,Kentucky,1,75,Iowa,8,69
+1997,1,Second round,region_3,St. Joseph's,4,81,Boston College,5,77
+1997,1,Second round,region_3,Stanford,6,72,Wake Forest,3,66
+1997,1,Second round,region_3,Utah,2,77,Charlotte,7,58
+1997,2,Sweet Sixteen,region_0,UNC,1,63,University of California,5,57
+1997,2,Sweet Sixteen,region_0,Louisville,6,78,Texas,10,63
+1997,2,Sweet Sixteen,region_1,Minnesota,1,90,Clemson,4,84
+1997,2,Sweet Sixteen,region_1,UCLA,2,74,Iowa State,6,73
+1997,2,Sweet Sixteen,region_2,Arizona,4,85,Kansas,1,82
+1997,2,Sweet Sixteen,region_2,Providence,10,71,Chattanooga,14,65
+1997,2,Sweet Sixteen,region_3,Kentucky,1,83,St. Joseph's,4,68
+1997,2,Sweet Sixteen,region_3,Utah,2,82,Stanford,6,77
+1997,3,Elite Eight,region_0,UNC,1,97,Louisville,6,74
+1997,3,Elite Eight,region_1,Minnesota,1,80,UCLA,2,72
+1997,3,Elite Eight,region_2,Arizona,4,96,Providence,10,92
+1997,3,Elite Eight,region_3,Kentucky,1,72,Utah,2,59
+1997,4,Final Four,region_4,Arizona,4,66,UNC,1,58
+1997,4,Final Four,region_4,Kentucky,1,78,Minnesota,1,69
+1997,5,Championship,region_4,Arizona,4,84,Kentucky,1,79
+1998,0,First round,region_0,UNC,1,88,Navy,16,52
+1998,0,First round,region_0,Charlotte,8,77,UIC,9,62
+1998,0,First round,region_0,Princeton,5,69,UNLV,12,57
+1998,0,First round,region_0,Michigan State,4,83,Eastern Michigan,13,71
+1998,0,First round,region_0,Washington,11,69,Xavier,6,68
+1998,0,First round,region_0,Richmond,14,62,South Carolina,3,61
+1998,0,First round,region_0,Indiana,7,94,Oklahoma,10,87
+1998,0,First round,region_0,UConn,2,93,Fairleigh Dickinson,15,85
+1998,0,First round,region_1,Kansas,1,110,Prairie View,16,52
+1998,0,First round,region_1,Rhode Island,8,97,Murray State,9,74
+1998,0,First round,region_1,Florida State,12,96,Texas Christian,5,87
+1998,0,First round,region_1,Valparaiso,13,70,Ole Miss,4,69
+1998,0,First round,region_1,Western Michigan,11,75,Clemson,6,72
+1998,0,First round,region_1,Stanford,3,67,College of Charleston,14,57
+1998,0,First round,region_1,Detroit,10,66,St. John's (NY),7,64
+1998,0,First round,region_1,Purdue,2,95,Delaware,15,56
+1998,0,First round,region_2,Duke,1,99,Radford,16,63
+1998,0,First round,region_2,Oklahoma State,8,74,George Washington,9,59
+1998,0,First round,region_2,Syracuse,5,63,Iona,12,61
+1998,0,First round,region_2,New Mexico,4,79,Butler,13,62
+1998,0,First round,region_2,UCLA,6,65,Miami (FL),11,62
+1998,0,First round,region_2,Michigan,3,80,Davidson,14,61
+1998,0,First round,region_2,Saint Louis,10,51,UMass,7,46
+1998,0,First round,region_2,Kentucky,2,82,South Carolina State,15,67
+1998,0,First round,region_3,Arizona,1,99,Nicholls State,16,60
+1998,0,First round,region_3,Illinois State,9,82,Tennessee,8,81
+1998,0,First round,region_3,Illinois,5,64,South Alabama,12,51
+1998,0,First round,region_3,Maryland,4,82,Utah State,13,68
+1998,0,First round,region_3,Arkansas,6,74,Nebraska,11,65
+1998,0,First round,region_3,Utah,3,85,San Francisco,14,68
+1998,0,First round,region_3,West Virginia,10,82,Temple,7,52
+1998,0,First round,region_3,Cincinnati,2,65,Northern Arizona,15,62
+1998,1,Second round,region_0,UNC,1,93,Charlotte,8,83
+1998,1,Second round,region_0,Michigan State,4,63,Princeton,5,56
+1998,1,Second round,region_0,Washington,11,81,Richmond,14,66
+1998,1,Second round,region_0,UConn,2,78,Indiana,7,68
+1998,1,Second round,region_1,Rhode Island,8,80,Kansas,1,75
+1998,1,Second round,region_1,Valparaiso,13,83,Florida State,12,77
+1998,1,Second round,region_1,Stanford,3,83,Western Michigan,11,65
+1998,1,Second round,region_1,Purdue,2,80,Detroit,10,65
+1998,1,Second round,region_2,Duke,1,79,Oklahoma State,8,73
+1998,1,Second round,region_2,Syracuse,5,56,New Mexico,4,46
+1998,1,Second round,region_2,UCLA,6,85,Michigan,3,82
+1998,1,Second round,region_2,Kentucky,2,88,Saint Louis,10,61
+1998,1,Second round,region_3,Arizona,1,82,Illinois State,9,49
+1998,1,Second round,region_3,Maryland,4,67,Illinois,5,61
+1998,1,Second round,region_3,Utah,3,75,Arkansas,6,69
+1998,1,Second round,region_3,West Virginia,10,75,Cincinnati,2,74
+1998,2,Sweet Sixteen,region_0,UNC,1,73,Michigan State,4,58
+1998,2,Sweet Sixteen,region_0,UConn,2,75,Washington,11,74
+1998,2,Sweet Sixteen,region_1,Rhode Island,8,74,Valparaiso,13,68
+1998,2,Sweet Sixteen,region_1,Stanford,3,67,Purdue,2,59
+1998,2,Sweet Sixteen,region_2,Duke,1,80,Syracuse,5,67
+1998,2,Sweet Sixteen,region_2,Kentucky,2,94,UCLA,6,68
+1998,2,Sweet Sixteen,region_3,Arizona,1,87,Maryland,4,79
+1998,2,Sweet Sixteen,region_3,Utah,3,65,West Virginia,10,62
+1998,3,Elite Eight,region_0,UNC,1,75,UConn,2,64
+1998,3,Elite Eight,region_1,Stanford,3,79,Rhode Island,8,77
+1998,3,Elite Eight,region_2,Kentucky,2,86,Duke,1,84
+1998,3,Elite Eight,region_3,Utah,3,76,Arizona,1,51
+1998,4,Final Four,region_4,Kentucky,2,86,Stanford,3,85
+1998,4,Final Four,region_4,Utah,3,65,UNC,1,59
+1998,5,Championship,region_4,Kentucky,2,78,Utah,3,69
+1999,0,First round,region_0,Duke,1,99,Florida A&M,16,58
+1999,0,First round,region_0,Tulsa,9,62,College of Charleston,8,53
+1999,0,First round,region_0,Missouri State,12,43,Wisconsin,5,32
+1999,0,First round,region_0,Tennessee,4,62,Delaware,13,52
+1999,0,First round,region_0,Temple,6,61,Kent State,11,54
+1999,0,First round,region_0,Cincinnati,3,72,George Mason,14,48
+1999,0,First round,region_0,Purdue,10,58,Texas,7,54
+1999,0,First round,region_0,Miami (FL),2,75,Lafayette,15,54
+1999,0,First round,region_1,Michigan State,1,76,Mount St. Mary's,16,53
+1999,0,First round,region_1,Ole Miss,9,72,Villanova,8,70
+1999,0,First round,region_1,Charlotte,5,81,Rhode Island,12,70
+1999,0,First round,region_1,Oklahoma,13,61,Arizona,4,60
+1999,0,First round,region_1,Kansas,6,95,Evansville,11,74
+1999,0,First round,region_1,Kentucky,3,82,New Mexico State,14,60
+1999,0,First round,region_1,Miami (OH),10,59,Washington,7,58
+1999,0,First round,region_1,Utah,2,80,Arkansas State,15,58
+1999,0,First round,region_2,Auburn,1,80,Winthrop,16,41
+1999,0,First round,region_2,Oklahoma State,9,69,Syracuse,8,61
+1999,0,First round,region_2,Detroit,12,56,UCLA,5,53
+1999,0,First round,region_2,Ohio State,4,72,Murray State,13,58
+1999,0,First round,region_2,Indiana,6,108,George Washington,11,88
+1999,0,First round,region_2,St. John's (NY),3,69,Samford,14,43
+1999,0,First round,region_2,Creighton,10,62,Louisville,7,58
+1999,0,First round,region_2,Maryland,2,82,Valparaiso,15,60
+1999,0,First round,region_3,UConn,1,91,UTSA,16,66
+1999,0,First round,region_3,New Mexico,9,61,Missouri,8,59
+1999,0,First round,region_3,Iowa,5,77,Alabama-Birmingham,12,64
+1999,0,First round,region_3,Arkansas,4,94,Siena,13,80
+1999,0,First round,region_3,Florida,6,75,Penn,11,61
+1999,0,First round,region_3,Weber State,14,76,UNC,3,74
+1999,0,First round,region_3,Gonzaga,10,75,Minnesota,7,63
+1999,0,First round,region_3,Stanford,2,69,Alcorn State,15,57
+1999,1,Second round,region_0,Duke,1,97,Tulsa,9,56
+1999,1,Second round,region_0,Missouri State,12,81,Tennessee,4,51
+1999,1,Second round,region_0,Temple,6,64,Cincinnati,3,54
+1999,1,Second round,region_0,Purdue,10,73,Miami (FL),2,63
+1999,1,Second round,region_1,Michigan State,1,74,Ole Miss,9,66
+1999,1,Second round,region_1,Oklahoma,13,85,Charlotte,5,72
+1999,1,Second round,region_1,Kentucky,3,92,Kansas,6,88
+1999,1,Second round,region_1,Miami (OH),10,66,Utah,2,58
+1999,1,Second round,region_2,Auburn,1,81,Oklahoma State,9,74
+1999,1,Second round,region_2,Ohio State,4,75,Detroit,12,44
+1999,1,Second round,region_2,St. John's (NY),3,86,Indiana,6,61
+1999,1,Second round,region_2,Maryland,2,75,Creighton,10,63
+1999,1,Second round,region_3,UConn,1,78,New Mexico,9,56
+1999,1,Second round,region_3,Iowa,5,82,Arkansas,4,72
+1999,1,Second round,region_3,Florida,6,82,Weber State,14,74
+1999,1,Second round,region_3,Gonzaga,10,82,Stanford,2,74
+1999,2,Sweet Sixteen,region_0,Duke,1,78,Missouri State,12,61
+1999,2,Sweet Sixteen,region_0,Temple,6,77,Purdue,10,55
+1999,2,Sweet Sixteen,region_1,Michigan State,1,54,Oklahoma,13,46
+1999,2,Sweet Sixteen,region_1,Kentucky,3,58,Miami (OH),10,43
+1999,2,Sweet Sixteen,region_2,Ohio State,4,72,Auburn,1,64
+1999,2,Sweet Sixteen,region_2,St. John's (NY),3,76,Maryland,2,62
+1999,2,Sweet Sixteen,region_3,UConn,1,78,Iowa,5,68
+1999,2,Sweet Sixteen,region_3,Gonzaga,10,73,Florida,6,72
+1999,3,Elite Eight,region_0,Duke,1,85,Temple,6,64
+1999,3,Elite Eight,region_1,Michigan State,1,73,Kentucky,3,66
+1999,3,Elite Eight,region_2,Ohio State,4,77,St. John's (NY),3,74
+1999,3,Elite Eight,region_3,UConn,1,67,Gonzaga,10,62
+1999,4,Final Four,region_4,UConn,1,64,Ohio State,4,58
+1999,4,Final Four,region_4,Duke,1,68,Michigan State,1,62
+1999,5,Championship,region_4,UConn,1,77,Duke,1,74
+2000,0,First round,region_0,Duke,1,82,Lamar,16,55
+2000,0,First round,region_0,Kansas,8,81,DePaul,9,77
+2000,0,First round,region_0,Florida,5,69,Butler,12,68
+2000,0,First round,region_0,Illinois,4,68,Penn,13,58
+2000,0,First round,region_0,Pepperdine,11,77,Indiana,6,57
+2000,0,First round,region_0,Oklahoma State,3,86,Hofstra,14,66
+2000,0,First round,region_0,Seton Hall,10,72,Oregon,7,71
+2000,0,First round,region_0,Temple,2,73,Lafayette,15,47
+2000,0,First round,region_1,Michigan State,1,65,Valparaiso,16,38
+2000,0,First round,region_1,Utah,8,48,Saint Louis,9,45
+2000,0,First round,region_1,Kentucky,5,85,St. Bonaventure,12,80
+2000,0,First round,region_1,Syracuse,4,79,Samford,13,65
+2000,0,First round,region_1,UCLA,6,65,Ball State,11,57
+2000,0,First round,region_1,Maryland,3,74,Iona,14,59
+2000,0,First round,region_1,Auburn,7,72,Creighton,10,69
+2000,0,First round,region_1,Iowa State,2,88,Central Connecticut,15,78
+2000,0,First round,region_2,Stanford,1,84,South Carolina State,16,65
+2000,0,First round,region_2,UNC,8,84,Missouri,9,70
+2000,0,First round,region_2,UConn,5,75,Utah State,12,67
+2000,0,First round,region_2,Tennessee,4,63,Louisiana-Lafayette,13,58
+2000,0,First round,region_2,Miami (FL),6,75,Arkansas,11,71
+2000,0,First round,region_2,Ohio State,3,87,Appalachian State,14,61
+2000,0,First round,region_2,Tulsa,7,89,UNLV,10,62
+2000,0,First round,region_2,Cincinnati,2,64,North Carolina-Wilmington,15,47
+2000,0,First round,region_3,Arizona,1,71,Jackson State,16,47
+2000,0,First round,region_3,Wisconsin,8,66,Fresno State,9,56
+2000,0,First round,region_3,Texas,5,77,Indiana State,12,61
+2000,0,First round,region_3,LSU,4,64,Southeast Missouri State,13,61
+2000,0,First round,region_3,Purdue,6,62,Dayton,11,61
+2000,0,First round,region_3,Oklahoma,3,74,Winthrop,14,50
+2000,0,First round,region_3,Gonzaga,10,77,Louisville,7,66
+2000,0,First round,region_3,St. John's (NY),2,61,Northern Arizona,15,56
+2000,1,Second round,region_0,Duke,1,69,Kansas,8,64
+2000,1,Second round,region_0,Florida,5,93,Illinois,4,76
+2000,1,Second round,region_0,Oklahoma State,3,75,Pepperdine,11,67
+2000,1,Second round,region_0,Seton Hall,10,67,Temple,2,65
+2000,1,Second round,region_1,Michigan State,1,73,Utah,8,61
+2000,1,Second round,region_1,Syracuse,4,52,Kentucky,5,50
+2000,1,Second round,region_1,UCLA,6,105,Maryland,3,70
+2000,1,Second round,region_1,Iowa State,2,79,Auburn,7,60
+2000,1,Second round,region_2,UNC,8,60,Stanford,1,53
+2000,1,Second round,region_2,Tennessee,4,65,UConn,5,51
+2000,1,Second round,region_2,Miami (FL),6,75,Ohio State,3,62
+2000,1,Second round,region_2,Tulsa,7,69,Cincinnati,2,61
+2000,1,Second round,region_3,Wisconsin,8,66,Arizona,1,59
+2000,1,Second round,region_3,LSU,4,72,Texas,5,67
+2000,1,Second round,region_3,Purdue,6,66,Oklahoma,3,62
+2000,1,Second round,region_3,Gonzaga,10,82,St. John's (NY),2,76
+2000,2,Sweet Sixteen,region_0,Florida,5,87,Duke,1,78
+2000,2,Sweet Sixteen,region_0,Oklahoma State,3,68,Seton Hall,10,66
+2000,2,Sweet Sixteen,region_1,Michigan State,1,75,Syracuse,4,58
+2000,2,Sweet Sixteen,region_1,Iowa State,2,80,UCLA,6,56
+2000,2,Sweet Sixteen,region_2,UNC,8,74,Tennessee,4,69
+2000,2,Sweet Sixteen,region_2,Tulsa,7,80,Miami (FL),6,71
+2000,2,Sweet Sixteen,region_3,Wisconsin,8,61,LSU,4,48
+2000,2,Sweet Sixteen,region_3,Purdue,6,75,Gonzaga,10,66
+2000,3,Elite Eight,region_0,Florida,5,77,Oklahoma State,3,65
+2000,3,Elite Eight,region_1,Michigan State,1,75,Iowa State,2,64
+2000,3,Elite Eight,region_2,UNC,8,59,Tulsa,7,55
+2000,3,Elite Eight,region_3,Wisconsin,8,64,Purdue,6,60
+2000,4,Final Four,region_4,Michigan State,1,53,Wisconsin,8,41
+2000,4,Final Four,region_4,Florida,5,71,UNC,8,59
+2000,5,Championship,region_4,Michigan State,1,89,Florida,5,76
+2001,0,First round,region_0,Illinois,1,96,Northwestern State,16,54
+2001,0,First round,region_0,Charlotte,9,70,Tennessee,8,63
+2001,0,First round,region_0,Syracuse,5,79,Hawaii,12,69
+2001,0,First round,region_0,Kansas,4,99,Cal State Northridge,13,75
+2001,0,First round,region_0,Notre Dame,6,83,Xavier,11,71
+2001,0,First round,region_0,Ole Miss,3,72,Iona,14,70
+2001,0,First round,region_0,Butler,10,79,Wake Forest,7,63
+2001,0,First round,region_0,Arizona,2,101,Eastern Illinois,15,76
+2001,0,First round,region_1,Duke,1,95,Monmouth,16,52
+2001,0,First round,region_1,Missouri,9,70,Georgia,8,68
+2001,0,First round,region_1,Utah State,12,77,Ohio State,5,68
+2001,0,First round,region_1,UCLA,4,61,Hofstra,13,48
+2001,0,First round,region_1,USC,6,69,Oklahoma State,11,54
+2001,0,First round,region_1,Boston College,3,68,Southern Utah,14,65
+2001,0,First round,region_1,Iowa,7,69,Creighton,10,56
+2001,0,First round,region_1,Kentucky,2,72,Holy Cross,15,68
+2001,0,First round,region_2,Michigan State,1,69,Alabama State,16,35
+2001,0,First round,region_2,Fresno State,9,82,University of California,8,70
+2001,0,First round,region_2,Gonzaga,12,86,Virginia,5,85
+2001,0,First round,region_2,Indiana State,13,70,Oklahoma,4,68
+2001,0,First round,region_2,Temple,11,79,Texas,6,65
+2001,0,First round,region_2,Florida,3,69,Western Kentucky,14,56
+2001,0,First round,region_2,Penn State,7,69,Providence,10,59
+2001,0,First round,region_2,UNC,2,70,Princeton,15,48
+2001,0,First round,region_3,Stanford,1,89,North Carolina-Greensboro,16,60
+2001,0,First round,region_3,St. Joseph's,9,66,Georgia Tech,8,62
+2001,0,First round,region_3,Cincinnati,5,84,BYU,12,59
+2001,0,First round,region_3,Kent State,13,77,Indiana,4,73
+2001,0,First round,region_3,Georgia State,11,50,Wisconsin,6,49
+2001,0,First round,region_3,Maryland,3,83,George Mason,14,80
+2001,0,First round,region_3,Georgetown,10,63,Arkansas,7,61
+2001,0,First round,region_3,Hampton,15,58,Iowa State,2,57
+2001,1,Second round,region_0,Illinois,1,79,Charlotte,9,61
+2001,1,Second round,region_0,Kansas,4,87,Syracuse,5,58
+2001,1,Second round,region_0,Ole Miss,3,59,Notre Dame,6,56
+2001,1,Second round,region_0,Arizona,2,73,Butler,10,52
+2001,1,Second round,region_1,Duke,1,94,Missouri,9,81
+2001,1,Second round,region_1,UCLA,4,75,Utah State,12,50
+2001,1,Second round,region_1,USC,6,74,Boston College,3,71
+2001,1,Second round,region_1,Kentucky,2,92,Iowa,7,79
+2001,1,Second round,region_2,Michigan State,1,81,Fresno State,9,65
+2001,1,Second round,region_2,Gonzaga,12,85,Indiana State,13,68
+2001,1,Second round,region_2,Temple,11,75,Florida,3,54
+2001,1,Second round,region_2,Penn State,7,82,UNC,2,74
+2001,1,Second round,region_3,Stanford,1,90,St. Joseph's,9,83
+2001,1,Second round,region_3,Cincinnati,5,66,Kent State,13,43
+2001,1,Second round,region_3,Maryland,3,79,Georgia State,11,60
+2001,1,Second round,region_3,Georgetown,10,76,Hampton,15,57
+2001,2,Sweet Sixteen,region_0,Illinois,1,80,Kansas,4,64
+2001,2,Sweet Sixteen,region_0,Arizona,2,66,Ole Miss,3,56
+2001,2,Sweet Sixteen,region_1,Duke,1,76,UCLA,4,63
+2001,2,Sweet Sixteen,region_1,USC,6,80,Kentucky,2,76
+2001,2,Sweet Sixteen,region_2,Michigan State,1,77,Gonzaga,12,62
+2001,2,Sweet Sixteen,region_2,Temple,11,84,Penn State,7,72
+2001,2,Sweet Sixteen,region_3,Stanford,1,78,Cincinnati,5,65
+2001,2,Sweet Sixteen,region_3,Maryland,3,76,Georgetown,10,66
+2001,3,Elite Eight,region_0,Arizona,2,87,Illinois,1,81
+2001,3,Elite Eight,region_1,Duke,1,79,USC,6,69
+2001,3,Elite Eight,region_2,Michigan State,1,69,Temple,11,62
+2001,3,Elite Eight,region_3,Maryland,3,87,Stanford,1,73
+2001,4,Final Four,region_4,Duke,1,95,Maryland,3,84
+2001,4,Final Four,region_4,Arizona,2,80,Michigan State,1,61
+2001,5,Championship,region_4,Duke,1,82,Arizona,2,72
+2002,0,First round,region_0,Maryland,1,85,Siena,16,70
+2002,0,First round,region_0,Wisconsin,8,80,St. John's (NY),9,70
+2002,0,First round,region_0,Tulsa,12,71,Marquette,5,69
+2002,0,First round,region_0,Kentucky,4,83,Valparaiso,13,68
+2002,0,First round,region_0,Southern Illinois,11,76,Texas Tech,6,68
+2002,0,First round,region_0,Georgia,3,85,Murray State,14,68
+2002,0,First round,region_0,North Carolina State,7,69,Michigan State,10,58
+2002,0,First round,region_0,UConn,2,78,Hampton,15,67
+2002,0,First round,region_1,Kansas,1,70,Holy Cross,16,59
+2002,0,First round,region_1,Stanford,8,84,Western Kentucky,9,68
+2002,0,First round,region_1,Creighton,12,83,Florida,5,82
+2002,0,First round,region_1,Illinois,4,93,San Diego State,13,64
+2002,0,First round,region_1,Texas,6,70,Boston College,11,57
+2002,0,First round,region_1,Mississippi State,3,70,McNeese State,14,58
+2002,0,First round,region_1,Wake Forest,7,83,Pepperdine,10,74
+2002,0,First round,region_1,Oregon,2,81,Montana,15,62
+2002,0,First round,region_2,Duke,1,84,Winthrop,16,37
+2002,0,First round,region_2,Notre Dame,8,82,Charlotte,9,63
+2002,0,First round,region_2,Indiana,5,75,Utah,12,56
+2002,0,First round,region_2,North Carolina-Wilmington,13,93,USC,4,89
+2002,0,First round,region_2,University of California,6,82,Penn,11,75
+2002,0,First round,region_2,Pitt,3,71,Central Connecticut,14,54
+2002,0,First round,region_2,Kent State,10,69,Oklahoma State,7,61
+2002,0,First round,region_2,Alabama,2,86,Florida Atlantic,15,78
+2002,0,First round,region_3,Cincinnati,1,90,Boston University,16,52
+2002,0,First round,region_3,UCLA,8,80,Ole Miss,9,58
+2002,0,First round,region_3,Missouri,12,93,Miami (FL),5,80
+2002,0,First round,region_3,Ohio State,4,69,Davidson,13,64
+2002,0,First round,region_3,Wyoming,11,73,Gonzaga,6,66
+2002,0,First round,region_3,Arizona,3,86,UCSB,14,81
+2002,0,First round,region_3,Xavier,7,70,Hawaii,10,58
+2002,0,First round,region_3,Oklahoma,2,71,UIC,15,63
+2002,1,Second round,region_0,Maryland,1,87,Wisconsin,8,57
+2002,1,Second round,region_0,Kentucky,4,87,Tulsa,12,82
+2002,1,Second round,region_0,Southern Illinois,11,77,Georgia,3,75
+2002,1,Second round,region_0,UConn,2,77,North Carolina State,7,74
+2002,1,Second round,region_1,Kansas,1,86,Stanford,8,63
+2002,1,Second round,region_1,Illinois,4,72,Creighton,12,60
+2002,1,Second round,region_1,Texas,6,68,Mississippi State,3,64
+2002,1,Second round,region_1,Oregon,2,92,Wake Forest,7,87
+2002,1,Second round,region_2,Duke,1,84,Notre Dame,8,77
+2002,1,Second round,region_2,Indiana,5,76,North Carolina-Wilmington,13,67
+2002,1,Second round,region_2,Pitt,3,63,University of California,6,50
+2002,1,Second round,region_2,Kent State,10,71,Alabama,2,58
+2002,1,Second round,region_3,UCLA,8,105,Cincinnati,1,101
+2002,1,Second round,region_3,Missouri,12,83,Ohio State,4,67
+2002,1,Second round,region_3,Arizona,3,68,Wyoming,11,60
+2002,1,Second round,region_3,Oklahoma,2,78,Xavier,7,65
+2002,2,Sweet Sixteen,region_0,Maryland,1,78,Kentucky,4,68
+2002,2,Sweet Sixteen,region_0,UConn,2,71,Southern Illinois,11,59
+2002,2,Sweet Sixteen,region_1,Kansas,1,73,Illinois,4,69
+2002,2,Sweet Sixteen,region_1,Oregon,2,72,Texas,6,70
+2002,2,Sweet Sixteen,region_2,Indiana,5,74,Duke,1,73
+2002,2,Sweet Sixteen,region_2,Kent State,10,78,Pitt,3,73
+2002,2,Sweet Sixteen,region_3,Missouri,12,82,UCLA,8,73
+2002,2,Sweet Sixteen,region_3,Oklahoma,2,88,Arizona,3,67
+2002,3,Elite Eight,region_0,Maryland,1,90,UConn,2,82
+2002,3,Elite Eight,region_1,Kansas,1,104,Oregon,2,86
+2002,3,Elite Eight,region_2,Indiana,5,81,Kent State,10,69
+2002,3,Elite Eight,region_3,Oklahoma,2,81,Missouri,12,75
+2002,4,Final Four,region_4,Maryland,1,97,Kansas,1,88
+2002,4,Final Four,region_4,Indiana,5,73,Oklahoma,2,64
+2002,5,Championship,region_4,Maryland,1,64,Indiana,5,52
+2003,0,First round,region_0,Texas,1,82,North Carolina-Asheville,16,61
+2003,0,First round,region_0,Purdue,9,80,LSU,8,56
+2003,0,First round,region_0,UConn,5,58,BYU,12,53
+2003,0,First round,region_0,Stanford,4,77,San Diego,13,69
+2003,0,First round,region_0,Maryland,6,75,North Carolina-Wilmington,11,73
+2003,0,First round,region_0,Xavier,3,71,Troy,14,59
+2003,0,First round,region_0,Michigan State,7,79,Colorado,10,64
+2003,0,First round,region_0,Florida,2,85,Sam Houston State,15,55
+2003,0,First round,region_1,Oklahoma,1,71,South Carolina State,16,54
+2003,0,First round,region_1,University of California,8,76,North Carolina State,9,74
+2003,0,First round,region_1,Butler,12,47,Mississippi State,5,46
+2003,0,First round,region_1,Louisville,4,86,Austin Peay,13,64
+2003,0,First round,region_1,Oklahoma State,6,77,Penn,11,63
+2003,0,First round,region_1,Syracuse,3,76,Manhattan,14,65
+2003,0,First round,region_1,Auburn,10,65,St. Joseph's,7,63
+2003,0,First round,region_1,Wake Forest,2,76,ETSU,15,73
+2003,0,First round,region_2,Kentucky,1,95,IUPUI,16,64
+2003,0,First round,region_2,Utah,9,60,Oregon,8,58
+2003,0,First round,region_2,Wisconsin,5,81,Weber State,12,74
+2003,0,First round,region_2,Tulsa,13,84,Dayton,4,71
+2003,0,First round,region_2,Missouri,6,72,Southern Illinois,11,71
+2003,0,First round,region_2,Marquette,3,72,Holy Cross,14,68
+2003,0,First round,region_2,Indiana,7,67,Alabama,10,62
+2003,0,First round,region_2,Pitt,2,87,Wagner,15,61
+2003,0,First round,region_3,Arizona,1,80,Vermont,16,51
+2003,0,First round,region_3,Gonzaga,9,74,Cincinnati,8,69
+2003,0,First round,region_3,Notre Dame,5,70,Milwaukee,12,69
+2003,0,First round,region_3,Illinois,4,65,Western Kentucky,13,60
+2003,0,First round,region_3,Central Michigan,11,79,Creighton,6,73
+2003,0,First round,region_3,Duke,3,67,Colorado State,14,57
+2003,0,First round,region_3,Arizona State,10,84,Memphis,7,71
+2003,0,First round,region_3,Kansas,2,64,Utah State,15,61
+2003,1,Second round,region_0,Texas,1,77,Purdue,9,67
+2003,1,Second round,region_0,UConn,5,85,Stanford,4,74
+2003,1,Second round,region_0,Maryland,6,77,Xavier,3,64
+2003,1,Second round,region_0,Michigan State,7,68,Florida,2,46
+2003,1,Second round,region_1,Oklahoma,1,74,University of California,8,65
+2003,1,Second round,region_1,Butler,12,79,Louisville,4,71
+2003,1,Second round,region_1,Syracuse,3,68,Oklahoma State,6,56
+2003,1,Second round,region_1,Auburn,10,68,Wake Forest,2,62
+2003,1,Second round,region_2,Kentucky,1,74,Utah,9,54
+2003,1,Second round,region_2,Wisconsin,5,61,Tulsa,13,60
+2003,1,Second round,region_2,Marquette,3,101,Missouri,6,92
+2003,1,Second round,region_2,Pitt,2,74,Indiana,7,52
+2003,1,Second round,region_3,Arizona,1,96,Gonzaga,9,95
+2003,1,Second round,region_3,Notre Dame,5,68,Illinois,4,60
+2003,1,Second round,region_3,Duke,3,86,Central Michigan,11,60
+2003,1,Second round,region_3,Kansas,2,108,Arizona State,10,76
+2003,2,Sweet Sixteen,region_0,Texas,1,82,UConn,5,78
+2003,2,Sweet Sixteen,region_0,Michigan State,7,60,Maryland,6,58
+2003,2,Sweet Sixteen,region_1,Oklahoma,1,65,Butler,12,54
+2003,2,Sweet Sixteen,region_1,Syracuse,3,79,Auburn,10,78
+2003,2,Sweet Sixteen,region_2,Kentucky,1,63,Wisconsin,5,57
+2003,2,Sweet Sixteen,region_2,Marquette,3,77,Pitt,2,74
+2003,2,Sweet Sixteen,region_3,Arizona,1,88,Notre Dame,5,71
+2003,2,Sweet Sixteen,region_3,Kansas,2,69,Duke,3,65
+2003,3,Elite Eight,region_0,Texas,1,85,Michigan State,7,76
+2003,3,Elite Eight,region_1,Syracuse,3,63,Oklahoma,1,47
+2003,3,Elite Eight,region_2,Marquette,3,83,Kentucky,1,69
+2003,3,Elite Eight,region_3,Kansas,2,78,Arizona,1,75
+2003,4,Final Four,region_4,Syracuse,3,95,Texas,1,84
+2003,4,Final Four,region_4,Kansas,2,94,Marquette,3,61
+2003,5,Championship,region_4,Syracuse,3,81,Kansas,2,78
+2004,0,First round,region_0,Kentucky,1,96,Florida A&M,16,76
+2004,0,First round,region_0,Alabama-Birmingham,9,102,Washington,8,100
+2004,0,First round,region_0,Pacific,12,66,Providence,5,58
+2004,0,First round,region_0,Kansas,4,78,UIC,13,53
+2004,0,First round,region_0,Boston College,6,58,Utah,11,51
+2004,0,First round,region_0,Georgia Tech,3,65,Northern Iowa,14,60
+2004,0,First round,region_0,Nevada,10,72,Michigan State,7,66
+2004,0,First round,region_0,Gonzaga,2,76,Valparaiso,15,49
+2004,0,First round,region_1,Duke,1,96,Alabama State,16,61
+2004,0,First round,region_1,Seton Hall,8,80,Arizona,9,76
+2004,0,First round,region_1,Illinois,5,72,Murray State,12,53
+2004,0,First round,region_1,Cincinnati,4,80,ETSU,13,77
+2004,0,First round,region_1,UNC,6,63,Air Force,11,52
+2004,0,First round,region_1,Texas,3,66,Princeton,14,49
+2004,0,First round,region_1,Xavier,7,80,Louisville,10,70
+2004,0,First round,region_1,Mississippi State,2,85,Monmouth,15,52
+2004,0,First round,region_2,St. Joseph's,1,82,Liberty,16,63
+2004,0,First round,region_2,Texas Tech,8,76,Charlotte,9,73
+2004,0,First round,region_2,Manhattan,12,75,Florida,5,60
+2004,0,First round,region_2,Wake Forest,4,79,VCU,13,78
+2004,0,First round,region_2,Wisconsin,6,76,Richmond,11,64
+2004,0,First round,region_2,Pitt,3,53,UCF,14,44
+2004,0,First round,region_2,Memphis,7,59,South Carolina,10,43
+2004,0,First round,region_2,Oklahoma State,2,75,Eastern Washington,15,56
+2004,0,First round,region_3,Stanford,1,71,UTSA,16,45
+2004,0,First round,region_3,Alabama,8,65,Southern Illinois,9,64
+2004,0,First round,region_3,Syracuse,5,80,BYU,12,75
+2004,0,First round,region_3,Maryland,4,86,UTEP,13,83
+2004,0,First round,region_3,Vanderbilt,6,71,Western Michigan,11,58
+2004,0,First round,region_3,North Carolina State,3,61,Louisiana-Lafayette,14,52
+2004,0,First round,region_3,DePaul,7,76,Dayton,10,69
+2004,0,First round,region_3,UConn,2,70,Vermont,15,53
+2004,1,Second round,region_0,Alabama-Birmingham,9,76,Kentucky,1,75
+2004,1,Second round,region_0,Kansas,4,78,Pacific,12,63
+2004,1,Second round,region_0,Georgia Tech,3,57,Boston College,6,54
+2004,1,Second round,region_0,Nevada,10,91,Gonzaga,2,72
+2004,1,Second round,region_1,Duke,1,90,Seton Hall,8,62
+2004,1,Second round,region_1,Illinois,5,92,Cincinnati,4,68
+2004,1,Second round,region_1,Texas,3,78,UNC,6,75
+2004,1,Second round,region_1,Xavier,7,89,Mississippi State,2,74
+2004,1,Second round,region_2,St. Joseph's,1,70,Texas Tech,8,65
+2004,1,Second round,region_2,Wake Forest,4,84,Manhattan,12,80
+2004,1,Second round,region_2,Pitt,3,59,Wisconsin,6,55
+2004,1,Second round,region_2,Oklahoma State,2,70,Memphis,7,53
+2004,1,Second round,region_3,Alabama,8,70,Stanford,1,67
+2004,1,Second round,region_3,Syracuse,5,72,Maryland,4,70
+2004,1,Second round,region_3,Vanderbilt,6,75,North Carolina State,3,73
+2004,1,Second round,region_3,UConn,2,72,DePaul,7,55
+2004,2,Sweet Sixteen,region_0,Kansas,4,100,Alabama-Birmingham,9,74
+2004,2,Sweet Sixteen,region_0,Georgia Tech,3,72,Nevada,10,67
+2004,2,Sweet Sixteen,region_1,Duke,1,72,Illinois,5,62
+2004,2,Sweet Sixteen,region_1,Xavier,7,79,Texas,3,71
+2004,2,Sweet Sixteen,region_2,St. Joseph's,1,84,Wake Forest,4,80
+2004,2,Sweet Sixteen,region_2,Oklahoma State,2,63,Pitt,3,51
+2004,2,Sweet Sixteen,region_3,Alabama,8,80,Syracuse,5,71
+2004,2,Sweet Sixteen,region_3,UConn,2,73,Vanderbilt,6,53
+2004,3,Elite Eight,region_0,Georgia Tech,3,79,Kansas,4,71
+2004,3,Elite Eight,region_1,Duke,1,66,Xavier,7,63
+2004,3,Elite Eight,region_2,Oklahoma State,2,64,St. Joseph's,1,62
+2004,3,Elite Eight,region_3,UConn,2,87,Alabama,8,71
+2004,4,Final Four,region_4,UConn,2,79,Duke,1,78
+2004,4,Final Four,region_4,Georgia Tech,3,67,Oklahoma State,2,65
+2004,5,Championship,region_4,UConn,2,82,Georgia Tech,3,73
+2005,0,First round,region_0,UNC,1,96,Oakland,16,68
+2005,0,First round,region_0,Iowa State,9,64,Minnesota,8,53
+2005,0,First round,region_0,Villanova,5,55,New Mexico,12,47
+2005,0,First round,region_0,Florida,4,67,Ohio,13,62
+2005,0,First round,region_0,Wisconsin,6,57,Northern Iowa,11,52
+2005,0,First round,region_0,Bucknell,14,64,Kansas,3,63
+2005,0,First round,region_0,North Carolina State,10,75,Charlotte,7,63
+2005,0,First round,region_0,UConn,2,77,UCF,15,71
+2005,0,First round,region_1,Washington,1,88,Montana,16,77
+2005,0,First round,region_1,Pacific,8,79,Pitt,9,71
+2005,0,First round,region_1,Georgia Tech,5,80,George Washington,12,68
+2005,0,First round,region_1,Louisville,4,68,Louisiana-Lafayette,13,62
+2005,0,First round,region_1,Texas Tech,6,78,UCLA,11,66
+2005,0,First round,region_1,Gonzaga,3,74,Winthrop,14,64
+2005,0,First round,region_1,West Virginia,7,63,Creighton,10,61
+2005,0,First round,region_1,Wake Forest,2,70,Chattanooga,15,54
+2005,0,First round,region_2,Duke,1,57,Delaware State,16,46
+2005,0,First round,region_2,Mississippi State,9,93,Stanford,8,70
+2005,0,First round,region_2,Michigan State,5,89,Old Dominion,12,81
+2005,0,First round,region_2,Vermont,13,60,Syracuse,4,57
+2005,0,First round,region_2,Utah,6,60,UTEP,11,54
+2005,0,First round,region_2,Oklahoma,3,84,Niagara,14,67
+2005,0,First round,region_2,Cincinnati,7,76,Iowa,10,64
+2005,0,First round,region_2,Kentucky,2,72,Eastern Kentucky,15,64
+2005,0,First round,region_3,Illinois,1,67,Fairleigh Dickinson,16,55
+2005,0,First round,region_3,Nevada,9,61,Texas,8,57
+2005,0,First round,region_3,Milwaukee,12,83,Alabama,5,73
+2005,0,First round,region_3,Boston College,4,85,Penn,13,65
+2005,0,First round,region_3,Alabama-Birmingham,11,82,LSU,6,68
+2005,0,First round,region_3,Arizona,3,66,Utah State,14,53
+2005,0,First round,region_3,Southern Illinois,7,65,Saint Mary's (CA),10,56
+2005,0,First round,region_3,Oklahoma State,2,63,Southeastern Louisiana,15,50
+2005,1,Second round,region_0,UNC,1,92,Iowa State,9,65
+2005,1,Second round,region_0,Villanova,5,76,Florida,4,65
+2005,1,Second round,region_0,Wisconsin,6,71,Bucknell,14,62
+2005,1,Second round,region_0,North Carolina State,10,65,UConn,2,62
+2005,1,Second round,region_1,Washington,1,97,Pacific,8,79
+2005,1,Second round,region_1,Louisville,4,76,Georgia Tech,5,54
+2005,1,Second round,region_1,Texas Tech,6,71,Gonzaga,3,69
+2005,1,Second round,region_1,West Virginia,7,111,Wake Forest,2,105
+2005,1,Second round,region_2,Duke,1,63,Mississippi State,9,55
+2005,1,Second round,region_2,Michigan State,5,72,Vermont,13,61
+2005,1,Second round,region_2,Utah,6,67,Oklahoma,3,58
+2005,1,Second round,region_2,Kentucky,2,69,Cincinnati,7,60
+2005,1,Second round,region_3,Illinois,1,71,Nevada,9,59
+2005,1,Second round,region_3,Milwaukee,12,83,Boston College,4,75
+2005,1,Second round,region_3,Arizona,3,85,Alabama-Birmingham,11,63
+2005,1,Second round,region_3,Oklahoma State,2,85,Southern Illinois,7,77
+2005,2,Sweet Sixteen,region_0,UNC,1,67,Villanova,5,66
+2005,2,Sweet Sixteen,region_0,Wisconsin,6,65,North Carolina State,10,56
+2005,2,Sweet Sixteen,region_1,Louisville,4,93,Washington,1,79
+2005,2,Sweet Sixteen,region_1,West Virginia,7,65,Texas Tech,6,60
+2005,2,Sweet Sixteen,region_2,Michigan State,5,78,Duke,1,68
+2005,2,Sweet Sixteen,region_2,Kentucky,2,62,Utah,6,52
+2005,2,Sweet Sixteen,region_3,Illinois,1,77,Milwaukee,12,63
+2005,2,Sweet Sixteen,region_3,Arizona,3,79,Oklahoma State,2,78
+2005,3,Elite Eight,region_0,UNC,1,88,Wisconsin,6,82
+2005,3,Elite Eight,region_1,Louisville,4,93,West Virginia,7,85
+2005,3,Elite Eight,region_2,Michigan State,5,94,Kentucky,2,88
+2005,3,Elite Eight,region_3,Illinois,1,90,Arizona,3,89
+2005,4,Final Four,region_4,UNC,1,87,Michigan State,5,71
+2005,4,Final Four,region_4,Illinois,1,72,Louisville,4,57
+2005,5,Championship,region_4,UNC,1,75,Illinois,1,70
+2006,0,First round,region_0,Villanova,1,58,Monmouth,16,45
+2006,0,First round,region_0,Arizona,8,94,Wisconsin,9,75
+2006,0,First round,region_0,Montana,12,87,Nevada,5,79
+2006,0,First round,region_0,Boston College,4,88,Pacific,13,76
+2006,0,First round,region_0,Milwaukee,11,82,Oklahoma,6,74
+2006,0,First round,region_0,Florida,3,76,South Alabama,14,50
+2006,0,First round,region_0,Georgetown,7,54,Northern Iowa,10,49
+2006,0,First round,region_0,Ohio State,2,70,Davidson,15,62
+2006,0,First round,region_1,Duke,1,70,Southern,16,54
+2006,0,First round,region_1,George Washington,8,88,North Carolina-Wilmington,9,85
+2006,0,First round,region_1,Texas A&M,12,66,Syracuse,5,58
+2006,0,First round,region_1,LSU,4,80,Iona,13,64
+2006,0,First round,region_1,West Virginia,6,64,Southern Illinois,11,46
+2006,0,First round,region_1,Northwestern State,14,64,Iowa,3,63
+2006,0,First round,region_1,North Carolina State,10,58,University of California,7,52
+2006,0,First round,region_1,Texas,2,60,Penn,15,52
+2006,0,First round,region_2,Memphis,1,94,Oral Roberts,16,78
+2006,0,First round,region_2,Bucknell,9,59,Arkansas,8,55
+2006,0,First round,region_2,Pitt,5,79,Kent State,12,64
+2006,0,First round,region_2,Bradley,13,77,Kansas,4,73
+2006,0,First round,region_2,Indiana,6,87,San Diego State,11,83
+2006,0,First round,region_2,Gonzaga,3,79,Xavier,14,75
+2006,0,First round,region_2,Alabama,10,90,Marquette,7,85
+2006,0,First round,region_2,UCLA,2,78,Belmont,15,44
+2006,0,First round,region_3,UConn,1,72,Albany (NY),16,59
+2006,0,First round,region_3,Kentucky,8,69,Alabama-Birmingham,9,64
+2006,0,First round,region_3,Washington,5,75,Utah State,12,61
+2006,0,First round,region_3,Illinois,4,78,Air Force,13,69
+2006,0,First round,region_3,George Mason,11,75,Michigan State,6,65
+2006,0,First round,region_3,UNC,3,69,Murray State,14,65
+2006,0,First round,region_3,Wichita State,7,86,Seton Hall,10,66
+2006,0,First round,region_3,Tennessee,2,63,Winthrop,15,61
+2006,1,Second round,region_0,Villanova,1,82,Arizona,8,78
+2006,1,Second round,region_0,Boston College,4,69,Montana,12,56
+2006,1,Second round,region_0,Florida,3,82,Milwaukee,11,60
+2006,1,Second round,region_0,Georgetown,7,70,Ohio State,2,52
+2006,1,Second round,region_1,Duke,1,74,George Washington,8,61
+2006,1,Second round,region_1,LSU,4,58,Texas A&M,12,57
+2006,1,Second round,region_1,West Virginia,6,67,Northwestern State,14,54
+2006,1,Second round,region_1,Texas,2,75,North Carolina State,10,54
+2006,1,Second round,region_2,Memphis,1,72,Bucknell,9,56
+2006,1,Second round,region_2,Bradley,13,72,Pitt,5,66
+2006,1,Second round,region_2,Gonzaga,3,90,Indiana,6,80
+2006,1,Second round,region_2,UCLA,2,62,Alabama,10,59
+2006,1,Second round,region_3,UConn,1,87,Kentucky,8,83
+2006,1,Second round,region_3,Washington,5,67,Illinois,4,64
+2006,1,Second round,region_3,George Mason,11,65,UNC,3,60
+2006,1,Second round,region_3,Wichita State,7,80,Tennessee,2,73
+2006,2,Sweet Sixteen,region_0,Villanova,1,60,Boston College,4,59
+2006,2,Sweet Sixteen,region_0,Florida,3,57,Georgetown,7,53
+2006,2,Sweet Sixteen,region_1,LSU,4,62,Duke,1,54
+2006,2,Sweet Sixteen,region_1,Texas,2,74,West Virginia,6,71
+2006,2,Sweet Sixteen,region_2,Memphis,1,80,Bradley,13,64
+2006,2,Sweet Sixteen,region_2,UCLA,2,73,Gonzaga,3,71
+2006,2,Sweet Sixteen,region_3,UConn,1,98,Washington,5,92
+2006,2,Sweet Sixteen,region_3,George Mason,11,63,Wichita State,7,55
+2006,3,Elite Eight,region_0,Florida,3,75,Villanova,1,62
+2006,3,Elite Eight,region_1,LSU,4,70,Texas,2,60
+2006,3,Elite Eight,region_2,UCLA,2,50,Memphis,1,45
+2006,3,Elite Eight,region_3,George Mason,11,86,UConn,1,84
+2006,4,Final Four,region_4,Florida,3,73,George Mason,11,58
+2006,4,Final Four,region_4,UCLA,2,59,LSU,4,45
+2006,5,Championship,region_4,Florida,3,73,UCLA,2,57
+2007,0,First round,region_0,Kansas,1,107,Niagara,16,67
+2007,0,First round,region_0,Kentucky,8,67,Villanova,9,58
+2007,0,First round,region_0,Virginia Tech,5,54,Illinois,12,52
+2007,0,First round,region_0,Southern Illinois,4,61,Holy Cross,13,51
+2007,0,First round,region_0,VCU,11,79,Duke,6,77
+2007,0,First round,region_0,Pitt,3,79,Wright State,14,58
+2007,0,First round,region_0,Indiana,7,70,Gonzaga,10,57
+2007,0,First round,region_0,UCLA,2,70,Weber State,15,42
+2007,0,First round,region_1,UNC,1,86,Eastern Kentucky,16,65
+2007,0,First round,region_1,Michigan State,9,61,Marquette,8,49
+2007,0,First round,region_1,USC,5,77,Arkansas,12,60
+2007,0,First round,region_1,Texas,4,79,New Mexico State,13,67
+2007,0,First round,region_1,Vanderbilt,6,77,George Washington,11,44
+2007,0,First round,region_1,Washington State,3,70,Oral Roberts,14,54
+2007,0,First round,region_1,Boston College,7,84,Texas Tech,10,75
+2007,0,First round,region_1,Georgetown,2,80,Belmont,15,55
+2007,0,First round,region_2,Florida,1,112,Jackson State,16,69
+2007,0,First round,region_2,Purdue,9,72,Arizona,8,63
+2007,0,First round,region_2,Butler,5,57,Old Dominion,12,46
+2007,0,First round,region_2,Maryland,4,82,Davidson,13,70
+2007,0,First round,region_2,Winthrop,11,74,Notre Dame,6,64
+2007,0,First round,region_2,Oregon,3,58,Miami (OH),14,56
+2007,0,First round,region_2,UNLV,7,67,Georgia Tech,10,63
+2007,0,First round,region_2,Wisconsin,2,76,Texas A&M-Corpus Christi,15,63
+2007,0,First round,region_3,Ohio State,1,78,Central Connecticut,16,57
+2007,0,First round,region_3,Xavier,9,79,BYU,8,77
+2007,0,First round,region_3,Tennessee,5,121,Long Beach State,12,86
+2007,0,First round,region_3,Virginia,4,84,Albany (NY),13,57
+2007,0,First round,region_3,Louisville,6,78,Stanford,11,58
+2007,0,First round,region_3,Texas A&M,3,68,Penn,14,52
+2007,0,First round,region_3,Nevada,7,77,Creighton,10,71
+2007,0,First round,region_3,Memphis,2,73,North Texas,15,58
+2007,1,Second round,region_0,Kansas,1,88,Kentucky,8,76
+2007,1,Second round,region_0,Southern Illinois,4,63,Virginia Tech,5,48
+2007,1,Second round,region_0,Pitt,3,84,VCU,11,79
+2007,1,Second round,region_0,UCLA,2,54,Indiana,7,49
+2007,1,Second round,region_1,UNC,1,81,Michigan State,9,67
+2007,1,Second round,region_1,USC,5,87,Texas,4,68
+2007,1,Second round,region_1,Vanderbilt,6,78,Washington State,3,74
+2007,1,Second round,region_1,Georgetown,2,62,Boston College,7,55
+2007,1,Second round,region_2,Florida,1,74,Purdue,9,67
+2007,1,Second round,region_2,Butler,5,62,Maryland,4,59
+2007,1,Second round,region_2,Oregon,3,75,Winthrop,11,61
+2007,1,Second round,region_2,UNLV,7,74,Wisconsin,2,68
+2007,1,Second round,region_3,Ohio State,1,78,Xavier,9,71
+2007,1,Second round,region_3,Tennessee,5,77,Virginia,4,74
+2007,1,Second round,region_3,Texas A&M,3,72,Louisville,6,69
+2007,1,Second round,region_3,Memphis,2,78,Nevada,7,62
+2007,2,Sweet Sixteen,region_0,Kansas,1,61,Southern Illinois,4,58
+2007,2,Sweet Sixteen,region_0,UCLA,2,64,Pitt,3,55
+2007,2,Sweet Sixteen,region_1,UNC,1,74,USC,5,64
+2007,2,Sweet Sixteen,region_1,Georgetown,2,66,Vanderbilt,6,65
+2007,2,Sweet Sixteen,region_2,Florida,1,65,Butler,5,57
+2007,2,Sweet Sixteen,region_2,Oregon,3,76,UNLV,7,72
+2007,2,Sweet Sixteen,region_3,Ohio State,1,85,Tennessee,5,84
+2007,2,Sweet Sixteen,region_3,Memphis,2,65,Texas A&M,3,64
+2007,3,Elite Eight,region_0,UCLA,2,68,Kansas,1,55
+2007,3,Elite Eight,region_1,Georgetown,2,96,UNC,1,84
+2007,3,Elite Eight,region_2,Florida,1,85,Oregon,3,77
+2007,3,Elite Eight,region_3,Ohio State,1,92,Memphis,2,76
+2007,4,Final Four,region_4,Florida,1,76,UCLA,2,66
+2007,4,Final Four,region_4,Ohio State,1,67,Georgetown,2,60
+2007,5,Championship,region_4,Florida,1,84,Ohio State,1,75
+2008,0,First round,region_0,UNC,1,113,Mount St. Mary's,16,74
+2008,0,First round,region_0,Arkansas,9,86,Indiana,8,72
+2008,0,First round,region_0,Notre Dame,5,68,George Mason,12,50
+2008,0,First round,region_0,Washington State,4,71,Winthrop,13,40
+2008,0,First round,region_0,Oklahoma,6,72,St. Joseph's,11,64
+2008,0,First round,region_0,Louisville,3,79,Boise State,14,61
+2008,0,First round,region_0,Butler,7,81,South Alabama,10,61
+2008,0,First round,region_0,Tennessee,2,72,American,15,57
+2008,0,First round,region_1,Kansas,1,85,Portland State,16,61
+2008,0,First round,region_1,UNLV,8,71,Kent State,9,58
+2008,0,First round,region_1,Villanova,12,75,Clemson,5,69
+2008,0,First round,region_1,Siena,13,83,Vanderbilt,4,62
+2008,0,First round,region_1,Kansas State,11,80,USC,6,67
+2008,0,First round,region_1,Wisconsin,3,71,Cal State Fullerton,14,56
+2008,0,First round,region_1,Davidson,10,82,Gonzaga,7,76
+2008,0,First round,region_1,Georgetown,2,66,UMBC,15,47
+2008,0,First round,region_2,Memphis,1,87,Texas-Arlington,16,63
+2008,0,First round,region_2,Mississippi State,8,76,Oregon,9,69
+2008,0,First round,region_2,Michigan State,5,72,Temple,12,61
+2008,0,First round,region_2,Pitt,4,82,Oral Roberts,13,63
+2008,0,First round,region_2,Marquette,6,74,Kentucky,11,66
+2008,0,First round,region_2,Stanford,3,77,Cornell,14,53
+2008,0,First round,region_2,Miami (FL),7,78,Saint Mary's (CA),10,64
+2008,0,First round,region_2,Texas,2,74,Austin Peay,15,54
+2008,0,First round,region_3,UCLA,1,70,Mississippi Valley State,16,29
+2008,0,First round,region_3,Texas A&M,9,67,BYU,8,62
+2008,0,First round,region_3,Western Kentucky,12,101,Drake,5,99
+2008,0,First round,region_3,San Diego,13,70,UConn,4,69
+2008,0,First round,region_3,Purdue,6,90,Baylor,11,79
+2008,0,First round,region_3,Xavier,3,73,Georgia,14,61
+2008,0,First round,region_3,West Virginia,7,75,Arizona,10,65
+2008,0,First round,region_3,Duke,2,71,Belmont,15,70
+2008,1,Second round,region_0,UNC,1,108,Arkansas,9,77
+2008,1,Second round,region_0,Washington State,4,61,Notre Dame,5,41
+2008,1,Second round,region_0,Louisville,3,78,Oklahoma,6,48
+2008,1,Second round,region_0,Tennessee,2,76,Butler,7,71
+2008,1,Second round,region_1,Kansas,1,75,UNLV,8,56
+2008,1,Second round,region_1,Villanova,12,84,Siena,13,72
+2008,1,Second round,region_1,Wisconsin,3,72,Kansas State,11,55
+2008,1,Second round,region_1,Davidson,10,74,Georgetown,2,70
+2008,1,Second round,region_2,Memphis,1,77,Mississippi State,8,74
+2008,1,Second round,region_2,Michigan State,5,65,Pitt,4,54
+2008,1,Second round,region_2,Stanford,3,82,Marquette,6,81
+2008,1,Second round,region_2,Texas,2,75,Miami (FL),7,72
+2008,1,Second round,region_3,UCLA,1,51,Texas A&M,9,49
+2008,1,Second round,region_3,Western Kentucky,12,72,San Diego,13,63
+2008,1,Second round,region_3,Xavier,3,85,Purdue,6,78
+2008,1,Second round,region_3,West Virginia,7,73,Duke,2,67
+2008,2,Sweet Sixteen,region_0,UNC,1,68,Washington State,4,47
+2008,2,Sweet Sixteen,region_0,Louisville,3,79,Tennessee,2,60
+2008,2,Sweet Sixteen,region_1,Kansas,1,72,Villanova,12,57
+2008,2,Sweet Sixteen,region_1,Davidson,10,73,Wisconsin,3,56
+2008,2,Sweet Sixteen,region_2,Memphis,1,92,Michigan State,5,74
+2008,2,Sweet Sixteen,region_2,Texas,2,82,Stanford,3,62
+2008,2,Sweet Sixteen,region_3,UCLA,1,88,Western Kentucky,12,78
+2008,2,Sweet Sixteen,region_3,Xavier,3,79,West Virginia,7,75
+2008,3,Elite Eight,region_0,UNC,1,83,Louisville,3,73
+2008,3,Elite Eight,region_1,Kansas,1,59,Davidson,10,57
+2008,3,Elite Eight,region_2,Memphis,1,85,Texas,2,67
+2008,3,Elite Eight,region_3,UCLA,1,76,Xavier,3,57
+2008,4,Final Four,region_4,Kansas,1,84,UNC,1,66
+2008,4,Final Four,region_4,Memphis,1,78,UCLA,1,63
+2008,5,Championship,region_4,Kansas,1,75,Memphis,1,68
+2009,0,First round,region_0,Louisville,1,74,Morehead State,16,54
+2009,0,First round,region_0,Siena,9,74,Ohio State,8,72
+2009,0,First round,region_0,Arizona,12,84,Utah,5,71
+2009,0,First round,region_0,Cleveland State,13,84,Wake Forest,4,69
+2009,0,First round,region_0,Dayton,11,68,West Virginia,6,60
+2009,0,First round,region_0,Kansas,3,84,North Dakota State,14,74
+2009,0,First round,region_0,USC,10,72,Boston College,7,55
+2009,0,First round,region_0,Michigan State,2,77,Robert Morris,15,62
+2009,0,First round,region_1,Pitt,1,72,ETSU,16,62
+2009,0,First round,region_1,Oklahoma State,8,77,Tennessee,9,75
+2009,0,First round,region_1,Wisconsin,12,61,Florida State,5,59
+2009,0,First round,region_1,Xavier,4,77,Portland State,13,59
+2009,0,First round,region_1,UCLA,6,65,VCU,11,64
+2009,0,First round,region_1,Villanova,3,80,American,14,67
+2009,0,First round,region_1,Texas,7,76,Minnesota,10,62
+2009,0,First round,region_1,Duke,2,86,Binghamton,15,62
+2009,0,First round,region_2,UNC,1,101,Radford,16,58
+2009,0,First round,region_2,LSU,8,75,Butler,9,71
+2009,0,First round,region_2,Western Kentucky,12,76,Illinois,5,72
+2009,0,First round,region_2,Gonzaga,4,77,Akron,13,64
+2009,0,First round,region_2,Arizona State,6,66,Temple,11,57
+2009,0,First round,region_2,Syracuse,3,59,Stephen F. Austin,14,44
+2009,0,First round,region_2,Michigan,10,62,Clemson,7,59
+2009,0,First round,region_2,Oklahoma,2,82,Morgan State,15,54
+2009,0,First round,region_3,UConn,1,103,Chattanooga,16,47
+2009,0,First round,region_3,Texas A&M,9,79,BYU,8,66
+2009,0,First round,region_3,Purdue,5,61,Northern Iowa,12,56
+2009,0,First round,region_3,Washington,4,71,Mississippi State,13,58
+2009,0,First round,region_3,Marquette,6,58,Utah State,11,57
+2009,0,First round,region_3,Missouri,3,78,Cornell,14,59
+2009,0,First round,region_3,Maryland,10,84,University of California,7,71
+2009,0,First round,region_3,Memphis,2,81,Cal State Northridge,15,70
+2009,1,Second round,region_0,Louisville,1,79,Siena,9,72
+2009,1,Second round,region_0,Arizona,12,71,Cleveland State,13,57
+2009,1,Second round,region_0,Kansas,3,60,Dayton,11,43
+2009,1,Second round,region_0,Michigan State,2,74,USC,10,69
+2009,1,Second round,region_1,Pitt,1,84,Oklahoma State,8,76
+2009,1,Second round,region_1,Xavier,4,60,Wisconsin,12,49
+2009,1,Second round,region_1,Villanova,3,89,UCLA,6,69
+2009,1,Second round,region_1,Duke,2,74,Texas,7,69
+2009,1,Second round,region_2,UNC,1,84,LSU,8,70
+2009,1,Second round,region_2,Gonzaga,4,83,Western Kentucky,12,81
+2009,1,Second round,region_2,Syracuse,3,78,Arizona State,6,67
+2009,1,Second round,region_2,Oklahoma,2,73,Michigan,10,63
+2009,1,Second round,region_3,UConn,1,92,Texas A&M,9,66
+2009,1,Second round,region_3,Purdue,5,76,Washington,4,74
+2009,1,Second round,region_3,Missouri,3,83,Marquette,6,79
+2009,1,Second round,region_3,Memphis,2,89,Maryland,10,70
+2009,2,Sweet Sixteen,region_0,Louisville,1,103,Arizona,12,64
+2009,2,Sweet Sixteen,region_0,Michigan State,2,67,Kansas,3,62
+2009,2,Sweet Sixteen,region_1,Pitt,1,60,Xavier,4,55
+2009,2,Sweet Sixteen,region_1,Villanova,3,77,Duke,2,54
+2009,2,Sweet Sixteen,region_2,UNC,1,98,Gonzaga,4,77
+2009,2,Sweet Sixteen,region_2,Oklahoma,2,84,Syracuse,3,71
+2009,2,Sweet Sixteen,region_3,UConn,1,72,Purdue,5,60
+2009,2,Sweet Sixteen,region_3,Missouri,3,102,Memphis,2,91
+2009,3,Elite Eight,region_0,Michigan State,2,64,Louisville,1,52
+2009,3,Elite Eight,region_1,Villanova,3,78,Pitt,1,76
+2009,3,Elite Eight,region_2,UNC,1,72,Oklahoma,2,60
+2009,3,Elite Eight,region_3,UConn,1,82,Missouri,3,75
+2009,4,Final Four,region_4,UNC,1,83,Villanova,3,69
+2009,4,Final Four,region_4,Michigan State,2,82,UConn,1,73
+2009,5,Championship,region_4,UNC,1,89,Michigan State,2,72
+2010,0,First round,region_0,Duke,1,73,Arkansas-Pine Bluff,16,44
+2010,0,First round,region_0,University of California,8,77,Louisville,9,62
+2010,0,First round,region_0,Texas A&M,5,69,Utah State,12,53
+2010,0,First round,region_0,Purdue,4,72,Siena,13,64
+2010,0,First round,region_0,Old Dominion,11,51,Notre Dame,6,50
+2010,0,First round,region_0,Baylor,3,68,Sam Houston State,14,59
+2010,0,First round,region_0,Saint Mary's (CA),10,80,Richmond,7,71
+2010,0,First round,region_0,Villanova,2,73,Robert Morris,15,70
+2010,0,First round,region_1,Kentucky,1,100,ETSU,16,71
+2010,0,First round,region_1,Wake Forest,9,81,Texas,8,80
+2010,0,First round,region_1,Cornell,12,78,Temple,5,65
+2010,0,First round,region_1,Wisconsin,4,53,Wofford,13,49
+2010,0,First round,region_1,Washington,11,80,Marquette,6,78
+2010,0,First round,region_1,New Mexico,3,62,Montana,14,57
+2010,0,First round,region_1,Missouri,10,86,Clemson,7,78
+2010,0,First round,region_1,West Virginia,2,77,Morgan State,15,50
+2010,0,First round,region_2,Kansas,1,90,Lehigh,16,74
+2010,0,First round,region_2,Northern Iowa,9,69,UNLV,8,66
+2010,0,First round,region_2,Michigan State,5,70,New Mexico State,12,67
+2010,0,First round,region_2,Maryland,4,89,Houston,13,77
+2010,0,First round,region_2,Tennessee,6,62,San Diego State,11,59
+2010,0,First round,region_2,Ohio,14,97,Georgetown,3,83
+2010,0,First round,region_2,Georgia Tech,10,64,Oklahoma State,7,59
+2010,0,First round,region_2,Ohio State,2,68,UCSB,15,51
+2010,0,First round,region_3,Syracuse,1,79,Vermont,16,56
+2010,0,First round,region_3,Gonzaga,8,67,Florida State,9,60
+2010,0,First round,region_3,Butler,5,77,UTEP,12,59
+2010,0,First round,region_3,Murray State,13,66,Vanderbilt,4,65
+2010,0,First round,region_3,Xavier,6,65,Minnesota,11,54
+2010,0,First round,region_3,Pitt,3,89,Oakland,14,66
+2010,0,First round,region_3,BYU,7,99,Florida,10,92
+2010,0,First round,region_3,Kansas State,2,82,North Texas,15,62
+2010,1,Second round,region_0,Duke,1,68,University of California,8,53
+2010,1,Second round,region_0,Purdue,4,63,Texas A&M,5,61
+2010,1,Second round,region_0,Baylor,3,76,Old Dominion,11,68
+2010,1,Second round,region_0,Saint Mary's (CA),10,75,Villanova,2,68
+2010,1,Second round,region_1,Kentucky,1,90,Wake Forest,9,60
+2010,1,Second round,region_1,Cornell,12,87,Wisconsin,4,69
+2010,1,Second round,region_1,Washington,11,82,New Mexico,3,64
+2010,1,Second round,region_1,West Virginia,2,68,Missouri,10,59
+2010,1,Second round,region_2,Northern Iowa,9,69,Kansas,1,67
+2010,1,Second round,region_2,Michigan State,5,85,Maryland,4,83
+2010,1,Second round,region_2,Tennessee,6,83,Ohio,14,68
+2010,1,Second round,region_2,Ohio State,2,75,Georgia Tech,10,66
+2010,1,Second round,region_3,Syracuse,1,87,Gonzaga,8,65
+2010,1,Second round,region_3,Butler,5,54,Murray State,13,52
+2010,1,Second round,region_3,Xavier,6,71,Pitt,3,68
+2010,1,Second round,region_3,Kansas State,2,84,BYU,7,72
+2010,2,Sweet Sixteen,region_0,Duke,1,70,Purdue,4,57
+2010,2,Sweet Sixteen,region_0,Baylor,3,72,Saint Mary's (CA),10,49
+2010,2,Sweet Sixteen,region_1,Kentucky,1,62,Cornell,12,45
+2010,2,Sweet Sixteen,region_1,West Virginia,2,69,Washington,11,56
+2010,2,Sweet Sixteen,region_2,Michigan State,5,59,Northern Iowa,9,52
+2010,2,Sweet Sixteen,region_2,Tennessee,6,76,Ohio State,2,73
+2010,2,Sweet Sixteen,region_3,Butler,5,63,Syracuse,1,59
+2010,2,Sweet Sixteen,region_3,Kansas State,2,101,Xavier,6,96
+2010,3,Elite Eight,region_0,Duke,1,78,Baylor,3,71
+2010,3,Elite Eight,region_1,West Virginia,2,73,Kentucky,1,66
+2010,3,Elite Eight,region_2,Michigan State,5,70,Tennessee,6,69
+2010,3,Elite Eight,region_3,Butler,5,63,Kansas State,2,56
+2010,4,Final Four,region_4,Duke,1,78,West Virginia,2,57
+2010,4,Final Four,region_4,Butler,5,52,Michigan State,5,50
+2010,5,Championship,region_4,Duke,1,61,Butler,5,59
+2011,0,First round,region_0,Ohio State,1,75,UTSA,16,46
+2011,0,First round,region_0,George Mason,8,61,Villanova,9,57
+2011,0,First round,region_0,West Virginia,5,84,Clemson,12,76
+2011,0,First round,region_0,Kentucky,4,59,Princeton,13,57
+2011,0,First round,region_0,Marquette,11,66,Xavier,6,55
+2011,0,First round,region_0,Syracuse,3,77,Indiana State,14,60
+2011,0,First round,region_0,Washington,7,68,Georgia,10,65
+2011,0,First round,region_0,UNC,2,102,LIU-Brooklyn,15,87
+2011,0,First round,region_1,Pitt,1,74,North Carolina-Asheville,16,51
+2011,0,First round,region_1,Butler,8,60,Old Dominion,9,58
+2011,0,First round,region_1,Kansas State,5,73,Utah State,12,68
+2011,0,First round,region_1,Wisconsin,4,72,Belmont,13,58
+2011,0,First round,region_1,Gonzaga,11,86,St. John's (NY),6,71
+2011,0,First round,region_1,BYU,3,74,Wofford,14,66
+2011,0,First round,region_1,UCLA,7,78,Michigan State,10,76
+2011,0,First round,region_1,Florida,2,79,UCSB,15,51
+2011,0,First round,region_2,Kansas,1,72,Boston University,16,53
+2011,0,First round,region_2,Illinois,9,73,UNLV,8,62
+2011,0,First round,region_2,Richmond,12,69,Vanderbilt,5,66
+2011,0,First round,region_2,Morehead State,13,62,Louisville,4,61
+2011,0,First round,region_2,VCU,11,74,Georgetown,6,56
+2011,0,First round,region_2,Purdue,3,65,St. Peter's,14,43
+2011,0,First round,region_2,Florida State,10,57,Texas A&M,7,50
+2011,0,First round,region_2,Notre Dame,2,69,Akron,15,56
+2011,0,First round,region_3,Duke,1,87,Hampton,16,45
+2011,0,First round,region_3,Michigan,8,75,Tennessee,9,45
+2011,0,First round,region_3,Arizona,5,77,Memphis,12,75
+2011,0,First round,region_3,Texas,4,85,Oakland,13,81
+2011,0,First round,region_3,Cincinnati,6,78,Missouri,11,63
+2011,0,First round,region_3,UConn,3,81,Bucknell,14,52
+2011,0,First round,region_3,Temple,7,66,Penn State,10,64
+2011,0,First round,region_3,San Diego State,2,68,Northern Colorado,15,50
+2011,1,Second round,region_0,Ohio State,1,98,George Mason,8,66
+2011,1,Second round,region_0,Kentucky,4,71,West Virginia,5,63
+2011,1,Second round,region_0,Marquette,11,66,Syracuse,3,62
+2011,1,Second round,region_0,UNC,2,86,Washington,7,83
+2011,1,Second round,region_1,Butler,8,71,Pitt,1,70
+2011,1,Second round,region_1,Wisconsin,4,70,Kansas State,5,65
+2011,1,Second round,region_1,BYU,3,89,Gonzaga,11,67
+2011,1,Second round,region_1,Florida,2,73,UCLA,7,65
+2011,1,Second round,region_2,Kansas,1,73,Illinois,9,59
+2011,1,Second round,region_2,Richmond,12,65,Morehead State,13,48
+2011,1,Second round,region_2,VCU,11,94,Purdue,3,76
+2011,1,Second round,region_2,Florida State,10,71,Notre Dame,2,57
+2011,1,Second round,region_3,Duke,1,73,Michigan,8,71
+2011,1,Second round,region_3,Arizona,5,70,Texas,4,69
+2011,1,Second round,region_3,UConn,3,69,Cincinnati,6,58
+2011,1,Second round,region_3,San Diego State,2,71,Temple,7,64
+2011,2,Sweet Sixteen,region_0,Kentucky,4,62,Ohio State,1,60
+2011,2,Sweet Sixteen,region_0,UNC,2,81,Marquette,11,63
+2011,2,Sweet Sixteen,region_1,Butler,8,61,Wisconsin,4,54
+2011,2,Sweet Sixteen,region_1,Florida,2,83,BYU,3,74
+2011,2,Sweet Sixteen,region_2,Kansas,1,77,Richmond,12,57
+2011,2,Sweet Sixteen,region_2,VCU,11,72,Florida State,10,71
+2011,2,Sweet Sixteen,region_3,Arizona,5,93,Duke,1,77
+2011,2,Sweet Sixteen,region_3,UConn,3,74,San Diego State,2,67
+2011,3,Elite Eight,region_0,Kentucky,4,76,UNC,2,69
+2011,3,Elite Eight,region_1,Butler,8,74,Florida,2,71
+2011,3,Elite Eight,region_2,VCU,11,71,Kansas,1,61
+2011,3,Elite Eight,region_3,UConn,3,65,Arizona,5,63
+2011,4,Final Four,region_4,UConn,3,56,Kentucky,4,55
+2011,4,Final Four,region_4,Butler,8,70,VCU,11,62
+2011,5,Championship,region_4,UConn,3,53,Butler,8,41
+2012,0,First round,region_0,UNC,1,77,Vermont,16,58
+2012,0,First round,region_0,Creighton,8,58,Alabama,9,57
+2012,0,First round,region_0,South Florida,12,58,Temple,5,44
+2012,0,First round,region_0,Ohio,13,65,Michigan,4,60
+2012,0,First round,region_0,North Carolina State,11,79,San Diego State,6,65
+2012,0,First round,region_0,Georgetown,3,74,Belmont,14,59
+2012,0,First round,region_0,Purdue,10,72,Saint Mary's (CA),7,69
+2012,0,First round,region_0,Kansas,2,65,Detroit,15,50
+2012,0,First round,region_1,Kentucky,1,81,Western Kentucky,16,66
+2012,0,First round,region_1,Iowa State,8,77,UConn,9,64
+2012,0,First round,region_1,VCU,12,62,Wichita State,5,59
+2012,0,First round,region_1,Indiana,4,79,New Mexico State,13,66
+2012,0,First round,region_1,Colorado,11,68,UNLV,6,64
+2012,0,First round,region_1,Baylor,3,68,South Dakota State,14,60
+2012,0,First round,region_1,Xavier,10,67,Notre Dame,7,63
+2012,0,First round,region_1,Lehigh,15,75,Duke,2,70
+2012,0,First round,region_2,Michigan State,1,89,LIU-Brooklyn,16,67
+2012,0,First round,region_2,Saint Louis,9,61,Memphis,8,54
+2012,0,First round,region_2,New Mexico,5,75,Long Beach State,12,68
+2012,0,First round,region_2,Louisville,4,69,Davidson,13,62
+2012,0,First round,region_2,Murray State,6,58,Colorado State,11,41
+2012,0,First round,region_2,Marquette,3,88,BYU,14,68
+2012,0,First round,region_2,Florida,7,71,Virginia,10,45
+2012,0,First round,region_2,Norfolk State,15,86,Missouri,2,84
+2012,0,First round,region_3,Syracuse,1,72,North Carolina-Asheville,16,65
+2012,0,First round,region_3,Kansas State,8,70,Southern Miss,9,64
+2012,0,First round,region_3,Vanderbilt,5,79,Harvard,12,70
+2012,0,First round,region_3,Wisconsin,4,73,Montana,13,49
+2012,0,First round,region_3,Cincinnati,6,65,Texas,11,59
+2012,0,First round,region_3,Florida State,3,66,St. Bonaventure,14,63
+2012,0,First round,region_3,Gonzaga,7,77,West Virginia,10,54
+2012,0,First round,region_3,Ohio State,2,78,Loyola (MD),15,59
+2012,1,Second round,region_0,UNC,1,87,Creighton,8,73
+2012,1,Second round,region_0,Ohio,13,62,South Florida,12,56
+2012,1,Second round,region_0,North Carolina State,11,66,Georgetown,3,63
+2012,1,Second round,region_0,Kansas,2,63,Purdue,10,60
+2012,1,Second round,region_1,Kentucky,1,87,Iowa State,8,71
+2012,1,Second round,region_1,Indiana,4,63,VCU,12,61
+2012,1,Second round,region_1,Baylor,3,80,Colorado,11,63
+2012,1,Second round,region_1,Xavier,10,70,Lehigh,15,58
+2012,1,Second round,region_2,Michigan State,1,65,Saint Louis,9,61
+2012,1,Second round,region_2,Louisville,4,59,New Mexico,5,56
+2012,1,Second round,region_2,Marquette,3,62,Murray State,6,53
+2012,1,Second round,region_2,Florida,7,84,Norfolk State,15,50
+2012,1,Second round,region_3,Syracuse,1,75,Kansas State,8,59
+2012,1,Second round,region_3,Wisconsin,4,60,Vanderbilt,5,57
+2012,1,Second round,region_3,Cincinnati,6,62,Florida State,3,56
+2012,1,Second round,region_3,Ohio State,2,73,Gonzaga,7,66
+2012,2,Sweet Sixteen,region_0,UNC,1,73,Ohio,13,65
+2012,2,Sweet Sixteen,region_0,Kansas,2,60,North Carolina State,11,57
+2012,2,Sweet Sixteen,region_1,Kentucky,1,102,Indiana,4,90
+2012,2,Sweet Sixteen,region_1,Baylor,3,75,Xavier,10,70
+2012,2,Sweet Sixteen,region_2,Louisville,4,57,Michigan State,1,44
+2012,2,Sweet Sixteen,region_2,Florida,7,68,Marquette,3,58
+2012,2,Sweet Sixteen,region_3,Syracuse,1,64,Wisconsin,4,63
+2012,2,Sweet Sixteen,region_3,Ohio State,2,81,Cincinnati,6,66
+2012,3,Elite Eight,region_0,Kansas,2,80,UNC,1,67
+2012,3,Elite Eight,region_1,Kentucky,1,82,Baylor,3,70
+2012,3,Elite Eight,region_2,Louisville,4,72,Florida,7,68
+2012,3,Elite Eight,region_3,Ohio State,2,77,Syracuse,1,70
+2012,4,Final Four,region_4,Kentucky,1,69,Louisville,4,61
+2012,4,Final Four,region_4,Kansas,2,64,Ohio State,2,62
+2012,5,Championship,region_4,Kentucky,1,67,Kansas,2,59
+2013,0,First round,region_0,Indiana,1,83,James Madison,16,62
+2013,0,First round,region_0,Temple,9,76,North Carolina State,8,72
+2013,0,First round,region_0,University of California,12,64,UNLV,5,61
+2013,0,First round,region_0,Syracuse,4,81,Montana,13,34
+2013,0,First round,region_0,Butler,6,68,Bucknell,11,56
+2013,0,First round,region_0,Marquette,3,59,Davidson,14,58
+2013,0,First round,region_0,Illinois,7,57,Colorado,10,49
+2013,0,First round,region_0,Miami (FL),2,78,Pacific,15,49
+2013,0,First round,region_1,Louisville,1,79,North Carolina A&T,16,48
+2013,0,First round,region_1,Colorado State,8,84,Missouri,9,72
+2013,0,First round,region_1,Oregon,12,68,Oklahoma State,5,55
+2013,0,First round,region_1,Saint Louis,4,64,New Mexico State,13,44
+2013,0,First round,region_1,Memphis,6,54,Saint Mary's (CA),11,52
+2013,0,First round,region_1,Michigan State,3,65,Valparaiso,14,54
+2013,0,First round,region_1,Creighton,7,67,Cincinnati,10,63
+2013,0,First round,region_1,Duke,2,73,Albany (NY),15,61
+2013,0,First round,region_2,Gonzaga,1,64,Southern,16,58
+2013,0,First round,region_2,Wichita State,9,73,Pitt,8,55
+2013,0,First round,region_2,Ole Miss,12,57,Wisconsin,5,46
+2013,0,First round,region_2,La Salle,13,63,Kansas State,4,61
+2013,0,First round,region_2,Arizona,6,81,Belmont,11,64
+2013,0,First round,region_2,Harvard,14,68,New Mexico,3,62
+2013,0,First round,region_2,Iowa State,10,76,Notre Dame,7,58
+2013,0,First round,region_2,Ohio State,2,95,Iona,15,70
+2013,0,First round,region_3,Kansas,1,64,Western Kentucky,16,57
+2013,0,First round,region_3,UNC,8,78,Villanova,9,71
+2013,0,First round,region_3,VCU,5,88,Akron,12,42
+2013,0,First round,region_3,Michigan,4,71,South Dakota State,13,56
+2013,0,First round,region_3,Minnesota,11,83,UCLA,6,63
+2013,0,First round,region_3,Florida,3,79,Northwestern State,14,47
+2013,0,First round,region_3,San Diego State,7,70,Oklahoma,10,55
+2013,0,First round,region_3,Florida Gulf Coast,15,78,Georgetown,2,68
+2013,1,Second round,region_0,Indiana,1,58,Temple,9,52
+2013,1,Second round,region_0,Syracuse,4,66,University of California,12,60
+2013,1,Second round,region_0,Marquette,3,74,Butler,6,72
+2013,1,Second round,region_0,Miami (FL),2,63,Illinois,7,59
+2013,1,Second round,region_1,Louisville,1,82,Colorado State,8,56
+2013,1,Second round,region_1,Oregon,12,74,Saint Louis,4,57
+2013,1,Second round,region_1,Michigan State,3,70,Memphis,6,48
+2013,1,Second round,region_1,Duke,2,66,Creighton,7,50
+2013,1,Second round,region_2,Wichita State,9,76,Gonzaga,1,70
+2013,1,Second round,region_2,La Salle,13,76,Ole Miss,12,74
+2013,1,Second round,region_2,Arizona,6,74,Harvard,14,51
+2013,1,Second round,region_2,Ohio State,2,78,Iowa State,10,75
+2013,1,Second round,region_3,Kansas,1,70,UNC,8,58
+2013,1,Second round,region_3,Michigan,4,78,VCU,5,53
+2013,1,Second round,region_3,Florida,3,78,Minnesota,11,64
+2013,1,Second round,region_3,Florida Gulf Coast,15,81,San Diego State,7,71
+2013,2,Sweet Sixteen,region_0,Syracuse,4,61,Indiana,1,50
+2013,2,Sweet Sixteen,region_0,Marquette,3,71,Miami (FL),2,61
+2013,2,Sweet Sixteen,region_1,Louisville,1,77,Oregon,12,69
+2013,2,Sweet Sixteen,region_1,Duke,2,71,Michigan State,3,61
+2013,2,Sweet Sixteen,region_2,Wichita State,9,72,La Salle,13,58
+2013,2,Sweet Sixteen,region_2,Ohio State,2,73,Arizona,6,70
+2013,2,Sweet Sixteen,region_3,Michigan,4,87,Kansas,1,85
+2013,2,Sweet Sixteen,region_3,Florida,3,62,Florida Gulf Coast,15,50
+2013,3,Elite Eight,region_0,Syracuse,4,55,Marquette,3,39
+2013,3,Elite Eight,region_1,Louisville,1,85,Duke,2,63
+2013,3,Elite Eight,region_2,Wichita State,9,70,Ohio State,2,66
+2013,3,Elite Eight,region_3,Michigan,4,79,Florida,3,59
+2013,4,Final Four,region_4,Louisville,1,72,Wichita State,9,68
+2013,4,Final Four,region_4,Michigan,4,61,Syracuse,4,56
+2013,5,Championship,region_4,Louisville,1,82,Michigan,4,76
+2014,0,First round,region_0,Wichita State,1,64,Cal Poly,16,37
+2014,0,First round,region_0,Kentucky,8,56,Kansas State,9,49
+2014,0,First round,region_0,Saint Louis,5,83,North Carolina State,12,80
+2014,0,First round,region_0,Louisville,4,71,Manhattan,13,64
+2014,0,First round,region_0,Tennessee,11,86,UMass,6,67
+2014,0,First round,region_0,Mercer,14,78,Duke,3,71
+2014,0,First round,region_0,Texas,7,87,Arizona State,10,85
+2014,0,First round,region_0,Michigan,2,57,Wofford,15,40
+2014,0,First round,region_1,Florida,1,67,Albany (NY),16,55
+2014,0,First round,region_1,Pitt,9,77,Colorado,8,48
+2014,0,First round,region_1,Stephen F. Austin,12,77,VCU,5,75
+2014,0,First round,region_1,UCLA,4,76,Tulsa,13,59
+2014,0,First round,region_1,Dayton,11,60,Ohio State,6,59
+2014,0,First round,region_1,Syracuse,3,77,Western Michigan,14,53
+2014,0,First round,region_1,Stanford,10,58,New Mexico,7,53
+2014,0,First round,region_1,Kansas,2,80,Eastern Kentucky,15,69
+2014,0,First round,region_2,Virginia,1,70,Coastal Carolina,16,59
+2014,0,First round,region_2,Memphis,8,71,George Washington,9,66
+2014,0,First round,region_2,Harvard,12,61,Cincinnati,5,57
+2014,0,First round,region_2,Michigan State,4,93,Delaware,13,78
+2014,0,First round,region_2,UNC,6,79,Providence,11,77
+2014,0,First round,region_2,Iowa State,3,93,North Carolina Central,14,75
+2014,0,First round,region_2,UConn,7,89,St. Joseph's,10,81
+2014,0,First round,region_2,Villanova,2,73,Milwaukee,15,53
+2014,0,First round,region_3,Arizona,1,68,Weber State,16,59
+2014,0,First round,region_3,Gonzaga,8,85,Oklahoma State,9,77
+2014,0,First round,region_3,North Dakota State,12,80,Oklahoma,5,75
+2014,0,First round,region_3,San Diego State,4,73,New Mexico State,13,69
+2014,0,First round,region_3,Baylor,6,74,Nebraska,11,60
+2014,0,First round,region_3,Creighton,3,76,Louisiana-Lafayette,14,66
+2014,0,First round,region_3,Oregon,7,87,BYU,10,68
+2014,0,First round,region_3,Wisconsin,2,75,American,15,35
+2014,1,Second round,region_0,Kentucky,8,78,Wichita State,1,76
+2014,1,Second round,region_0,Louisville,4,66,Saint Louis,5,51
+2014,1,Second round,region_0,Tennessee,11,83,Mercer,14,63
+2014,1,Second round,region_0,Michigan,2,79,Texas,7,65
+2014,1,Second round,region_1,Florida,1,61,Pitt,9,45
+2014,1,Second round,region_1,UCLA,4,77,Stephen F. Austin,12,60
+2014,1,Second round,region_1,Dayton,11,55,Syracuse,3,53
+2014,1,Second round,region_1,Stanford,10,60,Kansas,2,57
+2014,1,Second round,region_2,Virginia,1,78,Memphis,8,60
+2014,1,Second round,region_2,Michigan State,4,80,Harvard,12,73
+2014,1,Second round,region_2,Iowa State,3,85,UNC,6,83
+2014,1,Second round,region_2,UConn,7,77,Villanova,2,65
+2014,1,Second round,region_3,Arizona,1,84,Gonzaga,8,61
+2014,1,Second round,region_3,San Diego State,4,63,North Dakota State,12,44
+2014,1,Second round,region_3,Baylor,6,85,Creighton,3,55
+2014,1,Second round,region_3,Wisconsin,2,85,Oregon,7,77
+2014,2,Sweet Sixteen,region_0,Kentucky,8,74,Louisville,4,69
+2014,2,Sweet Sixteen,region_0,Michigan,2,73,Tennessee,11,71
+2014,2,Sweet Sixteen,region_1,Florida,1,79,UCLA,4,68
+2014,2,Sweet Sixteen,region_1,Dayton,11,82,Stanford,10,72
+2014,2,Sweet Sixteen,region_2,Michigan State,4,61,Virginia,1,59
+2014,2,Sweet Sixteen,region_2,UConn,7,81,Iowa State,3,76
+2014,2,Sweet Sixteen,region_3,Arizona,1,70,San Diego State,4,64
+2014,2,Sweet Sixteen,region_3,Wisconsin,2,69,Baylor,6,52
+2014,3,Elite Eight,region_0,Kentucky,8,75,Michigan,2,72
+2014,3,Elite Eight,region_1,Florida,1,62,Dayton,11,52
+2014,3,Elite Eight,region_2,UConn,7,60,Michigan State,4,54
+2014,3,Elite Eight,region_3,Wisconsin,2,64,Arizona,1,63
+2014,4,Final Four,region_4,UConn,7,63,Florida,1,53
+2014,4,Final Four,region_4,Kentucky,8,74,Wisconsin,2,73
+2014,5,Championship,region_4,UConn,7,60,Kentucky,8,54
+2015,0,First round,region_0,Villanova,1,93,Lafayette,16,52
+2015,0,First round,region_0,North Carolina State,8,66,LSU,9,65
+2015,0,First round,region_0,Northern Iowa,5,71,Wyoming,12,54
+2015,0,First round,region_0,Louisville,4,57,UC-Irvine,13,55
+2015,0,First round,region_0,Dayton,11,66,Providence,6,53
+2015,0,First round,region_0,Oklahoma,3,69,Albany (NY),14,60
+2015,0,First round,region_0,Michigan State,7,70,Georgia,10,63
+2015,0,First round,region_0,Virginia,2,79,Belmont,15,67
+2015,0,First round,region_1,Kentucky,1,79,Hampton,16,56
+2015,0,First round,region_1,Cincinnati,8,66,Purdue,9,65
+2015,0,First round,region_1,West Virginia,5,68,Buffalo,12,62
+2015,0,First round,region_1,Maryland,4,65,Valparaiso,13,62
+2015,0,First round,region_1,Butler,6,56,Texas,11,48
+2015,0,First round,region_1,Notre Dame,3,69,Northeastern,14,65
+2015,0,First round,region_1,Wichita State,7,81,Indiana,10,76
+2015,0,First round,region_1,Kansas,2,75,New Mexico State,15,56
+2015,0,First round,region_2,Duke,1,85,Robert Morris,16,56
+2015,0,First round,region_2,San Diego State,8,76,St. John's (NY),9,64
+2015,0,First round,region_2,Utah,5,57,Stephen F. Austin,12,50
+2015,0,First round,region_2,Georgetown,4,84,Eastern Washington,13,74
+2015,0,First round,region_2,UCLA,11,60,SMU,6,59
+2015,0,First round,region_2,Alabama-Birmingham,14,60,Iowa State,3,59
+2015,0,First round,region_2,Iowa,7,83,Davidson,10,52
+2015,0,First round,region_2,Gonzaga,2,86,North Dakota State,15,76
+2015,0,First round,region_3,Wisconsin,1,86,Coastal Carolina,16,72
+2015,0,First round,region_3,Oregon,8,79,Oklahoma State,9,73
+2015,0,First round,region_3,Arkansas,5,56,Wofford,12,53
+2015,0,First round,region_3,UNC,4,67,Harvard,13,65
+2015,0,First round,region_3,Xavier,6,76,Ole Miss,11,57
+2015,0,First round,region_3,Georgia State,14,57,Baylor,3,56
+2015,0,First round,region_3,Ohio State,10,75,VCU,7,72
+2015,0,First round,region_3,Arizona,2,93,Texas Southern,15,72
+2015,1,Second round,region_0,North Carolina State,8,71,Villanova,1,68
+2015,1,Second round,region_0,Louisville,4,66,Northern Iowa,5,53
+2015,1,Second round,region_0,Oklahoma,3,72,Dayton,11,66
+2015,1,Second round,region_0,Michigan State,7,60,Virginia,2,54
+2015,1,Second round,region_1,Kentucky,1,64,Cincinnati,8,51
+2015,1,Second round,region_1,West Virginia,5,69,Maryland,4,59
+2015,1,Second round,region_1,Notre Dame,3,67,Butler,6,64
+2015,1,Second round,region_1,Wichita State,7,78,Kansas,2,65
+2015,1,Second round,region_2,Duke,1,68,San Diego State,8,49
+2015,1,Second round,region_2,Utah,5,75,Georgetown,4,64
+2015,1,Second round,region_2,UCLA,11,92,Alabama-Birmingham,14,75
+2015,1,Second round,region_2,Gonzaga,2,87,Iowa,7,68
+2015,1,Second round,region_3,Wisconsin,1,72,Oregon,8,65
+2015,1,Second round,region_3,UNC,4,87,Arkansas,5,78
+2015,1,Second round,region_3,Xavier,6,75,Georgia State,14,67
+2015,1,Second round,region_3,Arizona,2,73,Ohio State,10,58
+2015,2,Sweet Sixteen,region_0,Louisville,4,75,North Carolina State,8,65
+2015,2,Sweet Sixteen,region_0,Michigan State,7,62,Oklahoma,3,58
+2015,2,Sweet Sixteen,region_1,Kentucky,1,78,West Virginia,5,39
+2015,2,Sweet Sixteen,region_1,Notre Dame,3,81,Wichita State,7,70
+2015,2,Sweet Sixteen,region_2,Duke,1,63,Utah,5,57
+2015,2,Sweet Sixteen,region_2,Gonzaga,2,74,UCLA,11,62
+2015,2,Sweet Sixteen,region_3,Wisconsin,1,79,UNC,4,72
+2015,2,Sweet Sixteen,region_3,Arizona,2,68,Xavier,6,60
+2015,3,Elite Eight,region_0,Michigan State,7,76,Louisville,4,70
+2015,3,Elite Eight,region_1,Kentucky,1,68,Notre Dame,3,66
+2015,3,Elite Eight,region_2,Duke,1,66,Gonzaga,2,52
+2015,3,Elite Eight,region_3,Wisconsin,1,85,Arizona,2,78
+2015,4,Final Four,region_4,Duke,1,81,Michigan State,7,61
+2015,4,Final Four,region_4,Wisconsin,1,71,Kentucky,1,64
+2015,5,Championship,region_4,Duke,1,68,Wisconsin,1,63
+2016,0,First round,region_0,UNC,1,83,Florida Gulf Coast,16,67
+2016,0,First round,region_0,Providence,9,70,USC,8,69
+2016,0,First round,region_0,Indiana,5,99,Chattanooga,12,74
+2016,0,First round,region_0,Kentucky,4,85,Stony Brook,13,57
+2016,0,First round,region_0,Notre Dame,6,70,Michigan,11,63
+2016,0,First round,region_0,Stephen F. Austin,14,70,West Virginia,3,56
+2016,0,First round,region_0,Wisconsin,7,47,Pitt,10,43
+2016,0,First round,region_0,Xavier,2,71,Weber State,15,53
+2016,0,First round,region_1,Kansas,1,105,Austin Peay,16,79
+2016,0,First round,region_1,UConn,9,74,Colorado,8,67
+2016,0,First round,region_1,Maryland,5,79,South Dakota State,12,74
+2016,0,First round,region_1,Hawaii,13,77,University of California,4,66
+2016,0,First round,region_1,Wichita State,11,65,Arizona,6,55
+2016,0,First round,region_1,Miami (FL),3,79,Buffalo,14,72
+2016,0,First round,region_1,Iowa,7,72,Temple,10,70
+2016,0,First round,region_1,Villanova,2,86,North Carolina-Asheville,15,56
+2016,0,First round,region_2,Oregon,1,91,Holy Cross,16,52
+2016,0,First round,region_2,St. Joseph's,8,78,Cincinnati,9,76
+2016,0,First round,region_2,Yale,12,79,Baylor,5,75
+2016,0,First round,region_2,Duke,4,93,North Carolina-Wilmington,13,85
+2016,0,First round,region_2,Northern Iowa,11,75,Texas,6,72
+2016,0,First round,region_2,Texas A&M,3,92,Green Bay,14,65
+2016,0,First round,region_2,VCU,10,75,Oregon State,7,67
+2016,0,First round,region_2,Oklahoma,2,82,Cal State Bakersfield,15,68
+2016,0,First round,region_3,Virginia,1,81,Hampton,16,45
+2016,0,First round,region_3,Butler,9,71,Texas Tech,8,61
+2016,0,First round,region_3,Arkansas-Little Rock,12,85,Purdue,5,83
+2016,0,First round,region_3,Iowa State,4,94,Iona,13,81
+2016,0,First round,region_3,Gonzaga,11,68,Seton Hall,6,52
+2016,0,First round,region_3,Utah,3,80,Fresno State,14,69
+2016,0,First round,region_3,Syracuse,10,70,Dayton,7,51
+2016,0,First round,region_3,Middle Tennessee,15,90,Michigan State,2,81
+2016,1,Second round,region_0,UNC,1,85,Providence,9,66
+2016,1,Second round,region_0,Indiana,5,73,Kentucky,4,67
+2016,1,Second round,region_0,Notre Dame,6,76,Stephen F. Austin,14,75
+2016,1,Second round,region_0,Wisconsin,7,66,Xavier,2,63
+2016,1,Second round,region_1,Kansas,1,73,UConn,9,61
+2016,1,Second round,region_1,Maryland,5,73,Hawaii,13,60
+2016,1,Second round,region_1,Miami (FL),3,65,Wichita State,11,57
+2016,1,Second round,region_1,Villanova,2,87,Iowa,7,68
+2016,1,Second round,region_2,Oregon,1,69,St. Joseph's,8,64
+2016,1,Second round,region_2,Duke,4,71,Yale,12,64
+2016,1,Second round,region_2,Texas A&M,3,92,Northern Iowa,11,88
+2016,1,Second round,region_2,Oklahoma,2,85,VCU,10,81
+2016,1,Second round,region_3,Virginia,1,77,Butler,9,69
+2016,1,Second round,region_3,Iowa State,4,78,Arkansas-Little Rock,12,61
+2016,1,Second round,region_3,Gonzaga,11,82,Utah,3,59
+2016,1,Second round,region_3,Syracuse,10,75,Middle Tennessee,15,50
+2016,2,Sweet Sixteen,region_0,UNC,1,101,Indiana,5,86
+2016,2,Sweet Sixteen,region_0,Notre Dame,6,61,Wisconsin,7,56
+2016,2,Sweet Sixteen,region_1,Kansas,1,79,Maryland,5,63
+2016,2,Sweet Sixteen,region_1,Villanova,2,92,Miami (FL),3,69
+2016,2,Sweet Sixteen,region_2,Oregon,1,82,Duke,4,68
+2016,2,Sweet Sixteen,region_2,Oklahoma,2,77,Texas A&M,3,63
+2016,2,Sweet Sixteen,region_3,Virginia,1,84,Iowa State,4,71
+2016,2,Sweet Sixteen,region_3,Syracuse,10,63,Gonzaga,11,60
+2016,3,Elite Eight,region_0,UNC,1,88,Notre Dame,6,74
+2016,3,Elite Eight,region_1,Villanova,2,64,Kansas,1,59
+2016,3,Elite Eight,region_2,Oklahoma,2,80,Oregon,1,68
+2016,3,Elite Eight,region_3,Syracuse,10,68,Virginia,1,62
+2016,4,Final Four,region_4,Villanova,2,95,Oklahoma,2,51
+2016,4,Final Four,region_4,UNC,1,83,Syracuse,10,66
+2016,5,Championship,region_4,Villanova,2,77,UNC,1,74
+2017,0,First round,region_0,Villanova,1,76,Mount St. Mary's,16,56
+2017,0,First round,region_0,Wisconsin,8,84,Virginia Tech,9,74
+2017,0,First round,region_0,Virginia,5,76,North Carolina-Wilmington,12,71
+2017,0,First round,region_0,Florida,4,80,ETSU,13,65
+2017,0,First round,region_0,USC,11,66,SMU,6,65
+2017,0,First round,region_0,Baylor,3,91,New Mexico State,14,73
+2017,0,First round,region_0,South Carolina,7,93,Marquette,10,73
+2017,0,First round,region_0,Duke,2,87,Troy,15,65
+2017,0,First round,region_1,Kansas,1,100,UC-Davis,16,62
+2017,0,First round,region_1,Michigan State,9,78,Miami (FL),8,58
+2017,0,First round,region_1,Iowa State,5,84,Nevada,12,73
+2017,0,First round,region_1,Purdue,4,80,Vermont,13,70
+2017,0,First round,region_1,Rhode Island,11,84,Creighton,6,72
+2017,0,First round,region_1,Oregon,3,93,Iona,14,77
+2017,0,First round,region_1,Michigan,7,92,Oklahoma State,10,91
+2017,0,First round,region_1,Louisville,2,78,Jacksonville State,15,63
+2017,0,First round,region_2,UNC,1,103,Texas Southern,16,64
+2017,0,First round,region_2,Arkansas,8,77,Seton Hall,9,71
+2017,0,First round,region_2,Middle Tennessee,12,81,Minnesota,5,72
+2017,0,First round,region_2,Butler,4,76,Winthrop,13,64
+2017,0,First round,region_2,Cincinnati,6,75,Kansas State,11,61
+2017,0,First round,region_2,UCLA,3,97,Kent State,14,80
+2017,0,First round,region_2,Wichita State,10,64,Dayton,7,58
+2017,0,First round,region_2,Kentucky,2,79,Northern Kentucky,15,70
+2017,0,First round,region_3,Gonzaga,1,66,South Dakota State,16,46
+2017,0,First round,region_3,Northwestern,8,68,Vanderbilt,9,66
+2017,0,First round,region_3,Notre Dame,5,60,Princeton,12,58
+2017,0,First round,region_3,West Virginia,4,86,Bucknell,13,80
+2017,0,First round,region_3,Xavier,11,76,Maryland,6,65
+2017,0,First round,region_3,Florida State,3,86,Florida Gulf Coast,14,80
+2017,0,First round,region_3,Saint Mary's (CA),7,85,VCU,10,77
+2017,0,First round,region_3,Arizona,2,100,North Dakota,15,82
+2017,1,Second round,region_0,Wisconsin,8,65,Villanova,1,62
+2017,1,Second round,region_0,Florida,4,65,Virginia,5,39
+2017,1,Second round,region_0,Baylor,3,82,USC,11,78
+2017,1,Second round,region_0,South Carolina,7,88,Duke,2,81
+2017,1,Second round,region_1,Kansas,1,90,Michigan State,9,70
+2017,1,Second round,region_1,Purdue,4,80,Iowa State,5,76
+2017,1,Second round,region_1,Oregon,3,75,Rhode Island,11,72
+2017,1,Second round,region_1,Michigan,7,73,Louisville,2,69
+2017,1,Second round,region_2,UNC,1,72,Arkansas,8,65
+2017,1,Second round,region_2,Butler,4,74,Middle Tennessee,12,65
+2017,1,Second round,region_2,UCLA,3,79,Cincinnati,6,67
+2017,1,Second round,region_2,Kentucky,2,65,Wichita State,10,62
+2017,1,Second round,region_3,Gonzaga,1,79,Northwestern,8,73
+2017,1,Second round,region_3,West Virginia,4,83,Notre Dame,5,71
+2017,1,Second round,region_3,Xavier,11,91,Florida State,3,66
+2017,1,Second round,region_3,Arizona,2,69,Saint Mary's (CA),7,60
+2017,2,Sweet Sixteen,region_0,Florida,4,84,Wisconsin,8,83
+2017,2,Sweet Sixteen,region_0,South Carolina,7,70,Baylor,3,50
+2017,2,Sweet Sixteen,region_1,Kansas,1,98,Purdue,4,66
+2017,2,Sweet Sixteen,region_1,Oregon,3,69,Michigan,7,68
+2017,2,Sweet Sixteen,region_2,UNC,1,92,Butler,4,80
+2017,2,Sweet Sixteen,region_2,Kentucky,2,86,UCLA,3,75
+2017,2,Sweet Sixteen,region_3,Gonzaga,1,61,West Virginia,4,58
+2017,2,Sweet Sixteen,region_3,Xavier,11,73,Arizona,2,71
+2017,3,Elite Eight,region_0,South Carolina,7,77,Florida,4,70
+2017,3,Elite Eight,region_1,Oregon,3,74,Kansas,1,60
+2017,3,Elite Eight,region_2,UNC,1,75,Kentucky,2,73
+2017,3,Elite Eight,region_3,Gonzaga,1,83,Xavier,11,59
+2017,4,Final Four,region_4,UNC,1,77,Oregon,3,76
+2017,4,Final Four,region_4,Gonzaga,1,77,South Carolina,7,73
+2017,5,Championship,region_4,UNC,1,71,Gonzaga,1,65
+2018,0,First round,region_0,Villanova,1,87,Radford,16,61
+2018,0,First round,region_0,Alabama,9,86,Virginia Tech,8,83
+2018,0,First round,region_0,West Virginia,5,85,Murray State,12,68
+2018,0,First round,region_0,Wichita State,4,75,Marshall,13,71
+2018,0,First round,region_0,Florida,6,77,St.Bonaventure,11,62
+2018,0,First round,region_0,Texas Tech,3,70,Stephen F. Austin,14,60
+2018,0,First round,region_0,Butler,10,79,Arkansas,7,62
+2018,0,First round,region_0,Purdue,2,74,Cal State Fullerton,15,48
+2018,0,First round,region_1,Kansas,1,76,Penn,16,60
+2018,0,First round,region_1,Seton Hall,8,94,North Carolina State,9,83
+2018,0,First round,region_1,Clemson,5,79,New Mexico State,12,68
+2018,0,First round,region_1,Auburn,4,62,College of Charleston,13,58
+2018,0,First round,region_1,Syracuse,11,57,Texas Christian,6,52
+2018,0,First round,region_1,Michigan State,3,83,Bucknell,14,78
+2018,0,First round,region_1,Rhode Island,7,83,Oklahoma,10,78
+2018,0,First round,region_1,Duke,2,89,Iona,15,67
+2018,0,First round,region_2,Xavier,1,102,Texas Southern,16,83
+2018,0,First round,region_2,Florida State,9,67,Missouri,8,54
+2018,0,First round,region_2,Ohio State,5,81,South Dakota State,12,73
+2018,0,First round,region_2,Gonzaga,4,68,North Carolina-Greensboro,13,64
+2018,0,First round,region_2,Houston,6,67,San Diego State,11,65
+2018,0,First round,region_2,Michigan,3,61,Montana,14,47
+2018,0,First round,region_2,Texas A&M,7,73,Providence,10,69
+2018,0,First round,region_2,UNC,2,84,Lipscomb,15,66
+2018,0,First round,region_3,UMBC,16,74,Virginia,1,54
+2018,0,First round,region_3,Kansas State,9,69,Creighton,8,59
+2018,0,First round,region_3,Kentucky,5,78,Davidson,12,73
+2018,0,First round,region_3,Buffalo,13,89,Arizona,4,68
+2018,0,First round,region_3,Loyola (IL),11,64,Miami (FL),6,62
+2018,0,First round,region_3,Tennessee,3,73,Wright State,14,47
+2018,0,First round,region_3,Nevada,7,87,Texas,10,83
+2018,0,First round,region_3,Cincinnati,2,68,Georgia State,15,53
+2018,1,Second round,region_0,Villanova,1,81,Alabama,9,58
+2018,1,Second round,region_0,West Virginia,5,94,Marshall,13,71
+2018,1,Second round,region_0,Texas Tech,3,69,Florida,6,66
+2018,1,Second round,region_0,Purdue,2,76,Butler,10,73
+2018,1,Second round,region_1,Kansas,1,83,Seton Hall,8,79
+2018,1,Second round,region_1,Clemson,5,84,Auburn,4,53
+2018,1,Second round,region_1,Syracuse,11,55,Michigan State,3,53
+2018,1,Second round,region_1,Duke,2,87,Rhode Island,7,62
+2018,1,Second round,region_2,Florida State,9,75,Xavier,1,70
+2018,1,Second round,region_2,Gonzaga,4,90,Ohio State,5,84
+2018,1,Second round,region_2,Michigan,3,64,Houston,6,63
+2018,1,Second round,region_2,Texas A&M,7,86,UNC,2,65
+2018,1,Second round,region_3,Kansas State,9,50,UMBC,16,43
+2018,1,Second round,region_3,Kentucky,5,95,Buffalo,13,75
+2018,1,Second round,region_3,Loyola (IL),11,63,Tennessee,3,62
+2018,1,Second round,region_3,Nevada,7,75,Cincinnati,2,73
+2018,2,Sweet Sixteen,region_0,Villanova,1,90,West Virginia,5,78
+2018,2,Sweet Sixteen,region_0,Texas Tech,3,78,Purdue,2,65
+2018,2,Sweet Sixteen,region_1,Duke,2,69,Syracuse,11,65
+2018,2,Sweet Sixteen,region_1,Kansas,1,80,Clemson,5,76
+2018,2,Sweet Sixteen,region_2,Florida State,9,75,Gonzaga,4,60
+2018,2,Sweet Sixteen,region_2,Michigan,3,99,Texas A&M,7,72
+2018,2,Sweet Sixteen,region_3,Kansas State,9,61,Kentucky,5,58
+2018,2,Sweet Sixteen,region_3,Loyola (IL),11,69,Nevada,7,68

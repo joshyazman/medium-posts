@@ -1,0 +1,204 @@
+---
+  title: "Exploring Lebron James' Point Share"
+output: html_notebook
+---
+
+Depending on who you ask, Lebron James is the greatest basketball player of all time or at least in the top three. He is constantly compared to [Micheal Jordan](https://trends.google.com/trends/explore?date=all&geo=US&q=Lebron%20James%20vs%20Michael%20Jordan) and has, at the time of publication, played in the last 9 NBA Finals and won both championships and MVP recognitions in in 2012,2013, and 2016. 
+
+But several of those championships were won with NBA super-teams. Critics could (and did) point to the fact that he had all-star teammates like Dwayne Wade and Chris Bosh to help out in Miami and Kyrie Irving in Cleveland*. This past season Lebron James has been seen as playing on a team with a collection of gomers who don't really contribute much beyond his abilities. In fact, it was a major story when, after winning the Eastern Conference finals, Lebron credited his teammates with helping win!
+
+James is undeniably one of the greatest single basketball players to step onto the hardwood, but how does his reputation for putting his team on his back play out in point production? Using data from the NBA stats API, we can calculate James' point totals as a percentage of his team's point totals. The answer is remarkably consistent across his career. James has averaged 27.5 points per game, accounting for about 27% of all points scored by his teams in Cleveland and Miami. He's won three NBA championships with two teams and was selected for 14 All-Star games. But ultimately it's not clear that additional hero-ball from James is helpful.
+
+```{r}
+# library(devtools)
+# install_github('stephematician/statsnbaR')
+library(statsnbaR)
+library(tidyverse)
+library(lubridate)
+mango <- c("#FF5300","#9ED80B","#43B629","#1BB6AF","#8F92A1","#172869")
+
+player_data <- get_game_logs(result_types = 'player', 
+                             seasons=seq(2003,2018), 
+                             season_types = c('Regular Season','Playoffs'))
+
+player_data_props <- player_data%>%
+  select(-contains('url'), -slugSeason, -slugTeamLoser, -slugTeamWinner,
+         -contains('pct'),-hasVideo)%>%
+  group_by(slugTeam, idGame)%>%
+  mutate(n_points = sum(pts),
+         point_share = (pts)/sum(pts),
+         n_attempts = sum(fga),
+         attempts_share = (fga)/sum(fga))%>%
+  ungroup()%>%
+  mutate(outcomeGame = ifelse(outcomeGame == 'L', 0, 1),
+         year = as.Date(paste0(yearSeason, '-01-01')))%>%
+  select(-yearSeason)
+
+lebron_data <- player_data_props%>%
+  filter(namePlayer == 'LeBron James')
+
+teammate_data <- player_data_props%>%
+  filter((year %in% as.Date(c('2011-01-01','2012-01-01','2013-01-01','2014-01-01')) & 
+            nameTeam == 'Miami Heat')|
+           (!year %in% as.Date(c('2011-01-01','2012-01-01','2013-01-01','2014-01-01')) & 
+              nameTeam == 'Cleveland Cavaliers'))
+
+lebron_games <- left_join(lebron_data%>%
+                            select(idGame, typeSeason, point_share, leb_score = n_points, nameTeam, year), 
+                          player_data_props%>%
+                            select(idGame, n_points, opponent = nameTeam), by = 'idGame')%>%
+  distinct()%>%
+  filter(nameTeam != opponent)%>%
+  mutate(cav_spread = leb_score - n_points,
+         win = ifelse(cav_spread < 0, 0, 1))
+# 2003–2010	Cleveland Cavaliers
+# 2010–2014	Miami Heat
+# 2014–present	Cleveland Cavaliers
+```
+
+# James' Contribution Relative to His Team
+LeBron James' was drafted first overall out of St. Vincent's Academy in the 2003-2004 NBA draft by the Cleveland Cavaliers. He had an immediate impact, dropping 27 points in his first game, then following up with a Rookie of the Year season and an 18-win improvement for the Cavs over the prior year. 
+
+The data shows some fluctiation, but no real trends over time in LeBron James' share of points scored per game (point share). His average contribution by season ranges from 22% of points scored per game in his 2004 rookie season to 32% of points scored in 2006. In 2018, James typically scored about 26% of points scored by the Cavaliers per game. One player making up over a quarter of a team's offensive production is still incredibly impressive, but James doesn't shoulder more of the scoring burden for the current Cavs roster than past teams.  
+```{r}
+game_years <- floor_date(unique(lebron_data$dateGame), 'years')
+ggplot(lebron_data%>%
+         filter(minutes > 4)%>%
+         group_by(year, team = nameTeam)%>%
+         summarise(mean_pt_share = mean(point_share)),
+       aes(x = year, y = mean_pt_share, colour = team))+
+  geom_point(data = lebron_data%>%
+         filter(minutes > 4), 
+             aes(x = dateGame, y = point_share, colour = nameTeam),
+             alpha = .5)+
+  # geom_errorbar(aes(ymin = lo, ymax = hi))+
+  geom_line(inherit.aes = FALSE, 
+            aes(x = year, y = mean_pt_share),
+            size = 1, color = mango[4])+
+  labs(title = 'LeBron James Point Totals as Percentage of Team\nPoint Totals',
+       x = element_blank(),
+       y = 'LeBron James Point Share',
+       subtitle = 'Games where James played 5 or more minutes',
+       caption = '@jyazman2012')+
+  theme_minimal()+
+  scale_color_manual(name = 'Team', values = mango)+
+  scale_x_date(breaks = game_years, labels = paste0('\'',substr(as.character(game_years), 3,4)))
+ggsave('Lebron James Point Share Over Time.png', height = 4, width = 6)
+```
+
+# Limiting to the playoff
+But funny things start to happen in the playoffs. James has played in each of the last 12 NBA playoffs with two separate teams. In seasons James plays with the Cavaliers, his typical share of playoff point totals ranges from 25-36% while his share of playoff point totals during his time with the Miami Heat ranged from 25-31%.
+
+With the exception of two years with Miami, James has consistently stepped up his share of point production.This season, the difference has been a remarkable 10% increase in James' point share the regular season to the post-season.
+```{r}
+ggplot(lebron_data%>%
+         filter(minutes > 4)%>%
+         group_by(year, typeSeason)%>%
+         summarise(mean_pt_share = mean(point_share)),
+       aes(x = year, y = mean_pt_share, colour = typeSeason))+
+  geom_point(data = lebron_data,
+             aes(x = dateGame, y = point_share*100),
+             alpha = .25)+
+  geom_line(aes(x = year, y = mean_pt_share*100),
+            size = 1)+# , color = mango[4])+
+  labs(title = 'LeBron James Point Totals as Percentage of Team\nPoint Totals',
+       x = element_blank(),
+       y = 'LeBron James Point Share (%)',
+       subtitle = 'Games where James played 5 or more minutes',
+       caption = '@jyazman2012')+
+  theme_minimal()+
+  scale_color_manual(name = 'Team', values = mango)+
+  scale_x_date(breaks = game_years, labels = paste0('\'',substr(as.character(game_years), 3,4)))
+ggsave('Lebron James Point Share Playoffs vs Regular.png', height = 4, width = 6)
+```
+
+# Impact on Point Spread
+That said, the marginal impact of hero ball on point spreads (points for - points against) has not always been positive. In fact a 1% increase in point share has mostly been associated with a his team scoring fewer points relative to opponents including 2012, 2013, and 2016 when teams led by James won the NBA title. This metric has wide confidence intervals, so it's hard to conclude too much, but this metric does indicate that perhaps Lebron really does need a strong supporting cast around him to go all the way - despite his Herculean run in the 2018 NBA playoffs.
+```{r}
+boot_dfs <- list()
+for(j in seq(1,1000)){
+  reg.coef <- c()
+  reg.se <- c()
+  play.coef <- c()
+  play.se <- c()
+  for(i in seq(2006,2018)){
+    reg_seas_sum <- summary(lm(cav_spread~point_share, 
+                               data = lebron_games%>%
+                                 mutate(point_share = point_share*100)%>%
+                                 filter(typeSeason != 'Playoffs',
+                                        as.numeric(substr(year,1,4)) == i)%>%
+                                 sample_frac(1, replace = TRUE)))
+    playoff_sum <- summary(lm(cav_spread~point_share, 
+                               data = lebron_games%>%
+                                 mutate(point_share = point_share*100)%>%
+                                 filter(typeSeason == 'Playoffs',
+                                        as.numeric(substr(year,1,4)) == i)%>%
+                                 sample_frac(1, replace = TRUE)))
+    reg.coef[i] <- coefficients(reg_seas_sum)[2,1]
+    reg.se[i] <- coefficients(reg_seas_sum)[2,2]
+    play.coef[i] <- coefficients(playoff_sum)[2,1]
+    play.se[i] <- coefficients(playoff_sum)[2,2]
+  }
+  
+  boot_dfs[[j]] <- data.frame(year = seq(2006,2018),
+                              reg.coef = reg.coef[!is.na(reg.coef)],
+                              reg.se = reg.se[!is.na(reg.se)],
+                              play.coef = play.coef[!is.na(play.coef)],
+                              play.se = play.se[!is.na(play.se)])
+}
+
+leb_coefs <- bind_rows(boot_dfs)%>%
+  group_by(year)%>%
+  summarise(reg.lo = quantile(reg.coef, .05),
+            reg.pe = quantile(reg.coef, .5),
+            reg.hi = quantile(reg.coef, .95),
+            play.lo = quantile(play.coef, .05),
+            play.pe = quantile(play.coef, .5),
+            play.hi = quantile(play.coef, .95))%>%
+  select(year, lo = reg.lo, pe = reg.pe, hi = reg.hi)%>%
+  mutate(season = 'Regular')%>%
+  union_all(leb_coefs%>%
+    select(year, lo = play.lo, pe = play.pe, hi = play.hi)%>%
+    mutate(season = 'Playoff'))
+
+ggplot(leb_coefs, aes(y = pe, x = year, ymin = lo, ymax = hi, color = season))+
+  geom_hline(yintercept = 0)+
+  geom_errorbar(width = 0, alpha = .6)+
+  geom_line(size = 1)+
+  scale_color_manual(name = element_blank(), values = mango)+
+  labs(title = 'Marginal Impact of LeBron Contributing 1% of Point Production\non Spread by Year',
+       x = element_blank(),
+       y = 'Impact of LeBron Scoring 1 More Percent\nof Team\'s Spread',
+       caption = 'Error bars represent bootstrapped 90% confidence levels\n@jyazman2012')+
+  theme_minimal()+
+  scale_x_continuous(breaks = seq(2004,2018,1),
+                     labels = paste0('\'',substr(as.character(unique(game_years)), 3,4))[-1])
+ggsave('Marginal Impact.png', width = 6, height = 4)
+```
+
+# Conclusion
+James' point share has remained fairly steady throughout his career and his performance this year isn't much different from his average point share. Also, there isn't enough data to conclusively determine whether greater point share for James is a good thing. But James' point share indicates a few things fairly conclusively. He has always been an incredibly high impact scoring threat on every team he's layed for and he scores a higher percentage of points for the Cavaliers in the playoffs than he does in the regular season. 
+
+* Granted, MJ had some help from guys like Steve Kerr, Scottie Pippen, and many other strong supporting players as well as a literal Zen Master as a coach!
+
+Unused plots 
+```{r}
+ggplot(teammate_data%>%filter(minutes > 4), 
+       aes(y = substr(as.character(year), 1, 4), x = point_share*100))+
+  ggridges::geom_density_ridges()+
+  coord_flip()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90))+
+  labs(title = 'Distribution of Point Shares for Teammates by Year',
+       x = 'Percentage of Points Scored by Lebron Teammates',
+       y = element_blank(),
+       caption = 'Teammate data points limited to players\nwho had at least 5 minutes on the court')
+
+lebron_games%>%
+  group_by(year, nameTeam, typeSeason)%>%
+  summarise(win_pct = mean(win),
+            mean_share = mean(point_share))%>%
+  ggplot(aes(x = mean_share, y = win_pct))+
+  stat_smooth(method = 'lm')+
+  geom_point()
+```

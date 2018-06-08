@@ -1,0 +1,153 @@
+---
+title: "The Greg Jennings Theory of GOAThood"
+output: html_notebook
+---
+
+# Collect and aggregate a list of all NBA players who have won an NBA Final since 1980.
+Files were manually copied and pasted from sports-reference.com. A complete list of championship teams lives [here](https://www.basketball-reference.com/leagues/). The csv files were named using the following pattern:
+  * The prefix `p_` is added to playoff-specific csv files
+  * The suffix `_a` represents the "Advanced" tabels and the suffix `_p` represents the "Per 100 Possessions" tables.
+  * Team name abbreviation (as used in SR's url structure) and two-digit year are in the middle
+  
+Load packages and list of filenames
+```{r}
+library(tidyverse)
+library(janitor)
+all_files <- list.files()[!grepl('GOAT',list.files())]
+```
+
+Extract team name from file name
+```{r}
+team_namer <- function(infile){
+  n <- case_when(
+    grepl('bos',infile) ~ 'Boston Celtics',
+    grepl('chi',infile) ~ 'Chicago Bulls',
+    grepl('cle',infile) ~ 'Cleveland Cavaliers',
+    grepl('dal',infile) ~ 'Dallas Mavericks',
+    grepl('det',infile) ~ 'Detroit Pistons',
+    grepl('gsw',infile) ~ 'Golden State Warriors',
+    grepl('hou',infile) ~ 'Houston Rockets',
+    grepl('lal',infile) ~ 'Los Angeles Lakers',
+    grepl('mia',infile) ~ 'Miami Heat',
+    grepl('phi',infile) ~ 'Philadelphia 76ers',
+    grepl('sas',infile) ~ 'San Antonio Spurs'
+  )
+  return(n)
+}
+```
+
+Read and clean up two types of files. The `read_standard` function reads and standardizes the Points Per 100 Possessions csv files. The `read_advanced` does the same for the Advanced stats csv files.
+```{r}
+read_advanced <- function(infile){
+  year_2d <- as.numeric(gsub("[^0-9]", "", infile))
+  t1 <- read_csv(infile)%>%
+    clean_names()%>%
+    select(-x18, -x23)%>%
+    rename(three_rate = x3p_ar)
+  
+  name <- c()
+  for(n in t1$x2){
+    name[n] <- unlist(strsplit(n, split = '\\', fixed = TRUE))[1]
+  }
+  outfile <- bind_cols(t1, data.frame(name))%>%
+    select(-x2)%>%
+    mutate(team = team_namer(infile),
+           year = ifelse(year_2d < 50, year_2d+2000, year_2d+1900),
+           season = ifelse(grepl('p_',infile),'Playoffs', 'Regular'))
+  return(outfile)
+}
+
+read_standard <- function(infile){
+  year_2d <- as.numeric(gsub("[^0-9]", "", infile))
+  t1 <- read_csv(infile)%>%
+    clean_names()%>%
+    select(-x28)%>%
+    rename(fg_made = x2p,
+           fg_attempts = x2pa,
+           three_made = x3p,
+           three_attempts = x3pa)
+  
+  name <- c()
+  for(n in t1$x2){
+    name[n] <- unlist(strsplit(n, split = '\\', fixed = TRUE))[1]
+  }
+  outfile <- bind_cols(t1, data.frame(name))%>%
+    select(-x2)%>%
+    mutate(team = team_namer(infile),
+           year = ifelse(year_2d < 50, year_2d+2000, year_2d+1900),
+           season = ifelse(grepl('p_',infile),'Playoffs', 'Regular'))
+  return(outfile)
+}
+```
+
+Read and combine all files into one big base file. Some fields are renamed here for my own ease of understanding.
+```{r}
+reg_dfs <- list()
+adv_dfs <- list()
+for(i in seq(1,length(all_files[grepl('_a',all_files)]))){
+  reg_dfs[[i]] <- read_standard(all_files[grepl('_p',all_files) & all_files != 'p_phi_83_a'][i])
+  adv_dfs[[i]] <- read_advanced(all_files[grepl('_a',all_files)][i])
+}
+
+all_champs <- inner_join(bind_rows(reg_dfs), 
+           bind_rows(adv_dfs),
+           by = c('team','year','name','season'))%>%
+  mutate(war = 2.7*vorp)%>%
+  select(name, team, year, season, rank = rk.x, age = age.x, games = g.x, 
+         starts = gs, reg_minutes = mp.x,fg, fga, fg_percent, three_made, 
+         three_attempts, three_pct = x3p_percent, two_made = fg_made, 
+         two_attemtps = fg_attempts, two_pct = x2p_percent,ft, fta, 
+         ft_percent, orb, drb, trb, ast, stl, blk, tov, pf, pts, 
+         off_rating = o_rtg, def_rating = d_rtg, efficiency_rating = per,
+         adj_fg_pct = ts_percent, three_rate, ft_rate = f_tr, orb_percent,
+         drb_percent, trb_percent, ast_percent, stl_percent, blk_percent,
+         tov_percent, usage = usg_percent, win_share = ws, win_share_per_48 = ws_48,
+         war)
+write_csv(all_champs, '!all_champion_players.csv')
+```
+
+# Analysis
+The goal is to identify players who performed well on championship teams despite a poor set of teammates. 
+```{r}
+library(tidyverse)
+lacroix_mango <- c("#FF5300", "#9ED80B", "#43B629", "#1BB6AF", "#8F92A1", "#172869")
+```
+
+# Who has the most rings?
+One of the more common arguments of player greatness is to simply ask who has the most championship rings. It's a natural starting place, but solely using ring count as a metric for greatness has some obvious flaws too. For example, Derek Fisher was a fantastic point guard and I still remember being amazed by his [0.4 second shot to beat the Spurs in 2004](https://www.sbnation.com/nba/2018/6/4/17424628/derek-fisher-buzzer-beater-rewinder-lakers-spurs), but he has five NBA championship rings. That puts him on par with Magic Johnson, Dennis Rodman, Kobe Bryant and Tim Duncan. Robert Horry has more rings than any one player in NBA history but you never hear his name mentioned with Michael Jordan or LeBron James.
+
+And speaking of Lebron James, he only has three rings. Same with Larry Bird. Does that mean Michael Jordan with his six rings is twice as good as James or Bird? That's a hard argument to make. Clearly we can't quantify NBA greatness the same way we guess how old trees are. 
+
+```{r}
+all_champs%>%
+  filter(season == 'Playoffs')%>%
+  count(name)%>%
+  arrange(desc(n))
+```
+
+# How do we determine greatness?
+Players can be great for a lot of different reasons. Jackie Robinson was a great baseball player because he dared to use his talents on the field to drive cultural change by breaking the color barrier in professional baseball. Derek Jeter is great because of his late season heroics that earned him the nickname "Mr. October." 
+
+
+# Distribution of WAR by team
+```{r}
+champ_players <- all_champs%>%filter(reg_minutes> 400)%>%
+  mutate(player_season_id = paste(name, team, year, season))
+
+player_dfs <- list()
+for(i in seq(length(unique(champ_players$player_season_id)))){
+  player_df <- champ_players%>%
+    filter(player_season_id == unique(champ_players$player_season_id)[i])
+  teammate_df <- champ_players%>%
+    filter(year %in% player_df$year,
+           team %in% player_df$team,
+           !player_season_id %in% player_df$player_season_id)
+  player_df$tm_med_war = median(teammate_df$war, na.rm = TRUE)
+  player_df$tm_mean_war = mean(teammate_df$war, na.rm = TRUE)
+  
+  player_dfs[[i]] <- player_df
+}
+
+champ_with_team <- bind_rows(player_dfs)
+```
+

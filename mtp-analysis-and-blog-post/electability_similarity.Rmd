@@ -1,0 +1,165 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Goal 
+This code tests the similarity of language used to discuss electability among supporters of a variety of different types of candidates. 
+
+# Read in data and packages
+```{r}
+library(tidyverse)
+library(tidytext)
+library(textstem)
+
+infile <- read_delim('/Users/joshyazman/Desktop/open-survey-data/data-for-progress/first-debate-2020/FIRSTDEBATE_DATA.csv', delim = '|')
+
+poc_cands <- c(3,6,9,12,16,24)
+fem_cands <- c(10,12,15,22,23)
+state_cands <- c(1,2,3,4,10,11,12,13,14,15,20,22)
+
+electability_df <- infile %>%
+  mutate(age2 = if_else(2019 - birthyr < 40, 'Under 40','Over 40'),
+         pred20 = case_when(PRED20 == 2 ~ 'Biden',
+                            PRED20 == 20 ~ 'Sanders',
+                            PRED20 == 22 ~ 'Warren',
+                            PRED20 == 12 ~ 'Harris',
+                            PRED20 == 18 ~ 'Beto',
+                            PRED20 == 5 ~ 'Mayor Pete',
+                            PRED20 == 3 ~ 'Booker',
+                            PRED20 == 15 ~ 'Klobuchar',
+                            TRUE ~ 'Other'),
+         region = case_when(region == 1 ~ 'Northeast',
+                            region == 2 ~ 'Midwest',
+                            region == 3 ~ 'South',
+                            region == 4 ~ 'West'),
+         gender = case_when(gender == 1 ~ 'Male',
+                            gender == 2 ~ 'Female'),
+         educ2 = case_when(educ2 == 1 ~ 'Less than College',
+                           educ2 == 2 ~ 'College'),
+         ideo4 = factor(case_when(ideo5 == 1 ~ 'Very liberal',
+                                  ideo5 == 2 ~ 'Liberal',
+                                  ideo5 == 3 ~ 'Moderate',
+                                  ideo5 %in% c(4,5,6) ~ 'Con/Oth'),
+                        c('Very liberal','Liberal','Moderate','Con/Oth')),
+         state_election_type = case_when(state_election_type == 1 ~ 'Caucus',
+                                         state_election_type == 2 ~ 'Primary'),
+         electa_which = case_when(electa_which == 1 ~ 'Persuade',
+                                  electa_which == 2 ~ 'Mobilize',
+                                  electa_which == 3 ~ 'Don\'t Know'),
+         urbancity = case_when(urbancity == 1 ~ 'City',
+                               urbancity == 2 ~ 'Suburb',
+                               urbancity == 3 ~ 'Town',
+                               urbancity == 4 ~ 'Rural Area',
+                               urbancity == 5 ~ 'Other'),
+         faminc_new = case_when(faminc_new %in% c(1,2,3,4,5) ~ 'Less than $50,000',
+                                faminc_new %in% c(6,7,8,9) ~ '$50,000 to $100,000',
+                                faminc_new %in% c(10,11,12,13,14,15,16) ~ 'More than $100,000',
+                                faminc_new == 97 ~ 'Refused'),
+         support_poc = ifelse(PRED20 %in% poc_cands, 'POC Predicted', 'White Predicted'),
+         support_poc = ifelse(PRED20 %in% fem_cands, 'Woman Predicted', 'Man Predicted'),
+         support_poc = ifelse(PRED20 %in% state_cands, 'Statewide Elected Predicted', 'Non-Statewide Elected Predicted'),
+         index = row_number())%>%
+  select(index, age2, pred20, region, gender, educ2, ideo4, state_election_type, electa_which, 
+         urbancity, faminc_new, support_poc, support_poc, support_poc, electability)%>%
+  filter(!is.na(electability))%>%
+  unnest_tokens(word, electability)%>%
+  mutate(word = lemmatize_strings(word))%>%
+  filter(!word %in% stop_words$word,
+         str_detect(word, "[a-z]"))
+```
+
+Define function to take a variable and calculate cosine sim between all pairs of variables
+```{r}
+electability_df
+
+library(lsa)
+
+pairwise_cossim <- function(seg_var = colnames(electability_df)[2]){
+  tot_cos_sims <- list()
+  
+  full_words <- electability_df %>% 
+    select_(col = seg_var, 'word')
+  groupings <- unique(full_words$col)
+  for(i in groupings){
+    temp_df_step1 <- full_words%>%
+      mutate(prim_col = ifelse(col == i, i, 'other'))%>%
+      filter(!is.na(col))
+    print(temp_df_step1$col%>%unique())
+    ind_cossim <- list()
+    for(x in groupings){
+      if(x == i){
+        next
+      }
+      temp_df_step2 <- temp_df_step1%>%
+        filter(col %in% c(x, i))%>%
+        count(prim_col, col, word)%>%
+        reshape2::melt(c('word','n'))%>%
+        arrange(variable)%>%
+        mutate(value = paste0(variable, value))%>%
+        select(-variable)%>%
+        spread(value, n)%>%
+        select(-word, -contains('prim_col'))%>%
+        as.matrix()
+      
+      temp_df_step2[is.na(temp_df_step2)] <- 0
+  
+      cos.sim <- cosine(temp_df_step2)
+      cos.sim_df <- data.frame(cossim = cos.sim[1,2],
+                               val = i,
+                               comp = x)
+      ind_cossim[[x]] <- cos.sim_df%>%mutate(topic = seg_var)
+    }
+    tot_cos_sims [[i]] <- bind_rows(ind_cossim)
+  }
+  fin <- bind_rows(tot_cos_sims)
+  return(fin)
+}
+
+var_list <- c('age2', 'pred20', 'region', 'gender', 'educ2', 'ideo4', 
+              'state_election_type', 'urbancity', # 'electa_which', 
+              'faminc_new', 'support_poc', 'support_poc', 'support_poc')
+comparisons <- list()
+for(i in var_list){
+  comparisons[[i]] <- pairwise_cossim(i)
+}
+all_comparisons <- bind_rows(comparisons)%>%
+  arrange(desc(cossim))
+```
+
+Visualize combinations
+```{r}
+plot_comps <- function(df = all_comparisons, topic_list = 'urbancity'){
+  df <- df%>%filter(topic %in% topic_list)  
+  
+  p <- ggplot(df, aes(x = val, y = comp, fill = cossim, label = round(cossim,2)))+
+    geom_tile(show.legend = FALSE)+
+    geom_text()
+  return(p)
+}
+
+# for(i in var_list){
+#   print(plot_comps(i))
+# }
+
+all_comparisons <- all_comparisons%>%
+  filter(topic == 'ideo4')%>%
+  mutate(val = factor(val, rev(c('Very liberal','Liberal','Moderate','Con/Oth'))),
+         comp = factor(comp, rev(c('Very liberal','Liberal','Moderate','Con/Oth'))))
+
+plot_comps(all_comparisons, 'ideo4')+
+  scale_fill_continuous(low = '#FFFFFF', high = '#F7A11A', name = element_blank())+
+    labs(title = 'Similarity of Electability Description\nby Ideology',
+         x = element_blank(),
+         y = element_blank())+
+    theme_minimal()+
+    theme(plot.title = element_text(hjust = .5, face=c('bold')),
+          panel.grid = element_blank())
+
+ggsave('cossim_example.png', width = 5.5, height = 5)
+```
+
+```{r}
+939.57*36
+```
+

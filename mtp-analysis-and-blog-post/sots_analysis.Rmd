@@ -1,0 +1,169 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+
+full_lines <- read_csv('full_lines.csv')
+full_words <- read_csv('full_words.csv')
+```
+
+Differential Positivity by Party/Topic
+Not a ton of difference here!
+```{r}
+full_words%>%
+  group_by(topic, party = tolower(party))%>%
+  summarise(pos = mean(score, na.rm = TRUE))%>%
+  spread(party, pos)%>%
+  mutate(diff = d - r)
+```
+
+Differential Word Counts?
+```{r}
+full_words%>%
+  mutate(topic = ifelse(topic == 'History and Future Vision', 'Civic Life',topic))%>%
+  count(topic, party = tolower(party))%>% #region, 
+  spread(party, n)%>%
+  mutate(diff = d - r,
+         pct_of_d = d/sum(d),
+         pct_of_r = r/sum(r),
+         pct_diff = pct_of_d - pct_of_r)%>%
+  select(topic, contains('pct'))%>% #region, 
+  ggplot(aes(x = reorder(topic, pct_diff), y = pct_diff, fill = pct_diff))+
+  geom_col(show.legend = FALSE)+
+  coord_flip()+
+  labs(title = 'Partisan Difference Topic Wordshare',
+       x = element_blank(),
+       y = 'Difference in Wordshare')+
+  scale_y_continuous(labels = scales::percent, breaks = seq(-.12,.12,.05), limits = c(-.12,.12))+
+  scale_fill_gradient(low = '#C41231', high = '#124F8C')+
+  theme_minimal()+
+  theme(panel.grid = element_blank(),
+        plot.title = element_text(hjust = .5))
+# +
+#   facet_wrap(~region)
+
+ggsave(filename = '../topic_wordshare.png', height = 3, width = 6)
+```
+
+
+Pairwise Cosine Simmilarity
+This code calculates the cosine similarity between all pairs of states. The topic filter then allows you to recalculate for only a subset of lines from each speech.
+```{r}
+library(lsa)
+
+pairwise_cossim <- function(topic_filter = 'none'){
+  tot_cos_sims <- list()
+  
+  if(topic_filter == 'none'){
+    full_words_temp <- full_words
+  } else {
+    full_words_temp <- full_words%>%filter(topic == topic_filter)
+  }
+  
+  for(i in unique(full_words_temp$state)){
+    temp_df_step1 <- full_words_temp%>%
+      mutate(prim_state = ifelse(state == i, i, 'other'))
+
+    state_cossim <- list()
+    for(x in unique(full_words_temp$state)){
+      if(x == i){
+        next
+      }
+      temp_df_step2 <- temp_df_step1%>%
+        filter(state %in% c(x, i))%>%
+        count(prim_state, state, word)%>%
+        reshape2::melt(c('word','n'))%>%
+        arrange(variable)%>%
+        mutate(value = paste0(variable, value))%>%
+        select(-variable)%>%
+        spread(value, n)%>%
+        select(-word, -contains('prim_state'))%>%
+        as.matrix()
+      
+      temp_df_step2[is.na(temp_df_step2)] <- 0
+  
+      cos.sim <- cosine(temp_df_step2)
+      cos.sim_df <- data.frame(cossim = cos.sim[1,2],
+                               state = i,
+                               comp_state = x)
+      if(!topic_filter == 'none'){
+        state_cossim[[x]] <- cos.sim_df
+      } else {
+        state_cossim[[x]] <- cos.sim_df%>%mutate(topic = topic_filter)
+      }
+    }
+    tot_cos_sims [[i]] <- bind_rows(state_cossim)
+  }
+  return(bind_rows(tot_cos_sims))
+}
+
+overall <- pairwise_cossim()
+civic <- pairwise_cossim('Civic Life')
+history <- pairwise_cossim('History and Future Vision')
+energy <- pairwise_cossim('Energy and Resources')
+access <- pairwise_cossim('Access to Services')
+jobs <- pairwise_cossim('Jobs')
+taxes <- pairwise_cossim('Taxes')
+infra <- pairwise_cossim('Infrastructure')
+budget <- pairwise_cossim('Budget Reports')
+educ <- pairwise_cossim('Education')
+first <- pairwise_cossim('First Responders and Disasters')
+all_comps <- bind_rows(list(overall, 
+                            civic%>%mutate(topic = 'Civic Life'), 
+                            history%>%mutate(topic = 'History and Future Vision'), 
+                            energy%>%mutate(topic = 'Energy and Resources'), 
+                            access%>%mutate(topic = 'Access to Services'), 
+                            jobs%>%mutate(topic = 'Jobs'), 
+                            taxes%>%mutate(topic = 'Taxes'), 
+                            infra%>%mutate(topic = 'Infrastructure'), 
+                            budget%>%mutate(topic = 'Budget Reports'), 
+                            educ%>%mutate(topic = 'Education'), 
+                            first%>%mutate(topic = 'First Responders and Disasters')))%>%
+  left_join(read_csv('cook_pvi.csv'))
+```
+
+Plot the pairwise cosine similarities
+```{r}
+sim_plot <- function(state_list = state.name, region_list = unique(state.region), topic_filter = 'none'){
+  topic_lab <- ifelse(topic_filter == 'none', 'Overall',topic_filter)
+  df <- all_comps%>%filter(topic == topic_filter, 
+                           state %in% state_list, 
+                           comp_state %in% state_list)
+  plt <- ggplot(df,
+         aes(x = reorder(state, cook_pvi), 
+             y = reorder(comp_state, -cook_pvi),
+             color = cossim))+
+    # guides(color = guide_legend(label.position = 'top'))+
+    geom_point()+
+    scale_color_continuous(low = '#FFFFFF', high = '#8e7cc3', name = element_blank(), breaks = c(0,.8))+
+    labs(title = paste0('Similarity Between SOTS Speeches', '\n', topic_lab),
+         x = element_blank(),
+         y = element_blank())+
+    theme_minimal()+
+    theme(axis.text.x = element_text(angle = 90, hjust = 1),
+          plot.title = element_text(hjust = .5, face=c('bold')),
+          legend.direction = 'horizontal',
+          legend.position = 'top',
+          legend.text = element_blank(),
+          panel.grid = element_blank())
+  
+  ggsave(plot = plt, filename = paste0('plots/',topic_lab,'.png'), height = 7, width = 6.5)
+  return(plt)
+}
+
+sim_plot()
+sim_plot(topic_filter = 'Civic Life')
+sim_plot(topic_filter = 'History and Future Vision')
+sim_plot(topic_filter = 'Energy and Resources')
+sim_plot(topic_filter = 'Access to Services')
+sim_plot(topic_filter = 'Jobs')
+sim_plot(topic_filter = 'Taxes')
+sim_plot(topic_filter = 'Infrastructure')
+sim_plot(topic_filter = 'Budget Reports')
+sim_plot(topic_filter = 'Education')
+sim_plot(topic_filter = 'First Responders and Disasters')
+```
+

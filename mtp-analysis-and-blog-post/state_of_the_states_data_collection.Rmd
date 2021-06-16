@@ -1,0 +1,177 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Load the data and requisite packages
+
+```{r}
+library(tidyverse)
+library(tidytext)
+library(textstem)
+
+clean_tweets <- read_csv('congress_tweets.csv')
+
+clean_tweets%>%
+  unnest_tokens(word, text)%>%
+  filter(!word %in% stop_words$word)
+```
+
+# State of the States
+```{r}
+speech_url_base <- 'https://raw.githubusercontent.com/fivethirtyeight/data/master/state-of-the-state/speeches/'
+all_speeches <- list()
+for(i in seq(1,length(state.name))){
+  suff <- ifelse(state.name[i] %in% state.name[c(13,21,29,37,45)], '_Both.txt', '_SOTS.txt')
+  speech_raw <- read_delim(paste0(speech_url_base, gsub(' ','',state.name[i]), suff), 
+                           delim = '>', 
+                           col_names = 'text')
+  speech <- speech_raw%>%
+    mutate(state_abb = state.abb[i],
+           state = state.name[i],
+           region = state.region[i])
+  all_speeches[[i]] <- speech
+}
+
+speech_index <- read_csv('https://raw.githubusercontent.com/fivethirtyeight/data/master/state-of-the-state/index.csv')
+
+sentiments_scaled <- sentiments%>%
+  filter(lexicon %in% c('nrc','bing','AFINN'))%>%
+  mutate(score = case_when(
+    lexicon == 'nrc' & sentiment == 'positive' ~ 1,
+    lexicon == 'nrc' & sentiment == 'negative' ~ 0,
+    lexicon == 'bing' & sentiment == 'positive' ~ 1,
+    lexicon == 'bing' & sentiment == 'negative' ~ 0,
+    lexicon == 'AFINN'~ (score+5)/10
+  ), word = lemmatize_strings(word))%>%
+  filter(!is.na(score))%>%
+  distinct(word, lexicon, score)%>%
+  group_by(word)%>%
+  summarise(score = mean(score, na.rm = TRUE))
+
+remove_state_names <- function(txt){
+  for(i in state.name){
+    if(grepl(tolower(i), tolower(txt))){
+      new_txt <- (gsub(tolower(i), '', tolower(txt)))  
+    } else {
+      next
+    }
+  }
+  print(new_txt)
+}
+
+all_speeches_df <- bind_rows(all_speeches)%>%
+  inner_join(speech_index, by = 'state')%>%
+  select(-filename, -url)%>%
+  mutate(line_id = row_number(),
+         text = remove_state_names(text))
+
+speech_words <- all_speeches_df%>%
+  unnest_tokens(word, text)%>%
+  mutate(word = lemmatize_strings(word))%>%
+  filter(!word %in% stop_words$word,
+         str_detect(word, "[a-z]"))%>%
+  group_by(word, state_abb)%>%
+  filter(n() > 3)%>%
+  ungroup()%>%
+  left_join(sentiments_scaled)
+
+all_words_dtm_df <- speech_words%>%
+  group_by(word, line_id)%>%
+  summarise(n = n())
+
+all_speeches_dtm <- cast_dtm(
+  data = all_words_dtm_df,
+  document = line_id,
+  term = word,
+  value = n
+  )
+
+```
+
+Determine optimal number of topics
+```{r}
+library(ldatuning)
+results <- FindTopicsNumber(
+  all_speeches_dtm,
+  topics = seq(from = 2, to = 50, by = 2),
+  metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+  method = "Gibbs",
+  control = list(seed = 77),
+  mc.cores = 2L,
+  verbose = TRUE
+)
+
+FindTopicsNumber_plot(results)
+write.csv(results, 'ldatuning_results.csv', row.names = F)
+orig_results <- read_csv('ldatuning_results.csv')
+
+ggplot(orig_results, aes(x = topics, y = Griffiths2004))+
+  geom_line()+
+  theme_minimal()+
+  labs(title = 'Griffiths Cluster Fit by Topic Number',
+       y = 'Griffiths',
+       x = 'N Topics')
+```
+
+Build a model with 30 topics
+```{r}
+library(topicmodels)
+speech.lda.fit <- LDA(x = all_speeches_dtm, k = 10)
+```
+
+Identify the top words in each cluster and save the gamma and beta dfs
+```{r}
+speech.gamma.10 <- tidy(speech.lda.fit, 'gamma')
+speech.beta.10 <- tidy(speech.lda.fit, 'beta')
+write_csv(speech.gamma.10, 'gamma.10.csv')
+write_csv(speech.beta.10, 'beta.10.csv')
+speech.beta <- read_csv('beta.10.csv')
+speech.gamma <- read_csv('gamma.10.csv')
+```
+Apply Topic Labels
+This code is a bit out of order because I first print the top 10 words per topic, then print the top 10 lines per topic, then go back and add labels
+```{r}
+topic_labels <- speech.beta%>%
+  filter(!is.na(term), 
+         # removing a bunch of words that show up in the top 10 words for more than 1/3 of the topics
+         !term %in% c('that ’ s','we ’ have','i ’ be','i ’ have','let ’ s',
+                      'state ’ s','we ’ re','it ’ s'))%>%
+  group_by(topic)%>%
+  top_n(10, wt = beta)%>%
+  ungroup()%>%
+  arrange(topic, desc(beta))
+write_csv(topic_labels, 'topic_labels.csv')
+
+speech.gamma%>%
+  left_join(all_speeches_df, by = c('document' = 'line_id'))%>%
+  group_by(topic)%>%
+  top_n(10, gamma)%>%
+  ungroup()%>%View()
+  write_delim('topic_examples.csv', delim = '~')
+  
+top_topic <- speech.gamma%>%
+  group_by(document)%>%
+  top_n(1, gamma)%>%
+  mutate(topic = case_when(
+    topic == 1 ~ 'Access to Services',
+    topic == 2 ~ 'First Responders and Disasters',
+    topic == 3 ~ 'Taxes',
+    topic == 4 ~ 'History and Future Vision',
+    topic == 5 ~ 'Education',
+    topic == 6 ~ 'Budget Reports',
+    topic == 7 ~ 'Energy and Resources',
+    topic == 8 ~ 'Infrastructure',
+    topic == 9 ~ 'Civic Life',
+    topic == 10 ~ 'Jobs'
+  ))
+
+full_lines <- all_speeches_df%>%
+  left_join(top_topic, by = c('line_id' = 'document'))
+
+full_words <- speech_words%>%
+  left_join(top_topic, by = c('line_id' = 'document'))
+write_csv(full_lines,'full_lines.csv')
+write_csv(full_words,'full_words.csv')
+```
+
